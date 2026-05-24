@@ -1,0 +1,100 @@
+/*
+ * work-detail.css
+ *
+ * RULE: Only styles Tailwind cannot express cleanly belong here.
+ *
+ * Sections:
+ *   1. Hero
+ *   2. Shared section wrapper
+ *   3. Showcase & gallery
+ *   4. Insights grid
+ *   5. Sterkros detail interactions
+ */
+
+@font-face {
+  font-family: "Sui Generis Sterkros";
+  src: url("/assets/work-sterkros-detail/sui-generis-rg.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ─── 1. HERO ──────────────────────────────────────────────────────────────── */
+
+.work-detail-hero {
+  @apply mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2 xl:px-10;
+}
+
+.work-detail-media {
+  @apply w-full rounded-2xl border border-white/10 object-cover;
+}
+
+
+/* ─── 2. SHARED SECTION WRAPPER ────────────────────────────────────────────── */
+
+.work-detail-section {
+  @apply mx-auto max-w-7xl px-6 xl:px-10;
+}
+
+
+/* ─── 3. SHOWCASE & GALLERY ────────────────────────────────────────────────── */
+
+.work-detail-showcase-wrap {
+  @apply overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02];
+}
+
+.work-detail-gallery-image {
+  @apply h-72 w-full rounded-2xl border border-white/10 object-cover;
+}
+
+
+/* ─── 4. INSIGHTS GRID ─────────────────────────────────────────────────────── */
+
+.work-detail-insights {
+  @apply grid gap-8 rounded-2xl border border-white/10 bg-white/[0.02] p-8 md:grid-cols-2;
+}
+
+
+/* ─── 5. STERKROS DETAIL ───────────────────────────────────────────────────────
+ *
+ * content-visibility: auto IS INTENTIONALLY REMOVED from .sterkros-section.
+ *
+ * The original .sterkros-section had `content-visibility: auto` which causes
+ * the browser to physically destroy and recreate DOM nodes as sections scroll
+ * in and out of the viewport. For a page with media elements this means:
+ *
+ *   - <video> elements get torn down → src is unbound → browser re-requests
+ *     the file on scroll-back even with a warm cache → 304 storms (confirmed
+ *     in network tab: glitch.mp4 appears 12+ times).
+ *
+ *   - <img> elements lose their decoded bitmap → the JPEG/PNG must be
+ *     re-decoded from cached bytes every time the section re-enters view →
+ *     visible stutter even with no network activity.
+ *
+ * content-visibility: auto is appropriate only for text-only sections where
+ * there is nothing to cache or keep alive. Never use it on sections containing
+ * <video>, <canvas>, or images the user will scroll past repeatedly.
+ *
+ * The sterkros-section class is kept for selector targeting but stripped of
+ * content-visibility entirely.
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+.sterkros-font {
+  font-family: "Sui Generis Sterkros", "Poppins", sans-serif;
+}
+
+/* Keep the class for any remaining references but do NOT add content-visibility */
+.sterkros-section {
+  /* intentionally empty — content-visibility removed, see note above */
+}
+
+.sterkros-compare-handle {
+  cursor: ew-resize !important;
+  touch-action: none;
+}
+
+.sterkros-compare-handle:focus-visible {
+  outline: 3px solid #f2b01e;
+  outline-offset: 4px;
+}

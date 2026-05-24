@@ -1,0 +1,46 @@
+/*
+ * contact.css
+ *
+ * RULE: Only styles Tailwind cannot express cleanly belong here.
+ * Layout, colour, and spacing → Tailwind utility classes in the component.
+ *
+ * Sections:
+ *   1. Page layout
+ *   2. Panels (shared card surface)
+ *   3. Form fields
+ */
+
+
+/* ─── 1. PAGE LAYOUT ─────────────────────────────────────────────────────────
+   Centres content and adds consistent horizontal padding.
+   Matches the same max-width / padding pattern used across all pages.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.contact-page-main {
+  @apply mx-auto max-w-7xl px-6 py-16 xl:px-10;
+}
+
+
+/* ─── 2. PANELS ──────────────────────────────────────────────────────────────
+   Shared frosted-glass card surface used for both info and form panels.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.contact-panel {
+  @apply rounded-3xl border border-white/10 bg-white/[0.03] p-8;
+}
+
+
+/* ─── 3. FORM FIELDS ─────────────────────────────────────────────────────────
+   Input / textarea base styles.
+   focus:ring-bee-accent uses the token from tailwind.config — no hex here.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.contact-form-field {
+  @apply w-full rounded-lg bg-[#3E4045] px-4 py-3 text-white outline-none transition
+         focus:ring-2 focus:ring-bee-accent;
+}
+
+.contact-submit-btn {
+  @apply rounded-pill bg-[#3E4045] px-6 py-2.5 text-white transition
+         hover:bg-bee-accent hover:text-black;
+}

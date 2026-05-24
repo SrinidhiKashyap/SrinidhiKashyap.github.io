@@ -1,0 +1,232 @@
+﻿/*
+ * home.css
+ *
+ * RULE: This file contains ONLY styles that Tailwind cannot express:
+ *   â€¢ @keyframes animations
+ *   â€¢ Complex hover-reveal effects (max-height transitions, opacity sequences)
+ *   â€¢ Pseudo-element tricks (::after underline indicators)
+ *   â€¢ Multi-property transitions that would be unreadable as inline classes
+ *
+ * Layout, spacing, color, and typography live in Tailwind utility classes
+ * inside each component file. If you're adding a color or a margin here,
+ * ask yourself â€” can this be a Tailwind class instead?
+ *
+ * Sections:
+ *   1. Marquee (client logos scroll)
+ *   2. Cursor blink
+ *   3. Testimonial tabs & panel
+ *   4. Value cards (hover-reveal)
+ *   5. Work cards
+ *   6. Responsive overrides
+ */
+
+
+/* â”€â”€â”€ 1. MARQUEE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Infinite horizontal scroll for the client logo strip.
+   The animation moves the strip left by exactly 50% (the list is duplicated
+   in JSX so it loops seamlessly). Pauses on hover.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.marquee {
+  display: flex;
+  width: max-content;
+  gap: clamp(3.5rem, 8vw, 8rem);
+  align-items: center;
+  animation: marquee-scroll 24s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee__logo {
+  width: auto;
+  max-width: 260px;
+  height: clamp(54px, 7vw, 88px);
+  flex: 0 0 auto;
+  object-fit: contain;
+  /* Desaturate and brighten logos so any colour works on dark backgrounds */
+  filter: grayscale(1) brightness(1.8);
+  opacity: 0.92;
+}
+
+
+/* â”€â”€â”€ 2. CURSOR BLINK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Blinking "|" cursor used in the hero typewriter effect.
+   Step-end makes it snap (not fade) between visible and invisible.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.cursor-blink {
+  display: inline-block;
+  margin-left: 0.3rem;
+  color: #f2b01e; /* bee-accent â€” matches brand yellow */
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 45% { opacity: 1; }
+  46%, 100% { opacity: 0; }
+}
+
+
+/* â”€â”€â”€ 3. TESTIMONIAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   The testimonial section keeps one CSS-only hook that Tailwind can't cleanly
+   express only for the tab underline:
+     a) Tab underline indicator â€” a pseudo-element that scales in on active
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+
+
+/* Tab underline indicator â€” slides in / scales up on active */
+.testimonial-tab {
+  position: relative;
+}
+
+.testimonial-tab::after {
+  content: "";
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ffc400; /* bee-accent */
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.testimonial-tab--active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+
+/* â”€â”€â”€ 4. VALUE CARDS (HOVER-REVEAL) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Cards sit at a compact height and reveal body text on hover/focus.
+   We animate max-height (not height) so the transition works without
+   knowing the exact content height at compile time.
+   Every other card is offset downward to create a staggered grid look.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.value-grid {
+  min-height: 320px;
+}
+
+.value-card {
+  min-height: 190px;
+  transition:
+    min-height 0.35s ease,
+    transform   0.35s ease,
+    box-shadow  0.35s ease;
+}
+
+/* Even-indexed cards drop down to create a brick-like stagger */
+.value-card:nth-child(even) {
+  margin-top: 66px;
+}
+
+.value-card:hover,
+.value-card:focus-visible {
+  min-height: 190px;
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  outline: none;
+}
+
+/* Icon scales up and saturates slightly on hover */
+.value-card__icon {
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.value-card:hover .value-card__icon,
+.value-card:focus-visible .value-card__icon {
+  transform: scale(1.2);
+  filter: saturate(1.35);
+}
+
+/* Body text is hidden by default; revealed on hover via max-height trick */
+.value-card__body {
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height  0.35s ease,
+    margin-top  0.35s ease,
+    opacity     0.25s ease;
+}
+
+.value-card:hover .value-card__body,
+.value-card:focus-visible .value-card__body {
+  max-height: 140px;
+  margin-top: 14px;
+  opacity: 1;
+}
+
+
+/* â”€â”€â”€ 5. WORK CARDS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Media thumbnail scales subtly on hover.
+   Overlay fades between two background states.
+   Arrow badge flips to accent colour on hover.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+/* Thumbnail scale â€” applied to both <img> and <video> children */
+.work-card__media img,
+.work-card__media video {
+  transition: transform 0.7s ease;
+}
+
+.work-card:hover .work-card__media img,
+.work-card:hover .work-card__media video {
+  transform: scale(1.03);
+}
+
+/* Overlay fades to a lighter tint on hover */
+.work-card__overlay {
+  transition: background 0.5s ease;
+}
+
+.work-card:hover .work-card__overlay {
+  background: rgba(55, 55, 55, 0.52);
+}
+
+/* Arrow badge colour-flips to bee-accent on hover */
+.work-card__arrow {
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.work-card:hover .work-card__arrow {
+  background: #f2b01e; /* bee-accent */
+  color: #000;
+}
+
+
+/* â”€â”€â”€ 6. RESPONSIVE OVERRIDES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Only override the CSS-only behaviours above.
+   Everything else (columns, padding, font sizes) is handled by Tailwind's
+   responsive prefixes (sm:, md:, lg:) directly in the component JSX.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+@media (max-width: 768px) {
+  /* Value cards: always show body text on mobile (no hover available) */
+  .value-grid {
+    min-height: 0;
+  }
+
+  .value-card,
+  .value-card:nth-child(even) {
+    min-height: 250px;
+    margin-top: 0;
+  }
+
+  .value-card__body {
+    max-height: 180px;
+    margin-top: 14px;
+    opacity: 1;
+  }
+}

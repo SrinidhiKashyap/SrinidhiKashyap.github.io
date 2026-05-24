@@ -1,0 +1,41 @@
+/*
+ * service.css
+ *
+ * RULE: Only styles Tailwind cannot express cleanly belong here.
+ * Layout, color, spacing, and type live in ServicePage.tsx utilities.
+ *
+ * Sections:
+ *   1. Service marquee
+ */
+
+
+/* --- 1. SERVICE MARQUEE -----------------------------------------------------
+   The marquee needs keyframes and a duplicate moving track. The second line
+   uses text-stroke, which Tailwind does not provide by default.
+------------------------------------------------------------------------------ */
+
+.service-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: service-marquee-scroll 28s linear infinite;
+}
+
+.service-marquee__track span {
+  flex: 0 0 auto;
+  padding-right: 1.5rem;
+  font-size: clamp(2rem, 4vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.service-marquee__track--outline {
+  margin-top: 0.35rem;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.28);
+}
+
+@keyframes service-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

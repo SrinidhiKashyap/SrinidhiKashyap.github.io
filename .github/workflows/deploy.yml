@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master        # fires on every merge/push to master
+  workflow_dispatch:  # also lets you trigger it manually from the Actions tab
+
+# Only one deploy runs at a time. If a new push comes in while one is
+# running, the in-progress run is cancelled and the new one takes over.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write       # needed to push to the gh-pages environment
+  id-token: write    # needed by deploy-pages action for OIDC auth
+
+jobs:
+  # ── Job 1: Build ────────────────────────────────────────────────────────────
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm           # caches node_modules between runs — faster builds
+
+      - name: Install dependencies
+        run: npm ci            # ci = clean install, respects package-lock.json exactly
+
+      - name: Build
+        run: npm run build
+        # The BASE_URL env var is read by vite.config.ts below.
+        # For a repo-name site (username.github.io/repo-name) set it to /repo-name/
+        # For a user/org site (username.github.io) set it to /
+        env:
+          BASE_URL: /          # ← change to /your-repo-name/ if not a user/org site
+
+      - name: Upload build artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist           # Vite's output directory
+
+  # ── Job 2: Deploy ───────────────────────────────────────────────────────────
+  deploy:
+    name: Deploy
+    needs: build               # waits for build to finish and pass
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}   # shows the live URL in Actions UI
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        # This action takes the artifact uploaded above and pushes it to the
+        # special GitHub Pages CDN. No gh-pages branch needed — GitHub manages
+        # the deployment internally.
