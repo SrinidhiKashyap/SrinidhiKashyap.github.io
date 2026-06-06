@@ -69,7 +69,8 @@ export function SiteFooter() {
             onClick={handleScrollTop}
             className="flex items-center gap-4 text-base font-semibold transition hover:text-bee-accent"
           >
-            I&apos;ve gone too far, send me back up
+            <span className="hidden sm:inline">I've gone too far, send me back up</span>
+            <span className="sm:hidden">Back to top</span>
             <span className="relative grid h-10 w-10 place-items-center rounded-pill bg-bee-accent text-black" aria-hidden>
               <span className="h-3 w-3 border-r-2 border-t-2 border-current" />
               <span className="absolute h-4 w-0.5 rotate-45 bg-current" />
@@ -165,7 +166,7 @@ function FooterLinkColumn({
                 {isHome ? (
                   <button
                     type="button"
-                    onClick={() => scrollToId(link.targetId)}
+                    onClick={() => { if (link.targetId) scrollToId(link.targetId); }}
                     className={`${className} text-left`}
                   >
                     {link.label}

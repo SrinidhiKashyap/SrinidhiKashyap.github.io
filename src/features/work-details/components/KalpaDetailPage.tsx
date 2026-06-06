@@ -7,7 +7,7 @@ import {
   DetailVideo,
   DetailVideoProvider,
   NextWorkStrip,
-} from "./detailMedia";
+} from "./";
 
 function ProcessTile({
   number,
@@ -34,10 +34,10 @@ function ProcessTile({
 function QuoteBlock({ children }: { children: ReactNode }) {
   return (
     <section className="px-section-x-sm py-14 sm:px-section-x-md lg:px-section-x-lg">
-      <blockquote className="max-w-[1080px] text-heading-sm font-semibold leading-tight">
-        <span className="block text-[5rem] leading-none text-bee-accent">&ldquo;</span>
+      <blockquote className="max-w-[1080px] text-heading-sm font-semibold leading-tight break-words">
+        <span className="block text-[clamp(3rem,10vw,5rem)] leading-none text-bee-accent">&ldquo;</span>
         {children}
-        <span className="ml-20 text-[5rem] leading-none text-bee-accent">&rdquo;</span>
+        <span className="ml-20 text-[clamp(3rem,10vw,5rem)] leading-none text-bee-accent">&rdquo;</span>
       </blockquote>
     </section>
   );

@@ -50,6 +50,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Sui Generis Sterkros";
+  src: url("/assets/work-sterkros-detail/sui-generis-rg.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Goku Stencil";
+  src: url("/assets/work-kalpa-detail/goku-stencil.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 html,
 body {
   height: 100%;
@@ -70,12 +86,4 @@ body {
 
 #root {
   min-height: 100%;
-}
-
-/* global.css */
-
-html,
-body,
-* {
-  cursor: none !important;
 }

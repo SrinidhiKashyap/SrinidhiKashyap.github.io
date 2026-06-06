@@ -1,6 +1,15 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+/**
+ * ScrollToHash
+ *
+ * Listens for hash changes in the URL and scrolls to the corresponding
+ * element on the page. If no hash is present, scrolls to top.
+ *
+ * Uses `requestAnimationFrame` to ensure the DOM has painted before
+ * calling `scrollIntoView`.
+ */
 export function ScrollToHash() {
   const { hash, pathname } = useLocation();
 

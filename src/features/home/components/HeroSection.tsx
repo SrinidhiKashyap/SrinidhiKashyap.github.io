@@ -1,3 +1,9 @@
+/**
+ * HeroSection
+ *
+ * Full-viewport hero on the homepage with the "Bee Concept" title,
+ * tagline, and a scroll-down chevron button that scrolls to #about.
+ */
 export function HeroSection() {
   function scrollToAbout() {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -6,7 +12,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative grid min-h-[calc(100svh-76px)] place-items-center overflow-hidden bg-bee-bg-hero px-6 text-center text-white"
+      className="relative grid min-h-[calc(100svh-76px)] place-items-center overflow-hidden bg-bee-bg-hero px-section-x-sm text-center text-white sm:px-section-x-md lg:px-section-x-lg"
     >
       <div className="flex min-h-[calc(100svh-76px)] w-full flex-col items-center justify-center py-10">
         <h1 className="text-display-xl font-extrabold leading-none text-bee-accent">

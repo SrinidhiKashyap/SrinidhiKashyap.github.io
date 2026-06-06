@@ -46,7 +46,7 @@
 
 .marquee__logo {
   width: auto;
-  max-width: 260px;
+  max-width: min(260px, 65vw);
   height: clamp(54px, 7vw, 88px);
   flex: 0 0 auto;
   object-fit: contain;

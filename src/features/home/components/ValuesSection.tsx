@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { classNames } from "../../../shared/lib/classNames";
-import { stats, values } from "../data/homeContent";
+import { STATS, VALUES } from "../data/values";
 
 /*
  * Each value has a "tone" colour for its heading and icon.
@@ -65,8 +65,8 @@ export function ValuesSection() {
          * The stagger (even cards drop down) and hover-reveal are in home.css
          * under "4. VALUE CARDS".
          */}
-        <div className="value-grid mt-16 grid grid-cols-4 gap-x-[clamp(1.25rem,3vw,3.25rem)] items-start">
-          {values.map((value, index) => {
+        <div className="value-grid mt-16 grid grid-cols-1 gap-x-[clamp(1.25rem,3vw,3.25rem)] items-start sm:grid-cols-2 lg:grid-cols-4">
+          {VALUES.map((value, index) => {
             const isActive = activeValue === value.title;
 
             return (
@@ -110,7 +110,7 @@ export function ValuesSection() {
       {/* ── Stats bar ── */}
       <section ref={statsRef} className="bg-bee-bg-deep px-section-x-sm py-12 text-white sm:px-section-x-md lg:px-section-x-lg">
         <div className="grid w-full gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat) => (
+          {STATS.map((stat) => (
             <div key={stat.label} className="text-center sm:text-left">
               <AnimatedStatValue value={stat.value} active={statsVisible} />
               <p className="mt-2 text-[1.05rem] font-medium">{stat.label}</p>

@@ -5,6 +5,14 @@ import { ASSETS } from "../../lib/assets";
 const MINIMUM_LOADER_MS = 900;
 const ROUTE_LOADER_MS = 650;
 
+/**
+ * SiteLoader
+ *
+ * Full-screen loading overlay shown on initial page load and route transitions.
+ * - On first mount: waits for `window.load` event, ensures minimum 900ms display.
+ * - On route change: flashes for 650ms to indicate navigation progress.
+ * - Uses an animated GIF from `ASSETS.gifLoader`.
+ */
 export function SiteLoader() {
   const location = useLocation();
   const [visible, setVisible] = useState(true);

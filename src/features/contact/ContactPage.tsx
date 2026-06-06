@@ -1,9 +1,9 @@
-import PageLayout from "../../shared/components/layout/PageLayout";
+import { PageLayout } from "../../shared/components/layout/PageLayout";
 import { ContactFormPanel } from "./components/ContactFormPanel";
 import { ContactInfoPanel } from "./components/ContactInfoPanel";
 import "./contact.css";
 
-export default function ContactPage() {
+export function ContactPage() {
   return (
     <PageLayout>
       <main className="contact-page-main">

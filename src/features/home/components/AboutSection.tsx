@@ -1,5 +1,12 @@
 import { ASSETS } from "../../../shared/lib/assets";
 
+/**
+ * AboutSection
+ *
+ * "Our Story" section on the homepage. Two-column layout with company
+ * description on the left and a decorative image on the right.
+ * On mobile, image stacks below the text.
+ */
 export function AboutSection() {
   return (
     <section id="about" className="bg-bee-bg-surface text-white">
@@ -31,7 +38,7 @@ export function AboutSection() {
               </p>
               <p>
                 We take pride in our collaborative approach, working hand-in-hand with clients to
-                understand their unique needs. Whether it&apos;s a brand-new campaign or a fresh
+                understand their unique needs. Whether it's a brand-new campaign or a fresh
                 perspective on an established identity, BEE creative is here to turn your vision
                 into reality.
               </p>

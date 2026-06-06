@@ -2,7 +2,8 @@ import { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { AutoPlayVideo } from "../../../shared/components/media/AutoPlayVideo";
 import { classNames } from "../../../shared/lib/classNames";
-import { workCategoryLabels, workFilters, works } from "../data/homeContent";
+import { WORK_CATEGORY_LABELS, WORK_FILTERS } from "../data/filters";
+import { WORKS } from "../data/works";
 import type { HomeWorkFilter, WorkItem } from "../types/home";
 
 type WorksSectionProps = {
@@ -20,7 +21,7 @@ type WorkCardProps = {
 
 const WorkCard = memo(function WorkCard({ work, offset }: WorkCardProps) {
   return (
-    <article className={classNames("work-card", offset && "translate-y-[90px]")}>
+    <article className={classNames("work-card", offset && "md:translate-y-[90px]")}>
 
       {/* Thumbnail — image or auto-playing video */}
       <div className="work-card__media relative w-full overflow-hidden rounded-media bg-bee-bg-deep">
@@ -46,7 +47,7 @@ const WorkCard = memo(function WorkCard({ work, offset }: WorkCardProps) {
         <div className="work-card__overlay absolute bottom-3.5 left-3.5 right-3.5 flex min-h-[54px] items-center justify-between gap-4 rounded-[14px] bg-black/70 px-5 py-2.5 backdrop-blur-overlay">
           <div className="flex min-w-0 flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-white/85">
             {work.categories.map((category) => (
-              <span key={category}>{workCategoryLabels[category]}</span>
+              <span key={category}>{WORK_CATEGORY_LABELS[category]}</span>
             ))}
           </div>
 
@@ -78,8 +79,8 @@ export function WorksSection({ activeCategory, onCategoryChange }: WorksSectionP
     useMemo(
       () =>
         activeCategory === "All Work"
-          ? works
-          : works.filter((w) => w.categories.includes(activeCategory)),
+          ? WORKS
+          : WORKS.filter((w) => w.categories.includes(activeCategory)),
       [activeCategory],
     );
 
@@ -97,7 +98,7 @@ export function WorksSection({ activeCategory, onCategoryChange }: WorksSectionP
 
         {/* Category filter buttons */}
         <div className="mt-14 flex flex-wrap gap-x-10 gap-y-4">
-          {workFilters.map((filter) => (
+          {WORK_FILTERS.map((filter) => (
             <button
               key={filter.value}
               type="button"

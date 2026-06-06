@@ -1,10 +1,10 @@
 import { BrowserRouter } from "react-router-dom";
 import { SiteLoader } from "../shared/components/layout/SiteLoader";
-import { AppRoutes } from "./routes";
+import { AppRoutes } from "./AppRoutes";
 import { ScrollToHash } from "./ScrollToHash";
 import { BeeCursorTrail } from "../shared/components/ui/BeeCursorTrail";
 
-export default function WebsiteApp() {
+export function WebsiteApp() {
   return (
     <BrowserRouter>
       <SiteLoader />

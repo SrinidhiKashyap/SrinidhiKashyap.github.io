@@ -25,7 +25,7 @@ type PageLayoutProps = {
  * The `pt-[76px]` on the inner div pushes content below the navbar height.
  * If you change the navbar height, update that value here.
  */
-export default function PageLayout({ children }: PageLayoutProps) {
+export function PageLayout({ children }: PageLayoutProps) {
   return (
     <div className="min-h-screen bg-bee-bg-primary text-white antialiased">
       <SiteNavbar />

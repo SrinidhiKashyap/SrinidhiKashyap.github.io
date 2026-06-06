@@ -5,7 +5,7 @@ import {
   DetailVideo,
   DetailVideoProvider,
   NextWorkStrip,
-} from "./detailMedia";
+} from "./";
 
 export function SterkrosDetailPage() {
   return (
@@ -68,10 +68,10 @@ export function SterkrosDetailPage() {
         </section>
 
         <section className="w-full px-section-x-sm py-12 sm:px-section-x-md lg:px-section-x-lg">
-          <blockquote className="max-w-[850px] text-heading-sm font-semibold leading-tight">
-            <span className="block text-[5rem] leading-none text-bee-accent">&ldquo;</span>
+          <blockquote className="max-w-[850px] text-heading-sm font-semibold leading-tight break-words">
+            <span className="block text-[clamp(3rem,10vw,5rem)] leading-none text-bee-accent">&ldquo;</span>
             {sterkrosContent.quote}
-            <span className="ml-4 text-[5rem] leading-none text-bee-accent">&rdquo;</span>
+            <span className="ml-4 text-[clamp(3rem,10vw,5rem)] leading-none text-bee-accent">&rdquo;</span>
           </blockquote>
           <div className="mt-10 grid gap-8 md:grid-cols-2">
             <DetailImage src={STERKROS.gymBag} alt="Sterkros gym bag" className="aspect-square w-full object-cover" />

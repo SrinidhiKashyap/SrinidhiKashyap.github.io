@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { classNames } from "../../../shared/lib/classNames";
-import { marqueeLogos, testimonials } from "../data/homeContent";
+import { MARQUEE_LOGOS, TESTIMONIALS } from "../data/testimonials";
 
 export function ClientsTestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = testimonials[activeIndex];
+  const active = TESTIMONIALS[activeIndex];
 
   function move(direction: 1 | -1) {
-    setActiveIndex((i) => (i + direction + testimonials.length) % testimonials.length);
+    setActiveIndex((i) => (i + direction + TESTIMONIALS.length) % TESTIMONIALS.length);
   }
 
   return (
@@ -29,7 +29,7 @@ export function ClientsTestimonialsSection() {
        */}
       <div className="-mx-section-x-sm mt-14 overflow-hidden sm:-mx-section-x-md lg:-mx-section-x-lg">
         <div className="marquee">
-          {[...marqueeLogos, ...marqueeLogos].map((logo, index) => (
+          {[...MARQUEE_LOGOS, ...MARQUEE_LOGOS].map((logo, index) => (
             <img
               key={`${logo}-${index}`}
               src={logo}
@@ -80,7 +80,7 @@ export function ClientsTestimonialsSection() {
 
             {/* ── Tabs (one per testimonial person) ── */}
             <div className="flex items-center justify-center gap-8 overflow-x-auto px-9 pb-[18px] lg:gap-14">
-              {testimonials.map((testimonial, index) => (
+              {TESTIMONIALS.map((testimonial, index) => (
                 <button
                   key={testimonial.id}
                   type="button"

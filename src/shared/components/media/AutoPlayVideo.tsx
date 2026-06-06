@@ -6,6 +6,15 @@ type AutoPlayVideoProps = Omit<
   "autoPlay" | "loop" | "muted" | "playsInline"
 >;
 
+/**
+ * AutoPlayVideo
+ *
+ * A memoized `<video>` wrapper that lazy-loads the `src` attribute only when
+ * the element is near the viewport (rootMargin 180px). The video auto-plays,
+ * loops, and is muted by default — ideal for decorative background media.
+ *
+ * Pauses and removes `src` when scrolled out of view to reduce resource usage.
+ */
 function AutoPlayVideoComponent({ src, preload = "metadata", ...props }: AutoPlayVideoProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [loadedSrc, setLoadedSrc] = useState<string | undefined>(undefined);
