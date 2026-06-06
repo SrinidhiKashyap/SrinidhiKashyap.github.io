@@ -80,7 +80,7 @@ export function KalpaDetailPage() {
         </section>
 
         <section className="mt-8 bg-[#0b2a4c]">
-          <DetailVideo src={KALPA.logoFormVideo} className="mx-auto aspect-video max-h-[calc(100svh-120px)] w-full" fit="contain" playOverlay />
+          <DetailVideo src={KALPA.logoFormVideo} className="mx-auto aspect-video max-h-[calc(100svh-120px)] w-full" fit="contain" />
         </section>
 
         <section className="grid md:grid-cols-2">
