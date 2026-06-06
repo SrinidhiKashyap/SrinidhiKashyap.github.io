@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import PageLayout from "../../shared/components/layout/PageLayout";
 import type { HomeWorkFilter } from "./types/home";
 import { AboutSection } from "./components/AboutSection";
@@ -10,6 +10,9 @@ import "./home.css";
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState<HomeWorkFilter>("All Work");
+  const handleCategoryChange = useCallback((category: HomeWorkFilter) => {
+    setActiveCategory(category);
+  }, []);
 
   return (
     <PageLayout>
@@ -21,7 +24,7 @@ export default function HomePage() {
       <HeroSection />
       <AboutSection />
       <ValuesSection />
-      <WorksSection activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+      <WorksSection activeCategory={activeCategory} onCategoryChange={handleCategoryChange} />
       <ClientsTestimonialsSection />
     </PageLayout>
   );

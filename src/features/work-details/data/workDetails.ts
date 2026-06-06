@@ -93,7 +93,7 @@ export const workDetails: Record<string, DetailPageData> = {
     scope: ["Culture", "Values", "Capabilities", "Collaboration Process"],
     hero: "/assets/logo-Bk4tGk3_.png",
     showcaseVideo: "/assets/1-6VgHGL0U.mp4",
-    gallery: ["/assets/hand-C3sN6PB7.png", "/assets/home1-DuxIdUgA.png"],
+    gallery: ["/assets/hand-C3sN6PB7.webp", "/assets/home1-DuxIdUgA.png"],
     deliverables:
       "Our studio process blends design and development from day one, keeping strategy, content, and production aligned so brands scale with consistency.",
     challenge:

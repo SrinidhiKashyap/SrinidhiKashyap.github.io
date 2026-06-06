@@ -1,3 +1,4 @@
+import { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { AutoPlayVideo } from "../../../shared/components/media/AutoPlayVideo";
 import { classNames } from "../../../shared/lib/classNames";
@@ -17,7 +18,7 @@ type WorkCardProps = {
   offset: boolean;
 };
 
-function WorkCard({ work, offset }: WorkCardProps) {
+const WorkCard = memo(function WorkCard({ work, offset }: WorkCardProps) {
   return (
     <article className={classNames("work-card", offset && "translate-y-[90px]")}>
 
@@ -68,15 +69,19 @@ function WorkCard({ work, offset }: WorkCardProps) {
 
     </article>
   );
-}
+});
 
 // ─── Works Section ────────────────────────────────────────────────────────────
 
 export function WorksSection({ activeCategory, onCategoryChange }: WorksSectionProps) {
   const filteredWorks =
-    activeCategory === "All Work"
-      ? works
-      : works.filter((w) => w.categories.includes(activeCategory));
+    useMemo(
+      () =>
+        activeCategory === "All Work"
+          ? works
+          : works.filter((w) => w.categories.includes(activeCategory)),
+      [activeCategory],
+    );
 
   return (
     <section id="works" className="bg-bee-bg-primary text-white">

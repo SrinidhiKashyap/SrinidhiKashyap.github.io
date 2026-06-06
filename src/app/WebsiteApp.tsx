@@ -9,7 +9,7 @@ export default function WebsiteApp() {
     <BrowserRouter>
       <SiteLoader />
       <ScrollToHash />
-      {/* <BeeCursorTrail/> */}
+      <BeeCursorTrail/> 
       <AppRoutes />
     </BrowserRouter>
   );

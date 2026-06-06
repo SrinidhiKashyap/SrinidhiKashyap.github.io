@@ -84,6 +84,21 @@
   font-family: "Sui Generis Sterkros", "Poppins", sans-serif;
 }
 
+.kalpa-display {
+  font-family: "Goku Stencil", "Poppins", sans-serif;
+  letter-spacing: 0;
+}
+
+.work-detail-compare-handle {
+  cursor: ew-resize !important;
+  touch-action: none;
+}
+
+.work-detail-compare-handle:focus-visible {
+  outline: 3px solid #f2b01e;
+  outline-offset: 4px;
+}
+
 /* Keep the class for any remaining references but do NOT add content-visibility */
 .sterkros-section {
   /* intentionally empty — content-visibility removed, see note above */

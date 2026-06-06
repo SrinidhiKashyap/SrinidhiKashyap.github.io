@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import PageLayout from "../../shared/components/layout/PageLayout";
 import { AutoPlayVideo } from "../../shared/components/media/AutoPlayVideo";
@@ -52,7 +52,7 @@ type LetterRevealProps = {
   className?: string;
 };
 
-function LetterReveal({ children, progress, className }: LetterRevealProps) {
+const LetterReveal = memo(function LetterReveal({ children, progress, className }: LetterRevealProps) {
   const characters = Array.from(children);
   const litCount = Math.ceil(characters.length * progress);
 
@@ -71,7 +71,7 @@ function LetterReveal({ children, progress, className }: LetterRevealProps) {
       ))}
     </span>
   );
-}
+});
 
 type ServicePointListProps = {
   service: ServiceItem;
@@ -79,7 +79,7 @@ type ServicePointListProps = {
   onActivatePoint: (pointKey: string) => void;
 };
 
-function ServicePointList({ service, activePoints, onActivatePoint }: ServicePointListProps) {
+const ServicePointList = memo(function ServicePointList({ service, activePoints, onActivatePoint }: ServicePointListProps) {
   const isRightAligned = service.layout === "left";
 
   return (
@@ -122,7 +122,7 @@ function ServicePointList({ service, activePoints, onActivatePoint }: ServicePoi
       })}
     </ul>
   );
-}
+});
 
 type ServiceSectionProps = {
   service: ServiceItem;
@@ -133,7 +133,7 @@ type ServiceSectionProps = {
   onActivatePoint: (pointKey: string) => void;
 };
 
-function ServiceSection({
+const ServiceSection = memo(function ServiceSection({
   service,
   index,
   progress,
@@ -198,9 +198,9 @@ function ServiceSection({
       )}
     </section>
   );
-}
+});
 
-function StudioWorkStrip() {
+const StudioWorkStrip = memo(function StudioWorkStrip() {
   const studioWorks = works.slice(3, 5);
 
   return (
@@ -249,19 +249,19 @@ function StudioWorkStrip() {
       </div>
     </section>
   );
-}
+});
 
 export default function ServicePage() {
   const { progresses, sectionRefs } = useServiceRevealProgress();
   const [activePoints, setActivePoints] = useState<Set<string>>(() => new Set());
 
-  function activatePoint(pointKey: string) {
+  const activatePoint = useCallback((pointKey: string) => {
     setActivePoints((current) => {
       const next = new Set(current);
       next.add(pointKey);
       return next;
     });
-  }
+  }, []);
 
   return (
     <PageLayout>

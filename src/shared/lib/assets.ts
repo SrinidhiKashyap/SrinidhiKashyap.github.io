@@ -1,7 +1,7 @@
 export const ASSETS = {
   logoDark: "/assets/logo-dark.png",
   logoLight: "/assets/logo-white.png",
-  heroHand: "/assets/hand-C3sN6PB7.png",
+  heroHand: "/assets/hand-C3sN6PB7.webp",
   contactPhoto: "/assets/t2-iUX6M5gu.jpg",
   centerGraphic: "/assets/home1-DuxIdUgA.png",
   goTop: "/assets/gotop-C3isNKVw.png",

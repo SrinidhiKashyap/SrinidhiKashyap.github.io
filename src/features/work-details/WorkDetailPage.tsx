@@ -5,6 +5,7 @@ import { WorkDetailHero } from "./components/WorkDetailHero";
 import { WorkResults } from "./components/WorkResults";
 import { WorkShowcase } from "./components/WorkShowcase";
 import { SterkrosDetailPage } from "./components/SterkrosDetailPage";
+import { KalpaDetailPage } from "./components/KalpaDetailPage";
 import "./work-detail.css";
 
 export default function WorkDetailPage() {
@@ -17,6 +18,8 @@ export default function WorkDetailPage() {
     <PageLayout>
       {slug === "sterkros" ? (
         <SterkrosDetailPage />
+      ) : slug === "kalpa" ? (
+        <KalpaDetailPage />
       ) : (
         <>
           <WorkDetailHero work={work} />
