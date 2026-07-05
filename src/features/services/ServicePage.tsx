@@ -40,7 +40,7 @@ export function ServicePage() {
           </h1>
         </div>
 
-        <div className="service-marquee overflow-hidden py-12">
+        <div className="service-marquee overflow-hidden py-16 lg:py-20">
           <div className="service-marquee__track">
             {Array.from({ length: 4 }).map((_, index) => (
               <span key={index}>{MARQUEE_TEXT}</span>

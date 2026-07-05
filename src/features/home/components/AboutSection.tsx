@@ -14,10 +14,10 @@ export function AboutSection() {
        * Two-column layout: text left, image right.
        * On mobile, image stacks below (grid-cols-1 is the default).
        */}
-      <div className="grid min-h-[calc(100svh-76px)] lg:grid-cols-2">
+      <div className="grid min-h-[calc(100dvh-76px)] lg:grid-cols-2">
 
         {/* ── Left: copy ── */}
-        <div className="flex items-center px-section-x-sm py-14 sm:px-section-x-md lg:px-section-x-lg">
+        <div className="flex items-center px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg">
           <div className="w-full max-w-[860px]">
 
             {/* Section label */}
@@ -25,11 +25,11 @@ export function AboutSection() {
               <span aria-hidden>•</span> Our Story
             </p>
 
-            <h2 className="mt-8 max-w-[620px] text-heading-lg font-semibold">
+            <h2 className="mt-6 max-w-[620px] text-heading-lg font-semibold sm:mt-8">
               Brief about <br /> work culture
             </h2>
 
-            <div className="mt-8 max-w-[860px] space-y-7 text-copy-lg text-white/90">
+            <div className="mt-6 max-w-[860px] space-y-6 text-copy-lg text-white/90 sm:mt-8 sm:space-y-7">
               <p>
                 At BEE creative, we believe in the power of transformation. Just like how a bee
                 collects nectar from flowers and turns it into golden honey, we gather ideas,
@@ -46,7 +46,7 @@ export function AboutSection() {
 
             <button
               type="button"
-              className="mt-8 rounded-pill bg-bee-accent px-9 py-3.5 text-base font-medium text-black transition hover:bg-white"
+              className="mt-6 rounded-pill bg-bee-accent px-8 py-3 text-base font-medium text-black transition hover:bg-white touch-target tap-highlight-transparent sm:mt-8 sm:px-9 sm:py-3.5"
             >
               About Us
             </button>
@@ -54,11 +54,13 @@ export function AboutSection() {
         </div>
 
         {/* ── Right: image ── */}
-        <div className="min-h-[420px] overflow-hidden">
+        <div className="min-h-[280px] overflow-hidden lg:min-h-[420px]">
           <img
             src={ASSETS.centerGraphic}
             alt="Bee Concept mark"
-            className="h-full min-h-[420px] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+            className="h-full min-h-[280px] lg:min-h-[420px] w-full object-cover"
           />
         </div>
 

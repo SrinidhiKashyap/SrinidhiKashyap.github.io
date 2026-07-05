@@ -56,7 +56,7 @@ export const DetailImage = memo(function DetailImage({
       style={style}
       loading={isCached ? "eager" : "lazy"}
       decoding={isCached ? "sync" : "async"}
-      {...(priority ? ({ fetchpriority: "high" } as Record<string, string>) : {})}
+      fetchPriority={priority ? "high" : undefined}
       onLoad={() => loadedImageSrcs.add(src)}
     />
   );

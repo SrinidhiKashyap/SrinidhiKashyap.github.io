@@ -92,7 +92,7 @@ export const DetailVideo = memo(function DetailVideo({
           loop
           muted={muted}
           playsInline
-          preload={priority ? "auto" : "metadata"}
+          preload={priority ? "metadata" : "none"}
           className={fit === "cover" ? "h-full w-full object-cover" : "h-full w-full object-contain"}
         />
       )}

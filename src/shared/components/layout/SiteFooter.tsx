@@ -1,4 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ROUTES, homeSectionHref, type HomeSection } from "../../../app/routes";
 import { ASSETS } from "../../lib/assets";
 import { scrollToId } from "../../lib/scrollToId";
 
@@ -24,7 +25,7 @@ const EXPLORE_LINKS: FooterLinkItem[] = [
   { label: "Home", targetId: "home" },
   { label: "Works", targetId: "works" },
   { label: "Clients", targetId: "clients" },
-  { label: "Services", to: "/service" },
+  { label: "Services", to: ROUTES.service },
 ];
 
 // Contact details in one place — update here and it reflects everywhere.
@@ -37,7 +38,8 @@ const CONTACT = {
 
 export function SiteFooter() {
   const location = useLocation();
-  const isHome   = location.pathname === "/";
+  const navigate = useNavigate();
+  const isHome   = location.pathname === ROUTES.home;
 
   function handleScrollTop() {
     if (isHome) {
@@ -52,7 +54,7 @@ export function SiteFooter() {
       scrollToId("contact");
     } else {
       // Navigate to home and let ScrollToHash handle the rest
-      window.location.assign("/#contact");
+      navigate(homeSectionHref("contact"));
     }
   }
 
@@ -60,14 +62,14 @@ export function SiteFooter() {
     <footer id="contact" className="bg-bee-bg-footer text-white">
 
       {/* ── Main body ── */}
-      <div className="w-full px-section-x-sm pb-16 pt-20 sm:px-section-x-md lg:px-section-x-lg">
+      <div className="w-full px-section-x-sm pb-12 pt-16 sm:px-section-x-md lg:px-section-x-lg">
 
         {/* Back-to-top */}
         <div className="flex justify-end">
           <button
             type="button"
             onClick={handleScrollTop}
-            className="flex items-center gap-4 text-base font-semibold transition hover:text-bee-accent"
+            className="flex items-center gap-4 text-base font-semibold transition hover:text-bee-accent touch-target tap-highlight-transparent"
           >
             <span className="hidden sm:inline">I've gone too far, send me back up</span>
             <span className="sm:hidden">Back to top</span>
@@ -78,18 +80,18 @@ export function SiteFooter() {
           </button>
         </div>
 
-        {/* Four-column grid: CTA | Learn | Explore | Contact */}
-        <div className="mt-16 grid gap-12 md:grid-cols-[1.4fr_0.6fr_0.6fr_1fr]">
+        {/* Responsive grid: 1 col mobile → 2 col tablet → 4 col desktop */}
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 md:grid-cols-[1.4fr_0.6fr_0.6fr_1fr]">
 
           {/* CTA */}
-          <div>
-            <h2 className="max-w-[290px] text-[clamp(2.2rem,4vw,3.5rem)] font-semibold leading-tight">
+          <div className="sm:col-span-2 md:col-span-1">
+            <h2 className="max-w-[290px] text-[clamp(1.8rem,4vw,3rem)] font-semibold leading-tight">
               Do you like <br /> what you see?
             </h2>
             <button
               type="button"
               onClick={handleContact}
-              className="mt-6 rounded-pill bg-bee-accent px-8 py-3 text-sm font-medium text-black transition hover:bg-white"
+              className="mt-4 rounded-pill bg-bee-accent px-6 py-2.5 text-sm font-medium text-black transition hover:bg-white touch-target tap-highlight-transparent md:mt-6 md:px-8 md:py-3"
             >
               Contact Us
             </button>
@@ -99,14 +101,14 @@ export function SiteFooter() {
           <FooterLinkColumn title="Explore" links={EXPLORE_LINKS} isHome={isHome} />
 
           {/* Contact details */}
-          <div>
+          <div className="sm:col-span-2 md:col-span-1">
             <h3 className="text-base font-extrabold text-bee-accent">Get In Touch</h3>
-            <div className="mt-5 space-y-2 text-base text-white/90">
+            <div className="mt-4 space-y-2 text-base text-white/90 md:mt-5">
               <p>{CONTACT.phones.join(", ")}</p>
-              <a href={`mailto:${CONTACT.email}`} className="block hover:text-bee-accent">
+              <a href={`mailto:${CONTACT.email}`} className="block hover:text-bee-accent touch-target tap-highlight-transparent">
                 {CONTACT.email}
               </a>
-              <a href={CONTACT.websiteHref} target="_blank" rel="noreferrer" className="block hover:text-bee-accent">
+              <a href={CONTACT.websiteHref} target="_blank" rel="noreferrer" className="block hover:text-bee-accent touch-target tap-highlight-transparent">
                 {CONTACT.website}
               </a>
             </div>
@@ -114,17 +116,17 @@ export function SiteFooter() {
 
         </div>
 
-        {/* Decorative watermark */}
-        <p className="mt-24 text-center text-watermark font-light leading-none text-white/[0.06]">
+        {/* Decorative watermark - smaller on mobile */}
+        <p className="mt-16 text-center text-4xl md:text-6xl lg:text-watermark font-light leading-none text-white/[0.06]">
           Crafting since 2025
         </p>
       </div>
 
       {/* ── Bottom bar ── */}
       <div className="border-t border-white/[0.03] bg-bee-bg-deep">
-        <div className="flex w-full flex-col gap-6 px-section-x-sm py-8 text-base text-white/25 sm:px-section-x-md md:flex-row md:items-center md:justify-between lg:px-section-x-lg">
-          <img src={ASSETS.logoDark} alt="Bee Concept" className="h-11 w-auto" />
-          <p>Copyright 2023 – 2026 &copy; All Rights Reserved. Design By Bee Concept</p>
+        <div className="flex w-full flex-col gap-4 px-section-x-sm py-6 text-sm text-white/25 sm:px-section-x-md md:flex-row md:items-center md:justify-between lg:px-section-x-lg">
+          <img src={ASSETS.logoDark} alt="Bee Concept" className="h-9 w-auto md:h-11" />
+          <p className="text-center md:text-left">Copyright 2023 – 2026 &copy; All Rights Reserved. Design By Bee Concept</p>
         </div>
       </div>
 
@@ -146,9 +148,9 @@ function FooterLinkColumn({
   return (
     <div>
       <h3 className="text-base font-extrabold text-bee-accent">{title}</h3>
-      <ul className="mt-5 space-y-2 text-base text-white/25">
+      <ul className="mt-4 space-y-2 text-sm text-white/25 md:mt-5 md:space-y-2 md:text-base">
         {links.map((link) => {
-          const className = "transition hover:text-bee-accent";
+          const className = "transition hover:text-bee-accent touch-target tap-highlight-transparent";
 
           if (link.to) {
             return (
@@ -172,7 +174,7 @@ function FooterLinkColumn({
                     {link.label}
                   </button>
                 ) : (
-                  <Link to={`/#${link.targetId}`} className={className}>
+                  <Link to={homeSectionHref(link.targetId as HomeSection)} className={className}>
                     {link.label}
                   </Link>
                 )}

@@ -17,13 +17,13 @@
 .service-marquee__track {
   display: flex;
   width: max-content;
-  animation: service-marquee-scroll 28s linear infinite;
+  animation: service-marquee-scroll 100s linear infinite;
 }
 
 .service-marquee__track span {
   flex: 0 0 auto;
   padding-right: 1.5rem;
-  font-size: clamp(2rem, 4vw, 4.2rem);
+  font-size: clamp(2.75rem, 5vw, 5.5rem);
   font-weight: 800;
   line-height: 1;
   white-space: nowrap;
@@ -32,7 +32,8 @@
 .service-marquee__track--outline {
   margin-top: 0.35rem;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.28);
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7);
+  animation-direction: reverse;
 }
 
 @keyframes service-marquee-scroll {

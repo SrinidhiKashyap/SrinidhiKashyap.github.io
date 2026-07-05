@@ -1,5 +1,6 @@
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ROUTES, homeSectionHref, type HomeSection } from "../../../app/routes";
 import { ASSETS } from "../../lib/assets";
 import { classNames } from "../../lib/classNames";
 import { scrollToId } from "../../lib/scrollToId";
@@ -14,7 +15,7 @@ const NAV_LINKS = [
   { label: "Home",     targetId: "home"    },
   { label: "About us", targetId: "about"   },
   { label: "Work",     targetId: "works"   },
-  { label: "Service",  to: "/service"      },
+  { label: "Service",  to: ROUTES.service   },
   { label: "Contact",  targetId: "contact" },
 ] as const;
 
@@ -25,10 +26,30 @@ type MobileMenuProps = {
 };
 
 function MobileMenu({ open, onClose, isHome }: MobileMenuProps) {
-  if (!open) return null;
+  const [isAnimating, setIsAnimating] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (open) {
+      setIsAnimating(true);
+      // Small delay to allow the element to mount before animation starts
+      const timer = setTimeout(() => setIsAnimating(false), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
+
+  if (!open && !isAnimating) return null;
 
   return (
-    <div className="border-t border-white/10 bg-bee-bg-footer md:hidden">
+    <div
+      className={classNames(
+        "border-t border-white/10 bg-bee-bg-footer md:hidden overflow-hidden transition-all duration-300 ease-out",
+        isAnimating ? "max-h-0 opacity-0" : "max-h-96 opacity-100"
+      )}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Navigation menu"
+    >
       <div className="flex flex-col px-6 py-4">
         {NAV_LINKS.map((link) => {
           if ("to" in link) {
@@ -37,7 +58,7 @@ function MobileMenu({ open, onClose, isHome }: MobileMenuProps) {
                 key={link.label}
                 to={link.to}
                 onClick={onClose}
-                className="py-3 text-sm font-medium text-white/75 transition hover:text-white"
+                className="py-4 text-base font-medium text-white/75 transition hover:text-white touch-target"
               >
                 {link.label}
               </Link>
@@ -50,16 +71,16 @@ function MobileMenu({ open, onClose, isHome }: MobileMenuProps) {
               key={link.label}
               type="button"
               onClick={() => { onClose(); scrollToId(link.targetId); }}
-              className="py-3 text-left text-sm font-medium text-white/75 transition hover:text-white"
+              className="py-4 text-left text-base font-medium text-white/75 transition hover:text-white touch-target"
             >
               {link.label}
             </button>
           ) : (
             <Link
               key={link.label}
-              to={`/#${link.targetId}`}
+              to={homeSectionHref(link.targetId as HomeSection)}
               onClick={onClose}
-              className="py-3 text-sm font-medium text-white/75 transition hover:text-white"
+              className="py-4 text-base font-medium text-white/75 transition hover:text-white touch-target"
             >
               {link.label}
             </Link>
@@ -68,8 +89,12 @@ function MobileMenu({ open, onClose, isHome }: MobileMenuProps) {
 
         <button
           type="button"
-          onClick={() => { onClose(); isHome ? scrollToId("contact") : window.location.assign("/contact"); }}
-          className="mt-2 rounded-pill bg-bee-accent px-4 py-2 text-sm font-semibold text-black"
+          onClick={() => {
+            onClose();
+            if (isHome) scrollToId("contact");
+            else navigate(ROUTES.contact);
+          }}
+          className="mt-4 rounded-pill bg-bee-accent px-6 py-3 text-base font-semibold text-black touch-target"
         >
           Chat with Us
         </button>
@@ -80,7 +105,7 @@ function MobileMenu({ open, onClose, isHome }: MobileMenuProps) {
 
 export function SiteNavbar() {
   const location  = useLocation();
-  const isHome    = location.pathname === "/";
+  const isHome    = location.pathname === ROUTES.home;
   const { visible, menuOpen, setMenuOpen } = useNavScroll();
 
   function handleLogoClick() {
@@ -101,12 +126,12 @@ export function SiteNavbar() {
 
         {/* Logo — scrolls to top on home, navigates home from other pages */}
         {isHome ? (
-          <button type="button" aria-label="Bee Concept home" onClick={handleLogoClick}>
-            <img src={ASSETS.logoDark} alt="Bee Concept" className="h-12 w-auto" />
+          <button type="button" aria-label="Bee Concept home" onClick={handleLogoClick} className="touch-target">
+            <img src={ASSETS.logoDark} alt="Bee Concept" className="h-12 w-auto sm:h-10" />
           </button>
         ) : (
-          <Link to="/" aria-label="Bee Concept home">
-            <img src={ASSETS.logoDark} alt="Bee Concept" className="h-12 w-auto" />
+          <Link to={ROUTES.home} aria-label="Bee Concept home" className="touch-target">
+            <img src={ASSETS.logoDark} alt="Bee Concept" className="h-12 w-auto sm:h-10" />
           </Link>
         )}
 
@@ -137,7 +162,7 @@ export function SiteNavbar() {
             ) : (
               <Link
                 key={link.label}
-                to={`/#${link.targetId}`}
+                to={homeSectionHref(link.targetId as HomeSection)}
                 className="text-nav-link font-normal text-white/90 transition hover:text-bee-accent"
               >
                 {link.label}
@@ -150,13 +175,30 @@ export function SiteNavbar() {
         <button
           type="button"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
           onClick={() => setMenuOpen((v) => !v)}
-          className="md:hidden"
+          className="md:hidden touch-target p-2"
         >
-          <div className="relative h-8 w-10">
-            <div className="absolute left-2 right-2 top-3 h-[2px] bg-white/80" />
-            <div className="absolute left-2 right-2 top-5 h-[2px] bg-white/80" />
-            <div className="absolute left-2 right-2 top-7 h-[2px] bg-white/80" />
+          <div className="relative h-6 w-8">
+            <span
+              className={classNames(
+                "absolute left-1 right-1 top-2 h-[2px] bg-white/80 transition-all duration-300",
+                menuOpen && "top-3 rotate-45"
+              )}
+            />
+            <span
+              className={classNames(
+                "absolute left-1 right-1 top-4 h-[2px] bg-white/80 transition-all duration-300",
+                menuOpen && "opacity-0"
+              )}
+            />
+            <span
+              className={classNames(
+                "absolute left-1 right-1 top-6 h-[2px] bg-white/80 transition-all duration-300",
+                menuOpen && "top-3 -rotate-45"
+              )}
+            />
           </div>
         </button>
       </div>

@@ -1,16 +1,10 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import { ROUTES } from "./routes";
 
 /**
  * Route path constants — change here to update all references at once.
  */
-export const ROUTES = {
-  HOME: "/",
-  SERVICE: "/service",
-  CONTACT: "/contact",
-  WORK_DETAIL: "/:slug",
-} as const;
-
 // ── Lazy-loaded page bundles ──────────────────────────────────────────────────
 
 const HomePage = lazy(() =>
@@ -45,10 +39,10 @@ export function AppRoutes() {
   return (
     <Suspense fallback={<RouteFallback />}>
       <Routes>
-        <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.SERVICE} element={<ServicePage />} />
-        <Route path={ROUTES.CONTACT} element={<ContactPage />} />
-        <Route path={ROUTES.WORK_DETAIL} element={<WorkDetailPage />} />
+        <Route path={ROUTES.home} element={<HomePage />} />
+        <Route path={ROUTES.service} element={<ServicePage />} />
+        <Route path={ROUTES.contact} element={<ContactPage />} />
+        <Route path={ROUTES.workDetail} element={<WorkDetailPage />} />
       </Routes>
     </Suspense>
   );

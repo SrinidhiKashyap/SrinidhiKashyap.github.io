@@ -1,6 +1,31 @@
 import type { DetailPageData } from "../types/work";
 
 export const workDetails: Record<string, DetailPageData> = {
+  "logo-design": {
+    title: "Logo Design",
+    summary: "Distinctive logo systems and motion identities built for lasting brand recognition.",
+    scope: ["Logo Design", "Brand Identity", "Logo Animation"],
+    hero: "/assets/logo-white.png",
+    showcaseVideo: "/assets/work-logo-detail/logos-glimpse.mp4",
+    gallery: [],
+    deliverables: "Ten custom logo identities with animated brand reveals.",
+    challenge: "Each identity needed a unique, memorable visual voice.",
+    outcome: "A diverse collection of flexible and recognizable brand marks.",
+  },
+  "title-design": {
+    title: "Title Design",
+    summary: "Expressive typographic identities created for cinematic and entertainment titles.",
+    scope: ["Title Design", "Typography", "Art Direction"],
+    hero: "/assets/work-title-design-detail/karna.webp",
+    showcaseVideo: "/assets/work-titledesign-homepage.mp4",
+    gallery: [
+      "/assets/work-title-design-detail/gani.webp",
+      "/assets/work-title-design-detail/jatayu.webp",
+    ],
+    deliverables: "A collection of distinctive title treatments designed for impact across posters, screens, and campaign artwork.",
+    challenge: "Each title needed its own voice while remaining immediately legible and memorable.",
+    outcome: "The resulting identities give every property a recognizable visual signature with strong promotional flexibility.",
+  },
   sterkros: {
     title: "Sterkros Fitness company",
     summary:
@@ -46,12 +71,12 @@ export const workDetails: Record<string, DetailPageData> = {
       "We simplified interaction flows and introduced clear visual hierarchy, resulting in better usability and engagement.",
   },
   website: {
-    title: "Website Design Projects",
-    summary: "High-converting websites designed with responsive layouts, storytelling, and strong visual rhythm.",
-    scope: ["Web Design", "Responsive Layout", "Content Structuring", "UI Components"],
-    hero: "/assets/l1-DaBMn2_c.png",
-    showcaseVideo: "/assets/h3d-C_AVKx8c.mp4",
-    gallery: ["/assets/l2-CtjK267I.png", "/assets/l5-XzL69Zm6.png"],
+    title: "Website Design",
+    summary: "A modern online meat shop experience for MeatMart.",
+    scope: ["Website Design", "UI/UX Design", "Development"],
+    hero: "/assets/work-website-detail/website-mockup.webp",
+    showcaseVideo: "/assets/work-website-detail/meat-shop-glimpse.mp4",
+    gallery: ["/assets/work-website-detail/meat-shop-page-top.webp", "/assets/work-website-detail/meat-shop-page-bottom.webp"],
     deliverables:
       "The website package covered page architecture, conversion-led sections, motion references, and implementation-ready component layouts for development.",
     challenge:

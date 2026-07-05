@@ -18,6 +18,11 @@ export function ValuesSection() {
   const [activeValue, setActiveValue] = useState<string | null>(null);
   const [statsVisible, setStatsVisible] = useState(false);
   const statsRef = useRef<HTMLElement | null>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   useEffect(() => {
     function checkStatsVisibility() {
@@ -45,6 +50,12 @@ export function ValuesSection() {
     };
   }, []);
 
+  const handleCardClick = (title: string) => {
+    if (isTouchDevice) {
+      setActiveValue(prev => prev === title ? null : title);
+    }
+  };
+
   return (
     <>
       {/* ── Values grid ── */}
@@ -57,7 +68,7 @@ export function ValuesSection() {
           <span aria-hidden>•</span> Our Values
         </p>
         <h2 className="mt-8 max-w-[930px] text-heading-sm font-semibold">
-          We Bridge the Gap Between Tech &amp; Design Industries for Seamless Collaboration.
+          We Bridge the Gap Between Tech & Design Industries for Seamless Collaboration.
         </h2>
 
         {/*
@@ -65,7 +76,7 @@ export function ValuesSection() {
          * The stagger (even cards drop down) and hover-reveal are in home.css
          * under "4. VALUE CARDS".
          */}
-        <div className="value-grid mt-16 grid grid-cols-1 gap-x-[clamp(1.25rem,3vw,3.25rem)] items-start sm:grid-cols-2 lg:grid-cols-4">
+        <div className="value-grid mt-16 grid grid-cols-1 gap-x-[clamp(1.25rem,3vw,3.25rem)] gap-y-8 items-start sm:grid-cols-2 lg:grid-cols-4 lg:gap-y-0">
           {VALUES.map((value, index) => {
             const isActive = activeValue === value.title;
 
@@ -78,11 +89,16 @@ export function ValuesSection() {
                   "value-card w-full max-w-[300px] rounded-card bg-bee-bg-deep p-6",
                   // Tone colour for heading and icon
                   TONE_CLASSES[value.tone],
+                  // Remove stagger on mobile
+                  "lg:nth-child(even):mt-[66px]"
                 )}
-                onMouseEnter={() => setActiveValue(value.title)}
-                onMouseLeave={() => setActiveValue(null)}
+                onMouseEnter={() => !isTouchDevice && setActiveValue(value.title)}
+                onMouseLeave={() => !isTouchDevice && setActiveValue(null)}
                 onFocus={() => setActiveValue(value.title)}
                 onBlur={() => setActiveValue(null)}
+                onClick={() => handleCardClick(value.title)}
+                role={isTouchDevice ? "button" : undefined}
+                aria-pressed={isActive && isTouchDevice}
               >
                 {/* Swap to animated icon when active */}
                 <img
@@ -97,7 +113,7 @@ export function ValuesSection() {
                   {value.title}
                 </h3>
 
-                {/* Body text — hidden by default, revealed by CSS hover */}
+                {/* Body text — hidden by default, revealed by CSS hover or touch */}
                 <p className="value-card__body text-[0.78rem] leading-relaxed text-white">
                   {value.body}
                 </p>
@@ -111,7 +127,7 @@ export function ValuesSection() {
       <section ref={statsRef} className="bg-bee-bg-deep px-section-x-sm py-12 text-white sm:px-section-x-md lg:px-section-x-lg">
         <div className="grid w-full gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {STATS.map((stat) => (
-            <div key={stat.label} className="text-center sm:text-left">
+            <div key={stat.label} className="text-center">
               <AnimatedStatValue value={stat.value} active={statsVisible} />
               <p className="mt-2 text-[1.05rem] font-medium">{stat.label}</p>
             </div>

@@ -22,6 +22,7 @@ type WorkCardProps = {
 const WorkCard = memo(function WorkCard({ work, offset }: WorkCardProps) {
   return (
     <article className={classNames("work-card", offset && "md:translate-y-[90px]")}>
+      <Link to={work.pagePath} aria-label={`Open ${work.title}`} className="block">
 
       {/* Thumbnail — image or auto-playing video */}
       <div className="work-card__media relative w-full overflow-hidden rounded-media bg-bee-bg-deep">
@@ -51,22 +52,17 @@ const WorkCard = memo(function WorkCard({ work, offset }: WorkCardProps) {
             ))}
           </div>
 
-          <Link
-            to={work.pagePath}
-            aria-label={`Open ${work.title}`}
-            className="work-card__arrow grid h-[38px] w-[38px] flex-none place-items-center rounded-pill bg-white/10 text-sm text-white"
-          >
+          <span className="work-card__arrow grid h-[44px] w-[44px] flex-none place-items-center rounded-pill bg-white/10 text-sm text-white touch-target tap-highlight-transparent">
             &#8599;
-          </Link>
+          </span>
         </div>
       </div>
 
       {/* Title row: year · title */}
       <div className="mt-[18px] flex items-center gap-2 text-title-fluid font-normal text-white/80">
-        {work.year}
-        <span className="text-white/50">&bull;</span>
         {work.title}
       </div>
+      </Link>
 
     </article>
   );
@@ -97,14 +93,14 @@ export function WorksSection({ activeCategory, onCategoryChange }: WorksSectionP
         </h2>
 
         {/* Category filter buttons */}
-        <div className="mt-14 flex flex-wrap gap-x-10 gap-y-4">
+        <div className="mt-14 flex flex-wrap gap-x-6 gap-y-3 overflow-x-auto no-scrollbar pb-4 scroll-snap-x sm:gap-x-10 sm:gap-y-4 sm:pb-0">
           {WORK_FILTERS.map((filter) => (
             <button
               key={filter.value}
               type="button"
               onClick={() => onCategoryChange(filter.value)}
               className={classNames(
-                "text-base font-normal transition",
+                "text-base font-normal transition whitespace-nowrap scroll-snap-center touch-target tap-highlight-transparent px-2",
                 filter.value === activeCategory
                   ? "text-white"
                   : "text-white/30 hover:text-white/70",
@@ -120,7 +116,7 @@ export function WorksSection({ activeCategory, onCategoryChange }: WorksSectionP
          * Row gap is larger to accommodate the 90px card offset.
          * On mobile: single column, offset removed (see WorkCard above).
          */}
-        <div className="mx-auto mt-14 grid max-w-[1220px] grid-cols-1 gap-8 gap-y-[80px] md:grid-cols-2 md:gap-x-16">
+        <div className="mx-auto mt-14 grid max-w-[1440px] grid-cols-1 gap-8 gap-y-[80px] md:grid-cols-2 md:gap-x-10">
           {filteredWorks.map((work, index) => (
             <WorkCard key={work.id} work={work} offset={index % 2 !== 0} />
           ))}

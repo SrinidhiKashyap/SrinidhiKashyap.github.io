@@ -20,20 +20,24 @@ export function SiteLoader() {
 
   useEffect(() => {
     const startedAt = window.performance.now();
+    let hideTimeoutId: number | undefined;
 
     function hideLoader() {
       const elapsed = window.performance.now() - startedAt;
       const remaining = Math.max(MINIMUM_LOADER_MS - elapsed, 0);
-      window.setTimeout(() => setVisible(false), remaining);
+      hideTimeoutId = window.setTimeout(() => setVisible(false), remaining);
     }
 
     if (document.readyState === "complete") {
       hideLoader();
-      return;
+      return () => window.clearTimeout(hideTimeoutId);
     }
 
     window.addEventListener("load", hideLoader, { once: true });
-    return () => window.removeEventListener("load", hideLoader);
+    return () => {
+      window.removeEventListener("load", hideLoader);
+      window.clearTimeout(hideTimeoutId);
+    };
   }, []);
 
   useLayoutEffect(() => {

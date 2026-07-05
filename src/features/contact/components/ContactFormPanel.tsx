@@ -10,13 +10,14 @@ export function ContactFormPanel() {
       <img
         src={ASSETS.contactPhoto}
         alt="Bee concept team discussion"
-        className="h-56 w-full rounded-2xl object-cover"
+        decoding="async"
+        className="h-40 w-full rounded-2xl object-cover md:h-56"
       />
 
-      <h2 className="mt-8 text-3xl font-bold">Tell us about your project</h2>
+      <h2 className="mt-6 text-2xl font-bold md:mt-8 md:text-3xl">Tell us about your project</h2>
 
-      <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
-        <div className="grid gap-4 sm:grid-cols-2">
+      <form className="mt-4 space-y-4 md:mt-6 md:space-y-4" onSubmit={handleSubmit}>
+        <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
           <InputField
             name="firstName"
             placeholder="First Name"
@@ -50,17 +51,17 @@ export function ContactFormPanel() {
           placeholder="Tell us about your project"
           value={formData.projectDetails}
           onChange={handleChange}
-          className="contact-form-field h-28"
+          className="contact-form-field h-24 md:h-28 touch-target"
         />
 
         <div className="space-y-2">
-          <label className="flex cursor-pointer items-center gap-2 text-sm text-white/80">
+          <label className="flex cursor-pointer items-center gap-2 text-sm text-white/80 touch-target">
             <input
               type="checkbox"
               name="newsletter"
               checked={formData.newsletter}
               onChange={handleChange}
-              className="h-4 w-4 accent-bee-accent"
+              className="h-5 w-5 accent-bee-accent touch-target"
             />
             Subscribe to our newsletter for all the latest Bee concept news!
           </label>
@@ -69,7 +70,7 @@ export function ContactFormPanel() {
           </p>
         </div>
 
-        <button type="submit" className="contact-submit-btn">
+        <button type="submit" className="contact-submit-btn touch-target tap-highlight-transparent py-3">
           Submit
         </button>
       </form>

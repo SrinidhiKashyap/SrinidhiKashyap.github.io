@@ -15,7 +15,7 @@ type AutoPlayVideoProps = Omit<
  *
  * Pauses and removes `src` when scrolled out of view to reduce resource usage.
  */
-function AutoPlayVideoComponent({ src, preload = "metadata", ...props }: AutoPlayVideoProps) {
+function AutoPlayVideoComponent({ src, preload = "none", ...props }: AutoPlayVideoProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [loadedSrc, setLoadedSrc] = useState<string | undefined>(undefined);
 
@@ -27,7 +27,7 @@ function AutoPlayVideoComponent({ src, preload = "metadata", ...props }: AutoPla
       ([entry]) => {
         if (entry.isIntersecting) {
           setLoadedSrc(src);
-          void video.play();
+          void video.play().catch(() => {});
         } else {
           video.pause();
         }

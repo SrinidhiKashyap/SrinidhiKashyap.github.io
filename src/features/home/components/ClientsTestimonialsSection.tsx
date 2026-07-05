@@ -1,14 +1,30 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { classNames } from "../../../shared/lib/classNames";
 import { MARQUEE_LOGOS, TESTIMONIALS } from "../data/testimonials";
 
 export function ClientsTestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const active = TESTIMONIALS[activeIndex];
 
   function move(direction: 1 | -1) {
     setActiveIndex((i) => (i + direction + TESTIMONIALS.length) % TESTIMONIALS.length);
   }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) { // Minimum swipe distance
+      move(diff > 0 ? 1 : -1);
+    }
+    setTouchStartX(null);
+  };
 
   return (
     <section id="clients" className="bg-bee-bg-primary px-section-x-sm pb-24 pt-6 text-white sm:px-section-x-md lg:px-section-x-lg">
@@ -34,6 +50,8 @@ export function ClientsTestimonialsSection() {
               key={`${logo}-${index}`}
               src={logo}
               alt="Client logo"
+              loading="lazy"
+              decoding="async"
               className="marquee__logo"
             />
           ))}
@@ -43,7 +61,7 @@ export function ClientsTestimonialsSection() {
       {/* ── Testimonials ── */}
       <div id="testimonials" className="mt-24 w-full">
         <p className="text-section-label font-normal">
-          <span aria-hidden>•</span> Client Testimonials &amp; Reviews
+          <span aria-hidden>•</span> Client Testimonials & Reviews
         </p>
         <h2 className="mt-3 max-w-[620px] text-testimonial-heading font-semibold">
           What our happy clients <br /> say about us
@@ -51,14 +69,39 @@ export function ClientsTestimonialsSection() {
 
         {/*
          * Panel grid: [ ‹ ] [ content ] [ › ]
-         * On mobile the arrows are hidden and the grid collapses — see home.css.
+         * On mobile the arrows are visible for accessibility and touch swipe works.
          */}
         <div className="relative mt-8">
 
           {/* Content panel */}
-          <div className="relative min-h-[360px] w-full rounded-card bg-bee-bg-card px-6 py-8 shadow-soft sm:px-12 lg:px-20">
+          <div
+            ref={panelRef}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            className="relative min-h-[360px] w-full rounded-card bg-bee-bg-card px-6 py-8 shadow-soft sm:px-12 lg:px-20 touch-pan-x"
+          >
 
             {/* Previous arrow */}
+            <button
+              type="button"
+              aria-label="Previous testimonial"
+              onClick={() => move(-1)}
+              className="absolute left-4 top-9 z-10 h-[44px] w-[44px] place-items-center rounded-pill bg-bee-bg-deep text-2xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep touch-target tap-highlight-transparent md:hidden"
+            >
+              &#8249;
+            </button>
+
+            {/* Next arrow */}
+            <button
+              type="button"
+              aria-label="Next testimonial"
+              onClick={() => move(1)}
+              className="absolute right-4 top-9 z-10 h-[44px] w-[44px] place-items-center rounded-pill bg-bee-bg-deep text-2xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep touch-target tap-highlight-transparent md:hidden"
+            >
+              &#8250;
+            </button>
+
+            {/* Desktop arrows */}
             <button
               type="button"
               aria-label="Previous testimonial"
@@ -68,7 +111,6 @@ export function ClientsTestimonialsSection() {
               &#8249;
             </button>
 
-            {/* Next arrow */}
             <button
               type="button"
               aria-label="Next testimonial"
@@ -79,7 +121,7 @@ export function ClientsTestimonialsSection() {
             </button>
 
             {/* ── Tabs (one per testimonial person) ── */}
-            <div className="flex items-center justify-center gap-8 overflow-x-auto px-9 pb-[18px] lg:gap-14">
+            <div className="flex items-center justify-center gap-8 overflow-x-auto px-9 pb-[18px] lg:gap-14 no-scrollbar scroll-snap-x">
               {TESTIMONIALS.map((testimonial, index) => (
                 <button
                   key={testimonial.id}
@@ -87,7 +129,7 @@ export function ClientsTestimonialsSection() {
                   onClick={() => setActiveIndex(index)}
                   className={classNames(
                     // Base — Tailwind
-                    "testimonial-tab flex min-w-[190px] items-center gap-3 text-left text-white transition",
+                    "testimonial-tab flex min-w-[190px] items-center gap-3 text-left text-white transition scroll-snap-center",
                     // Active vs inactive opacity
                     index === activeIndex ? "testimonial-tab--active opacity-100" : "opacity-40",
                   )}
@@ -95,6 +137,8 @@ export function ClientsTestimonialsSection() {
                   <img
                     src={testimonial.avatar}
                     alt=""
+                    loading="lazy"
+                    decoding="async"
                     className="h-12 w-12 flex-none rounded-pill object-cover"
                   />
                   <span className="min-w-0">
@@ -117,6 +161,7 @@ export function ClientsTestimonialsSection() {
               <img
                 src={active.avatar}
                 alt={active.name}
+                decoding="async"
                 className="aspect-square w-full max-w-[190px] justify-self-center object-cover"
               />
               <blockquote className="max-w-[760px] text-testimonial-quote font-medium text-white">

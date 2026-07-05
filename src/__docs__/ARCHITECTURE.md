@@ -21,7 +21,6 @@ main.tsx
 ```
 src/
 ├── main.tsx                    # ReactDOM entry — single entry point
-├── WebsiteApp.tsx              # Re-exports app/WebsiteApp (kept for vite compatibility)
 ├── app/                        # Router, route config, root component
 ├── styles/                     # Global CSS (Tailwind directives, @font-face, reset)
 ├── features/                   # Feature modules — each is a self-contained domain
@@ -36,7 +35,6 @@ src/
 │   │   └── ui/                 # BeeCursorTrail
 │   ├── hooks/                  # useNavScroll
 │   └── lib/                    # classNames, assets, scrollToId
-├── pages/                      # Thin re-export wrappers (will be removed in future)
 └── __docs__/                   # Project documentation
 ```
 
@@ -57,4 +55,4 @@ src/
 | `/contact` | ContactPage | — |
 | `/:slug` | WorkDetailPage | sterilized chapter name |
 
-Route path strings live in `src/config/routes.ts` as a single source of truth.
+Route paths and URL builders live in `src/app/routes.ts` as a single source of truth.

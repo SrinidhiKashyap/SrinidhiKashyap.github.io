@@ -13,6 +13,8 @@ export { NextWorkStrip } from "./NextWorkStrip";
 export type { NextWorkStripProps } from "./NextWorkStrip";
 
 export { SterkrosDetailPage } from "./SterkrosDetailPage";
+export { TitleDesignDetailPage } from "./TitleDesignDetailPage";
+export { MagazineDetailPage } from "./MagazineDetailPage";
 export { KalpaDetailPage } from "./KalpaDetailPage";
 export { WorkDetailHero } from "./WorkDetailHero";
 export { WorkShowcase } from "./WorkShowcase";

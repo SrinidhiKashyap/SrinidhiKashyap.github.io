@@ -6,6 +6,7 @@
  */
 
 import { ASSETS } from "../../../shared/lib/assets";
+import { workDetailHref } from "../../../app/routes";
 import type { WorkCategory, WorkItem } from "../types/home";
 
 // ── Category mapping ──────────────────────────────────────────────────────────
@@ -37,7 +38,7 @@ export const WORKS: readonly WorkItem[] = [
     mediaUrl: ASSETS.workSterkros,
     year: "2023",
     caption: "Brand Identity",
-    pagePath: "/sterkros",
+    pagePath: workDetailHref("sterkros"),
   },
   {
     id: "w2",
@@ -47,7 +48,7 @@ export const WORKS: readonly WorkItem[] = [
     mediaUrl: ASSETS.workKalpa,
     year: "2023",
     caption: "Label & Box System",
-    pagePath: "/kalpa",
+    pagePath: workDetailHref("kalpa"),
   },
   {
     id: "w3",
@@ -57,7 +58,7 @@ export const WORKS: readonly WorkItem[] = [
     mediaUrl: ASSETS.work3D,
     year: "2023",
     caption: "3D Product Visuals",
-    pagePath: "/website",
+    pagePath: workDetailHref("website"),
   },
   {
     id: "w4",
@@ -67,7 +68,7 @@ export const WORKS: readonly WorkItem[] = [
     mediaUrl: ASSETS.workUiUx,
     year: "2023",
     caption: "UI/UX Projects",
-    pagePath: "/uiux",
+    pagePath: workDetailHref("uiux"),
   },
   {
     id: "w5",
@@ -77,7 +78,7 @@ export const WORKS: readonly WorkItem[] = [
     mediaUrl: ASSETS.workWebsite,
     year: "2023",
     caption: "Website Design",
-    pagePath: "/magazine",
+    pagePath: workDetailHref("website"),
   },
   {
     id: "w6",
@@ -87,7 +88,7 @@ export const WORKS: readonly WorkItem[] = [
     mediaUrl: ASSETS.workPackage,
     year: "2023",
     caption: "Packaging Design",
-    pagePath: "/package",
+    pagePath: workDetailHref("package"),
   },
   {
     id: "w7",
@@ -97,7 +98,7 @@ export const WORKS: readonly WorkItem[] = [
     mediaUrl: ASSETS.workMagazines,
     year: "2023",
     caption: "Magazine Layouts",
-    pagePath: "/team",
+    pagePath: workDetailHref("magazine"),
   },
   {
     id: "w8",
@@ -107,7 +108,7 @@ export const WORKS: readonly WorkItem[] = [
     mediaUrl: ASSETS.workLogoDesigns,
     year: "2023",
     caption: "Logo Design",
-    pagePath: "/about",
+    pagePath: workDetailHref("logo-design"),
   },
   {
     id: "w9",
@@ -117,6 +118,6 @@ export const WORKS: readonly WorkItem[] = [
     mediaUrl: ASSETS.workTitleDesign,
     year: "2023",
     caption: "Title Design",
-    pagePath: "/sterkros",
+    pagePath: workDetailHref("title-design"),
   },
 ];

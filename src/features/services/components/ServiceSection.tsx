@@ -44,12 +44,12 @@ export const ServiceSection = memo(function ServiceSection({
   );
 
   const mediaBlock = (
-    <div>
+    <div className="flex flex-col items-center">
       <AutoPlayVideo
         src={service.videoSrc}
         disablePictureInPicture
         className={classNames(
-          "aspect-[4/5] w-full max-w-[260px] rounded-[2px] bg-white/80 object-cover",
+          "aspect-[4/5] w-full max-w-[260px] sm:max-w-[320px] rounded-[2px] bg-white/80 object-cover",
           service.layout === "left" ? "md:ml-auto" : "md:mr-auto",
         )}
       />
@@ -65,11 +65,11 @@ export const ServiceSection = memo(function ServiceSection({
     <section
       ref={setRef}
       data-service-index={index}
-      className="grid gap-12 border-t border-white/10 py-16 md:grid-cols-2 md:items-center"
+      className="grid gap-8 gap-y-12 border-t border-white/10 py-12 md:grid-cols-2 md:items-center md:gap-12 md:py-16"
     >
       {service.layout === "left" ? (
         <>
-          <div className="space-y-11">
+          <div className="space-y-8 md:space-y-11">
             {title}
             {summary}
           </div>
@@ -78,7 +78,7 @@ export const ServiceSection = memo(function ServiceSection({
       ) : (
         <>
           {mediaBlock}
-          <div className="space-y-11 md:text-right">
+          <div className="space-y-8 md:space-y-11 md:text-right">
             {title}
             {summary}
           </div>

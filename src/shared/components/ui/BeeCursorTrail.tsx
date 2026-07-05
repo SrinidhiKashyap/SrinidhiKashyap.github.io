@@ -71,7 +71,7 @@ export function BeeCursorTrail() {
     document.head.appendChild(cursorStyle);
 
     // ── Detect page theme ─────────────────────────────────────────────────────
-    const theme = getPageTheme();
+    const theme: PageTheme = "default";
     const { accent, stroke, trail: TRAIL_COLORS } = getThemeColors(theme);
 
     // ── Config ────────────────────────────────────────────────────────────────
