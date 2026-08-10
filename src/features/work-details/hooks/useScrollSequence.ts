@@ -1,61 +1,47 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 
-const WHEEL_THRESHOLD = 24;
-const STEP_COOLDOWN_MS = 220;
-
-/** Changes one frame per wheel step, then releases scrolling at either end. */
+/** Maps the scroll distance through a tall section to a frame index. */
 export function useScrollSequence(
   sectionRef: RefObject<HTMLElement | null>,
   frameCount: number,
 ): number {
   const [frameIndex, setFrameIndex] = useState(0);
   const frameIndexRef = useRef(0);
-  const accumulatedDeltaRef = useRef(0);
-  const directionRef = useRef(0);
-  const lastStepAtRef = useRef(0);
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    if (!section || frameCount < 2) return;
 
-    function handleWheel(event: WheelEvent) {
-      const direction = Math.sign(event.deltaY);
-      if (direction === 0) return;
+    let animationFrame = 0;
 
-      const canAdvance = direction > 0 && frameIndexRef.current < frameCount - 1;
-      const canReverse = direction < 0 && frameIndexRef.current > 0;
-      if (!canAdvance && !canReverse) {
-        accumulatedDeltaRef.current = 0;
-        return;
+    const updateFrame = () => {
+      animationFrame = 0;
+      const bounds = section.getBoundingClientRect();
+      const headerOffset = 76;
+      const sectionTop = window.scrollY + bounds.top - headerOffset;
+      const scrollDistance = Math.max(section.offsetHeight - window.innerHeight + headerOffset, 1);
+      const progress = Math.min(1, Math.max(0, (window.scrollY - sectionTop) / scrollDistance));
+      const nextFrame = Math.min(frameCount - 1, Math.floor(progress * frameCount));
+
+      if (nextFrame !== frameIndexRef.current) {
+        frameIndexRef.current = nextFrame;
+        setFrameIndex(nextFrame);
       }
+    };
 
-      event.preventDefault();
+    const requestUpdate = () => {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateFrame);
+    };
 
-      if (directionRef.current !== direction) {
-        directionRef.current = direction;
-        accumulatedDeltaRef.current = 0;
-      }
+    requestUpdate();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
 
-      accumulatedDeltaRef.current += Math.abs(event.deltaY);
-      const now = window.performance.now();
-      if (
-        accumulatedDeltaRef.current < WHEEL_THRESHOLD
-        || now - lastStepAtRef.current < STEP_COOLDOWN_MS
-      ) return;
-
-      const nextFrame = Math.min(
-        Math.max(frameIndexRef.current + direction, 0),
-        frameCount - 1,
-      );
-
-      frameIndexRef.current = nextFrame;
-      accumulatedDeltaRef.current = 0;
-      lastStepAtRef.current = now;
-      setFrameIndex(nextFrame);
-    }
-
-    section.addEventListener("wheel", handleWheel, { passive: false });
-    return () => section.removeEventListener("wheel", handleWheel);
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+    };
   }, [frameCount, sectionRef]);
 
   return frameIndex;

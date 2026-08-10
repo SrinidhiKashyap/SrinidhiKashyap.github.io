@@ -1,4 +1,4 @@
-import type { DetailPageData } from "../types/work";
+import type { DetailPageData } from "../data/workDetails.schema";
 
 type WorkDetailHeroProps = {
   work: DetailPageData;

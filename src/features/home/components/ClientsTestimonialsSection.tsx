@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { classNames } from "../../../shared/lib/classNames";
 import { MARQUEE_LOGOS, TESTIMONIALS } from "../data/testimonials";
 
@@ -6,19 +6,19 @@ export function ClientsTestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-  const active = TESTIMONIALS[activeIndex];
+  const active = TESTIMONIALS[activeIndex]!;
 
   function move(direction: 1 | -1) {
     setActiveIndex((i) => (i + direction + TESTIMONIALS.length) % TESTIMONIALS.length);
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStartX(e.touches[0].clientX);
+    setTouchStartX(e.touches[0]!.clientX);
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStartX === null) return;
-    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndX = e.changedTouches[0]!.clientX;
     const diff = touchStartX - touchEndX;
     if (Math.abs(diff) > 50) { // Minimum swipe distance
       move(diff > 0 ? 1 : -1);

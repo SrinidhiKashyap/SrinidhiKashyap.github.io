@@ -1,9 +1,18 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import path from "path";
+
+const __dirname = import.meta.dirname;
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
 
   // base tells Vite what path prefix to use for all asset URLs in the build.
   //

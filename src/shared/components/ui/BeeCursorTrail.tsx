@@ -17,13 +17,6 @@ import { useLocation } from "react-router-dom";
 
 type PageTheme = "default" | "kalpa" | "sterkros";
 
-function getPageTheme(): PageTheme {
-  const path = window.location.pathname;
-  if (path.includes("kalpa")) return "kalpa";
-  if (path.includes("sterkros")) return "sterkros";
-  return "default";
-}
-
 /** Return the accent colour and trail palette for the current page. */
 function getThemeColors(theme: PageTheme) {
   switch (theme) {
@@ -175,8 +168,8 @@ export function BeeCursorTrail() {
       // Position each dot at a past position
       for (let i = 0; i < TRAIL_LENGTH; i++) {
         const p = history[i];
-        dots[i].style.left = `${p.x}px`;
-        dots[i].style.top  = `${p.y}px`;
+        dots[i]!.style.left = `${p!.x}px`;
+        dots[i]!.style.top  = `${p!.y}px`;
       }
 
       rafId = requestAnimationFrame(tick);

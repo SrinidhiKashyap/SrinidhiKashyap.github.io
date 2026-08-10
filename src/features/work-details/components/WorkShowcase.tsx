@@ -1,5 +1,5 @@
 import { AutoPlayVideo } from "../../../shared/components/media/AutoPlayVideo";
-import type { DetailPageData } from "../types/work";
+import type { DetailPageData } from "../data/workDetails.schema";
 
 type WorkShowcaseProps = {
   work: DetailPageData;

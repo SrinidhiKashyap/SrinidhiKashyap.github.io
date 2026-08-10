@@ -2,7 +2,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 
 export type ContactFormData = {
   firstName: string;
-  lastName: string;
+  phone: string;
   email: string;
   howDidYouHear: string;
   projectDetails: string;
@@ -11,7 +11,7 @@ export type ContactFormData = {
 
 const initialContactFormData: ContactFormData = {
   firstName: "",
-  lastName: "",
+  phone: "",
   email: "",
   howDidYouHear: "",
   projectDetails: "",

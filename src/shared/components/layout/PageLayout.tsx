@@ -30,7 +30,7 @@ export function PageLayout({ children }: PageLayoutProps) {
     <div className="min-h-screen bg-bee-bg-primary text-white antialiased">
       <SiteNavbar />
       {/* Offset content below the fixed navbar (navbar height = 76px) */}
-      <div className="pt-[76px]">
+      <div id="main-content" className="pt-[76px]">
         {children}
       </div>
       <SiteFooter />

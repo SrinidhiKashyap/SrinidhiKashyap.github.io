@@ -1,6 +1,7 @@
 /** Central route contract used by routing, navigation, and feature links. */
 export const ROUTES = {
   home: "/",
+  about: "/about",
   service: "/service",
   contact: "/contact",
   workDetail: "/:slug",

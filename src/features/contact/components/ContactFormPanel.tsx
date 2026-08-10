@@ -25,9 +25,9 @@ export function ContactFormPanel() {
             onChange={handleChange}
           />
           <InputField
-            name="lastName"
-            placeholder="Last Name"
-            value={formData.lastName}
+            name="phone"
+            placeholder="Phone (Optional)"
+            value={formData.phone}
             onChange={handleChange}
           />
         </div>

@@ -13,10 +13,10 @@ import { useNavScroll } from "../../hooks/useNavScroll";
 // - Use `to` for standalone routes
 const NAV_LINKS = [
   { label: "Home",     targetId: "home"    },
-  { label: "About us", targetId: "about"   },
+  { label: "About us", to: ROUTES.about     },
   { label: "Work",     targetId: "works"   },
   { label: "Service",  to: ROUTES.service   },
-  { label: "Contact",  targetId: "contact" },
+  { label: "Contact",  to: ROUTES.contact  },
 ] as const;
 
 type MobileMenuProps = {
@@ -139,10 +139,12 @@ export function SiteNavbar() {
         <nav className="hidden items-center gap-16 md:flex">
           {NAV_LINKS.map((link) => {
             if ("to" in link) {
+              const isActive = location.pathname === link.to;
               return (
                 <Link
                   key={link.label}
                   to={link.to}
+                  aria-current={isActive ? "page" : undefined}
                   className="text-nav-link font-normal text-white/90 transition hover:text-bee-accent"
                 >
                   {link.label}

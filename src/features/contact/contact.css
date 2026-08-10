@@ -16,8 +16,8 @@
    Matches the same max-width / padding pattern used across all pages.
    ─────────────────────────────────────────────────────────────────────────── */
 
-.contact-page-main {
-  @apply mx-auto max-w-7xl px-6 py-16 xl:px-10;
+.contact-input {
+  @apply w-full rounded-[6px] bg-[#45474d] px-4 py-3 text-sm text-white outline-none transition placeholder:text-white/70 focus:ring-2 focus:ring-bee-accent;
 }
 
 

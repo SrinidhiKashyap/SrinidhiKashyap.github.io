@@ -70,7 +70,7 @@ export function KalpaDetailPage() {
         </section>
 
         <section className="grid gap-8 px-section-x-sm py-10 sm:px-section-x-md md:grid-cols-[1.1fr_0.9fr] lg:px-section-x-lg lg:gap-10 lg:py-14">
-          <DetailVideo src={KALPA.logoBackgroundVideo} className="aspect-square bg-[#70ab3b]" fit="cover" playOverlay />
+          <DetailVideo src={KALPA.logoBackgroundVideo} className="aspect-square bg-[#70ab3b]" fit="cover" />
           <DetailImage src={KALPA.flyingBottle} alt="Kalpa bottle and box render" className="aspect-square w-full object-cover" />
         </section>
 
@@ -80,7 +80,7 @@ export function KalpaDetailPage() {
         </section>
 
         <section className="mt-6 bg-[#0b2a4c]">
-          <DetailVideo src={KALPA.logoFormVideo} className="mx-auto aspect-video max-h-[calc(100svh-120px)] w-full" fit="contain" playOverlay />
+          <DetailVideo src={KALPA.logoFormVideo} className="mx-auto aspect-video max-h-[calc(100svh-120px)] w-full" fit="contain" />
         </section>
 
         <section className="grid gap-8 md:grid-cols-2">
@@ -165,7 +165,7 @@ export function KalpaDetailPage() {
         </section>
 
         <section className="grid gap-8 px-section-x-sm py-10 sm:px-section-x-md md:grid-cols-[1.2fr_0.8fr] lg:px-section-x-lg lg:gap-10 lg:py-14">
-          <DetailVideo src={KALPA.bottleVideo} className="aspect-square bg-white" fit="cover" playOverlay />
+          <DetailVideo src={KALPA.bottleVideo} className="aspect-square bg-white" fit="cover" />
           <DetailImage src={KALPA.bag} alt="Kalpa tote bag" className="aspect-square w-full object-cover" />
         </section>
 

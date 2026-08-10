@@ -18,6 +18,7 @@ const CUSTOM_DETAIL_PAGES: Readonly<Record<string, LazyDetailPage>> = {
   magazine: lazy(() => import("./components/MagazineDetailPage").then((module) => ({ default: module.MagazineDetailPage }))),
   website: lazy(() => import("./components/WebsiteDetailPage").then((module) => ({ default: module.WebsiteDetailPage }))),
   "logo-design": lazy(() => import("./components/LogoDesignDetailPage").then((module) => ({ default: module.LogoDesignDetailPage }))),
+  uiux: lazy(() => import("./components/UiUxDetailPage").then((module) => ({ default: module.UiUxDetailPage }))),
 };
 
 export function WorkDetailPage() {

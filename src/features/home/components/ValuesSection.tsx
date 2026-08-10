@@ -77,7 +77,7 @@ export function ValuesSection() {
          * under "4. VALUE CARDS".
          */}
         <div className="value-grid mt-16 grid grid-cols-1 gap-x-[clamp(1.25rem,3vw,3.25rem)] gap-y-8 items-start sm:grid-cols-2 lg:grid-cols-4 lg:gap-y-0">
-          {VALUES.map((value, index) => {
+          {VALUES.map((value) => {
             const isActive = activeValue === value.title;
 
             return (

@@ -14,8 +14,6 @@ export interface DetailVideoProps {
   poster?: string;
   /** If true, loads without lazy scroll detection. Defaults to false. */
   priority?: boolean;
-  /** If true, renders a centred play-button overlay. Defaults to false. */
-  playOverlay?: boolean;
   /** If true, shows a mute/unmute toggle button. Defaults to false. */
   muteToggle?: boolean;
 }
@@ -41,7 +39,6 @@ export const DetailVideo = memo(function DetailVideo({
   fit = "cover",
   poster,
   priority = false,
-  playOverlay = false,
   muteToggle = false,
 }: DetailVideoProps) {
   const [ready, setReady] = useState(priority);
@@ -58,7 +55,7 @@ export const DetailVideo = memo(function DetailVideo({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return;
+        if (!entry?.isIntersecting) return;
         setReady(true);
         observer.disconnect();
       },
@@ -95,14 +92,6 @@ export const DetailVideo = memo(function DetailVideo({
           preload={priority ? "metadata" : "none"}
           className={fit === "cover" ? "h-full w-full object-cover" : "h-full w-full object-contain"}
         />
-      )}
-
-      {playOverlay && (
-        <div className="pointer-events-none absolute inset-0 grid place-items-center">
-          <span className="grid h-20 w-20 place-items-center rounded-pill border-[6px] border-white/80 text-white">
-            <span className="ml-1 h-0 w-0 border-y-[14px] border-l-[22px] border-y-transparent border-l-current" />
-          </span>
-        </div>
       )}
 
       {muteToggle && (

@@ -13,7 +13,7 @@ type FooterLinkItem = {
 };
 
 const LEARN_LINKS: FooterLinkItem[] = [
-  { label: "About Us", targetId: "about" },
+  { label: "About Us", to: ROUTES.about },
   { label: "Our Culture" },
   { label: "Our Team" },
   { label: "Company Values", targetId: "services" },

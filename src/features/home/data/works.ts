@@ -32,7 +32,7 @@ const WORK_CATEGORIES: Record<string, WorkCategory[]> = {
 export const WORKS: readonly WorkItem[] = [
   {
     id: "w1",
-    categories: WORK_CATEGORIES.sterkros,
+    categories: WORK_CATEGORIES.sterkros!,
     title: "Sterkros",
     mediaType: "video",
     mediaUrl: ASSETS.workSterkros,
@@ -42,7 +42,7 @@ export const WORKS: readonly WorkItem[] = [
   },
   {
     id: "w2",
-    categories: WORK_CATEGORIES.kalpa,
+    categories: WORK_CATEGORIES.kalpa!,
     title: "Kalpa Organic",
     mediaType: "video",
     mediaUrl: ASSETS.workKalpa,
@@ -52,7 +52,7 @@ export const WORKS: readonly WorkItem[] = [
   },
   {
     id: "w3",
-    categories: WORK_CATEGORIES.threeD,
+    categories: WORK_CATEGORIES.threeD!,
     title: "3D Renders",
     mediaType: "video",
     mediaUrl: ASSETS.work3D,
@@ -62,7 +62,7 @@ export const WORKS: readonly WorkItem[] = [
   },
   {
     id: "w4",
-    categories: WORK_CATEGORIES.uiUxProjects,
+    categories: WORK_CATEGORIES.uiUxProjects!,
     title: "UI / UX",
     mediaType: "video",
     mediaUrl: ASSETS.workUiUx,
@@ -72,7 +72,7 @@ export const WORKS: readonly WorkItem[] = [
   },
   {
     id: "w5",
-    categories: WORK_CATEGORIES.websiteDesign,
+    categories: WORK_CATEGORIES.websiteDesign!,
     title: "Web Design",
     mediaType: "video",
     mediaUrl: ASSETS.workWebsite,
@@ -82,7 +82,7 @@ export const WORKS: readonly WorkItem[] = [
   },
   {
     id: "w6",
-    categories: WORK_CATEGORIES.packageDesign,
+    categories: WORK_CATEGORIES.packageDesign!,
     title: "Package Design",
     mediaType: "video",
     mediaUrl: ASSETS.workPackage,
@@ -92,7 +92,7 @@ export const WORKS: readonly WorkItem[] = [
   },
   {
     id: "w7",
-    categories: WORK_CATEGORIES.magazines,
+    categories: WORK_CATEGORIES.magazines!,
     title: "Magazines",
     mediaType: "video",
     mediaUrl: ASSETS.workMagazines,
@@ -102,7 +102,7 @@ export const WORKS: readonly WorkItem[] = [
   },
   {
     id: "w8",
-    categories: WORK_CATEGORIES.logoDesigns,
+    categories: WORK_CATEGORIES.logoDesigns!,
     title: "Logo Designs",
     mediaType: "video",
     mediaUrl: ASSETS.workLogoDesigns,
@@ -112,7 +112,7 @@ export const WORKS: readonly WorkItem[] = [
   },
   {
     id: "w9",
-    categories: WORK_CATEGORIES.titleDesign,
+    categories: WORK_CATEGORIES.titleDesign!,
     title: "Title Design",
     mediaType: "video",
     mediaUrl: ASSETS.workTitleDesign,

@@ -59,13 +59,14 @@ export function MagazineDetailPage() {
 
         <section
           ref={sequenceRef}
-          className="relative flex min-h-[calc(100svh-76px)] items-center px-section-x-sm py-8 sm:px-section-x-md lg:px-section-x-lg"
+          className="relative px-section-x-sm py-8 sm:px-section-x-md lg:px-section-x-lg"
+          style={{ minHeight: `calc(100svh + ${(MAGAZINE.scrollFrames.length - 1) * 42}svh)` }}
           aria-label="Scroll through magazine mockups"
         >
-          <div className="w-full">
+          <div className="sticky top-[76px] flex min-h-[calc(100svh-76px)] w-full items-center">
             <div className="relative w-full overflow-hidden rounded-card bg-white/5">
               <DetailImage
-                src={MAGAZINE.scrollFrames[activeFrame]}
+                src={MAGAZINE.scrollFrames[activeFrame]!}
                 alt={`Magazine presentation ${activeFrame + 1} of ${MAGAZINE.scrollFrames.length}`}
                 className="aspect-video w-full object-cover"
                 priority

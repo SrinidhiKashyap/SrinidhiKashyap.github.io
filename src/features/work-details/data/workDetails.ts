@@ -1,6 +1,7 @@
-import type { DetailPageData } from "../types/work";
+import { validateDetailPageData } from "./workDetails.schema";
+import type { DetailPageData } from "./workDetails.schema";
 
-export const workDetails: Record<string, DetailPageData> = {
+const RAW_WORK_DETAILS: Record<string, unknown> = {
   "logo-design": {
     title: "Logo Design",
     summary: "Distinctive logo systems and motion identities built for lasting brand recognition.",
@@ -141,3 +142,15 @@ export const workDetails: Record<string, DetailPageData> = {
       "A collaborative production rhythm now allows rapid iteration while maintaining high design and delivery standards.",
   },
 };
+
+/**
+ * Validated work detail records.
+ * Each entry is checked against the Zod schema at module load time.
+ * If validation fails, the app will not start — preventing silent data corruption.
+ */
+export const workDetails: Record<string, DetailPageData> = Object.fromEntries(
+  Object.entries(RAW_WORK_DETAILS).map(([slug, data]) => [
+    slug,
+    validateDetailPageData(slug, data),
+  ]),
+);
