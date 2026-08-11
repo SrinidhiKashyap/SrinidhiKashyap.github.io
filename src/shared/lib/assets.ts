@@ -38,4 +38,5 @@ export const ASSETS = {
   serviceWebsite: "/assets/service-media/service-website.mp4",
   service3D: "/assets/service-media/service-3d.mp4",
   serviceAnimation: "/assets/service-media/service-animation.mp4",
+  serviceDigitalMarketing: "/assets/service-media/service-digital-marketing.mp4",
 } as const;
