@@ -29,17 +29,16 @@ export const ServiceSection = memo(function ServiceSection({
   activePoints,
   onActivatePoint,
 }: ServiceSectionProps) {
-  const title = (
-    <h2 className="text-heading-lg font-semibold text-white">
-      {service.name}
-    </h2>
-  );
+  const title = <h2 className="text-heading-lg font-semibold text-white">{service.name}</h2>;
 
   const summary = (
-    <p className={classNames("max-w-[520px] text-title-fluid font-normal", service.layout === "right" && "md:ml-auto md:text-right")}>
-      <LetterReveal progress={Math.max(0, progress - 0.18) / 0.82}>
-        {service.summary}
-      </LetterReveal>
+    <p
+      className={classNames(
+        "max-w-[520px] text-title-fluid font-normal",
+        service.layout === "right" && "md:ml-auto md:text-right",
+      )}
+    >
+      <LetterReveal progress={Math.max(0, progress - 0.18) / 0.82}>{service.summary}</LetterReveal>
     </p>
   );
 

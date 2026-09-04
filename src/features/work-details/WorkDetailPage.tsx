@@ -7,18 +7,46 @@ import { workDetails } from "./data/workDetails";
 import { WorkDetailHero } from "./components/WorkDetailHero";
 import { WorkResults } from "./components/WorkResults";
 import { WorkShowcase } from "./components/WorkShowcase";
+import { CaseStudySkeleton } from "../../shared/components/ui/PageSkeleton";
 import "./work-detail.css";
 
 type LazyDetailPage = LazyExoticComponent<ComponentType>;
 
 const CUSTOM_DETAIL_PAGES: Readonly<Record<string, LazyDetailPage>> = {
-  sterkros: lazy(() => import("./components/SterkrosDetailPage").then((module) => ({ default: module.SterkrosDetailPage }))),
-  kalpa: lazy(() => import("./components/KalpaDetailPage").then((module) => ({ default: module.KalpaDetailPage }))),
-  "title-design": lazy(() => import("./components/TitleDesignDetailPage").then((module) => ({ default: module.TitleDesignDetailPage }))),
-  magazine: lazy(() => import("./components/MagazineDetailPage").then((module) => ({ default: module.MagazineDetailPage }))),
-  website: lazy(() => import("./components/WebsiteDetailPage").then((module) => ({ default: module.WebsiteDetailPage }))),
-  "logo-design": lazy(() => import("./components/LogoDesignDetailPage").then((module) => ({ default: module.LogoDesignDetailPage }))),
-  uiux: lazy(() => import("./components/UiUxDetailPage").then((module) => ({ default: module.UiUxDetailPage }))),
+  sterkros: lazy(() =>
+    import("./components/SterkrosDetailPage").then((module) => ({
+      default: module.SterkrosDetailPage,
+    })),
+  ),
+  kalpa: lazy(() =>
+    import("./components/KalpaDetailPage").then((module) => ({ default: module.KalpaDetailPage })),
+  ),
+  "title-design": lazy(() =>
+    import("./components/TitleDesignDetailPage").then((module) => ({
+      default: module.TitleDesignDetailPage,
+    })),
+  ),
+  magazine: lazy(() =>
+    import("./components/MagazineDetailPage").then((module) => ({
+      default: module.MagazineDetailPage,
+    })),
+  ),
+  website: lazy(() =>
+    import("./components/WebsiteDetailPage").then((module) => ({
+      default: module.WebsiteDetailPage,
+    })),
+  ),
+  "logo-design": lazy(() =>
+    import("./components/LogoDesignDetailPage").then((module) => ({
+      default: module.LogoDesignDetailPage,
+    })),
+  ),
+  uiux: lazy(() =>
+    import("./components/UiUxDetailPage").then((module) => ({ default: module.UiUxDetailPage })),
+  ),
+  package: lazy(() =>
+    import("./components/RiceDetailPage").then((module) => ({ default: module.RiceDetailPage })),
+  ),
 };
 
 export function WorkDetailPage() {
@@ -26,12 +54,12 @@ export function WorkDetailPage() {
   const work = slug ? workDetails[slug] : undefined;
   const CustomDetailPage = slug ? CUSTOM_DETAIL_PAGES[slug] : undefined;
 
-  if (!work) return <Navigate to={ROUTES.home} replace />;
+  if (!work) return <Navigate to={ROUTES.notFound} replace />;
 
   return (
     <PageLayout>
       {CustomDetailPage ? (
-        <Suspense fallback={<div className="min-h-screen bg-bee-bg-primary" />}>
+        <Suspense fallback={<CaseStudySkeleton />}>
           <CustomDetailPage />
         </Suspense>
       ) : (

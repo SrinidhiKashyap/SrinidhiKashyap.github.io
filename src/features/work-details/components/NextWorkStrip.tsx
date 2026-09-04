@@ -23,19 +23,22 @@ export interface NextWorkStripProps {
  * <NextWorkStrip workIds={["w1", "w7"]} />
  * ```
  */
-export const NextWorkStrip = memo(function NextWorkStrip({
-  workIds,
-}: NextWorkStripProps) {
+export const NextWorkStrip = memo(function NextWorkStrip({ workIds }: NextWorkStripProps) {
   const nextWorks = WORKS.filter((work) => workIds.includes(work.id));
 
   return (
     <section className="w-full px-section-x-sm py-12 sm:px-section-x-md lg:px-section-x-lg">
       <div className="flex items-start justify-between gap-8">
         <div>
-          <p className="text-section-label"><span aria-hidden>&bull;</span> More Good Stuff</p>
+          <p className="text-section-label">
+            <span aria-hidden>&bull;</span> More Good Stuff
+          </p>
           <h2 className="mt-4 text-testimonial-heading font-semibold">What Next?</h2>
         </div>
-        <Link to="/#works" className="mt-9 rounded-pill bg-bee-accent px-5 py-2 text-sm font-medium text-black transition hover:bg-white">
+        <Link
+          to="/#works"
+          className="mt-9 rounded-pill bg-bee-accent px-5 py-2 text-sm font-medium text-black transition hover:bg-white"
+        >
           Browse more work
         </Link>
       </div>

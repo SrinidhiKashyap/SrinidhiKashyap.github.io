@@ -14,7 +14,11 @@ type LetterRevealProps = {
  * Characters up to `progress * length` are lit (white), the rest are dimmed.
  * Uses `transition-colors duration-slow` for a smooth fade-in effect.
  */
-export const LetterReveal = memo(function LetterReveal({ children, progress, className }: LetterRevealProps) {
+export const LetterReveal = memo(function LetterReveal({
+  children,
+  progress,
+  className,
+}: LetterRevealProps) {
   const characters = Array.from(children);
   const litCount = Math.ceil(characters.length * progress);
 

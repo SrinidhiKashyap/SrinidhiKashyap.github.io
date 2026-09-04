@@ -22,18 +22,13 @@ export type DetailPageData = z.infer<typeof DetailPageDataSchema>;
  * Validates a raw record against the schema.
  * Throws a descriptive error if validation fails.
  */
-export function validateDetailPageData(
-  slug: string,
-  data: unknown,
-): DetailPageData {
+export function validateDetailPageData(slug: string, data: unknown): DetailPageData {
   const result = DetailPageDataSchema.safeParse(data);
   if (!result.success) {
     const issues = result.error.issues
       .map((i) => `  [${i.path.join(".")}] ${i.message}`)
       .join("\n");
-    throw new Error(
-      `workDetails["${slug}"] validation failed:\n${issues}`,
-    );
+    throw new Error(`workDetails["${slug}"] validation failed:\n${issues}`);
   }
   return result.data;
 }

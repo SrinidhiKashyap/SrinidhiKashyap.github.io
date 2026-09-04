@@ -10,7 +10,7 @@ export function WorkDetailHero({ work }: WorkDetailHeroProps) {
       <img src={work.hero} alt={work.title} className="work-detail-media" />
 
       <div>
-        <h1 className="text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">{work.title}</h1>
+        <h1 className="text-3xl font-bold leading-tight md:text-4xl">{work.title}</h1>
         <p className="mt-4 text-lg text-white/85 md:mt-6 md:text-xl">{work.summary}</p>
 
         <h2 className="mt-6 text-xl font-bold md:mt-8 md:text-2xl">Scope of Work</h2>

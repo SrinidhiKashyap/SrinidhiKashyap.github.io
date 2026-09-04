@@ -24,9 +24,13 @@ export function MagazineDetailPage() {
             priority
           />
           <div className="self-center">
-            <h1 className="text-heading-sm font-semibold">Magazine and books <br />layout design</h1>
+            <h1 className="text-heading-sm font-semibold">
+              Magazine and books <br />
+              layout design
+            </h1>
             <p className="mt-4 text-copy-lg text-white/85">
-              Bee Concept shaped editorial systems where expressive covers, clear hierarchy, and tactile mockups work as one collection.
+              Bee Concept shaped editorial systems where expressive covers, clear hierarchy, and
+              tactile mockups work as one collection.
             </p>
             <h2 className="mt-5 text-title-fluid font-semibold">Bee concept Scope of Work:</h2>
             <ul className="mt-2 space-y-1 text-sm leading-relaxed text-white/85 md:mt-3 md:text-base">
@@ -73,8 +77,13 @@ export function MagazineDetailPage() {
               />
 
               <div className="absolute bottom-5 right-5 flex items-center gap-3 rounded-pill bg-black/55 px-3 py-2 text-xs text-white backdrop-blur-sm">
-                <span>{activeFrame + 1} / {MAGAZINE.scrollFrames.length}</span>
-                <span className="relative block h-7 w-4 rounded-pill border border-white/80" aria-hidden>
+                <span>
+                  {activeFrame + 1} / {MAGAZINE.scrollFrames.length}
+                </span>
+                <span
+                  className="relative block h-7 w-4 rounded-pill border border-white/80"
+                  aria-hidden
+                >
                   <span className="absolute left-1/2 top-1 h-1.5 w-1 -translate-x-1/2 rounded-pill bg-white" />
                 </span>
                 <span>Scroll</span>

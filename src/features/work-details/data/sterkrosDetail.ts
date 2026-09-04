@@ -1,3 +1,4 @@
+/** EDIT HERE: All media and copy for the Sterkros case study. */
 const BASE = "/assets/work-sterkros-detail";
 
 export const sterkrosAssets = {
@@ -28,7 +29,13 @@ export const sterkrosContent = {
     "Bee concept built a complete brand identity and packaging system for Sterkros, amplifying their mission to empower fitness enthusiasts worldwide.",
   introAlt:
     "Our efforts elevated Sterkros' presence by encouraging individuals to reach their fitness goals.",
-  scope: ["Brand Identity & Guideline", "3D Renders", "Brand Collaterals", "Motion Graphics", "Packaging"],
+  scope: [
+    "Brand Identity & Guideline",
+    "3D Renders",
+    "Brand Collaterals",
+    "Motion Graphics",
+    "Packaging",
+  ],
   quote: "Experience the transformation brought by Beeconcept® to STERKROS 2023 and 2024.",
   thanks: "To The Mattel Team For Entrusting Us For Years.",
 } as const;

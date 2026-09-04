@@ -8,7 +8,6 @@
  *   1. Service marquee
  */
 
-
 /* --- 1. SERVICE MARQUEE -----------------------------------------------------
    The marquee needs keyframes and a duplicate moving track. The second line
    uses text-stroke, which Tailwind does not provide by default.
@@ -37,6 +36,10 @@
 }
 
 @keyframes service-marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

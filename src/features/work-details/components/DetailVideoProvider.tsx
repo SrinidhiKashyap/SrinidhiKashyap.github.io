@@ -86,11 +86,7 @@ export function DetailVideoProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  return (
-    <DetailVideoContext.Provider value={ctx.current}>
-      {children}
-    </DetailVideoContext.Provider>
-  );
+  return <DetailVideoContext.Provider value={ctx.current}>{children}</DetailVideoContext.Provider>;
 }
 
 // ── Consumer hook ─────────────────────────────────────────────────────────────

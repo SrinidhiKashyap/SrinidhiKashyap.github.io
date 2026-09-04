@@ -70,7 +70,10 @@ export function ContactFormPanel() {
           </p>
         </div>
 
-        <button type="submit" className="contact-submit-btn touch-target tap-highlight-transparent py-3">
+        <button
+          type="submit"
+          className="contact-submit-btn touch-target tap-highlight-transparent py-3"
+        >
           Submit
         </button>
       </form>

@@ -23,47 +23,45 @@ const WorkCard = memo(function WorkCard({ work, offset }: WorkCardProps) {
   return (
     <article className={classNames("work-card", offset && "md:translate-y-[90px]")}>
       <Link to={work.pagePath} aria-label={`Open ${work.title}`} className="block">
+        {/* Thumbnail — image or auto-playing video */}
+        <div className="work-card__media relative w-full overflow-hidden rounded-media bg-bee-bg-deep">
+          {work.mediaType === "video" ? (
+            <AutoPlayVideo
+              src={work.mediaUrl}
+              disablePictureInPicture
+              className="aspect-video w-full object-cover"
+            />
+          ) : (
+            <img
+              src={work.mediaUrl}
+              alt={work.title}
+              className="aspect-video w-full object-cover"
+            />
+          )}
 
-      {/* Thumbnail — image or auto-playing video */}
-      <div className="work-card__media relative w-full overflow-hidden rounded-media bg-bee-bg-deep">
-        {work.mediaType === "video" ? (
-          <AutoPlayVideo
-            src={work.mediaUrl}
-            disablePictureInPicture
-            className="aspect-video w-full object-cover"
-          />
-        ) : (
-          <img
-            src={work.mediaUrl}
-            alt={work.title}
-            className="aspect-video w-full object-cover"
-          />
-        )}
+          {/*
+           * Overlay bar at the bottom of the thumbnail.
+           * Fades to a lighter tint and arrow turns bee-accent on hover.
+           * Both transitions are in home.css under "5. WORK CARDS".
+           */}
+          <div className="work-card__overlay absolute bottom-3.5 left-3.5 right-3.5 flex min-h-[46px] items-center justify-between gap-4 rounded-[14px] bg-black/70 px-5 py-0 backdrop-blur-overlay">
+            <div className="flex min-w-0 flex-wrap gap-x-6 gap-y-1 text-sm font-normal text-white/85 md:text-base">
+              {work.categories.map((category) => (
+                <span key={category}>{WORK_CATEGORY_LABELS[category]}</span>
+              ))}
+            </div>
 
-        {/*
-         * Overlay bar at the bottom of the thumbnail.
-         * Fades to a lighter tint and arrow turns bee-accent on hover.
-         * Both transitions are in home.css under "5. WORK CARDS".
-         */}
-        <div className="work-card__overlay absolute bottom-3.5 left-3.5 right-3.5 flex min-h-[54px] items-center justify-between gap-4 rounded-[14px] bg-black/70 px-5 py-2.5 backdrop-blur-overlay">
-          <div className="flex min-w-0 flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-white/85">
-            {work.categories.map((category) => (
-              <span key={category}>{WORK_CATEGORY_LABELS[category]}</span>
-            ))}
+            <span className="work-card__arrow grid h-9 w-9 flex-none place-items-center rounded-pill bg-white/10 text-sm text-white tap-highlight-transparent">
+              &#8599;
+            </span>
           </div>
-
-          <span className="work-card__arrow grid h-[44px] w-[44px] flex-none place-items-center rounded-pill bg-white/10 text-sm text-white touch-target tap-highlight-transparent">
-            &#8599;
-          </span>
         </div>
-      </div>
 
-      {/* Title row: year · title */}
-      <div className="mt-[18px] flex items-center gap-2 text-title-fluid font-normal text-white/80">
-        {work.title}
-      </div>
+        {/* Title row: year · title */}
+        <div className="mt-[18px] flex items-center gap-2 text-title-fluid font-normal text-white/80">
+          {work.title}
+        </div>
       </Link>
-
     </article>
   );
 });
@@ -71,24 +69,22 @@ const WorkCard = memo(function WorkCard({ work, offset }: WorkCardProps) {
 // ─── Works Section ────────────────────────────────────────────────────────────
 
 export function WorksSection({ activeCategory, onCategoryChange }: WorksSectionProps) {
-  const filteredWorks =
-    useMemo(
-      () =>
-        activeCategory === "All Work"
-          ? WORKS
-          : WORKS.filter((w) => w.categories.includes(activeCategory)),
-      [activeCategory],
-    );
+  const filteredWorks = useMemo(
+    () =>
+      activeCategory === "All Work"
+        ? WORKS
+        : WORKS.filter((w) => w.categories.includes(activeCategory)),
+    [activeCategory],
+  );
 
   return (
     <section id="works" className="bg-bee-bg-primary text-white">
       <div className="w-full px-section-x-sm py-section-y sm:px-section-x-md lg:px-section-x-lg">
-
         {/* Section header */}
-        <p className="text-label font-normal">
+        <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
           <span aria-hidden>•</span> Our Works
         </p>
-        <h2 className="mt-6 text-heading-sm font-semibold">
+        <h2 className="mt-2 break-words text-heading-sm font-medium">
           Take a look at <br /> our projects
         </h2>
 
@@ -100,7 +96,7 @@ export function WorksSection({ activeCategory, onCategoryChange }: WorksSectionP
               type="button"
               onClick={() => onCategoryChange(filter.value)}
               className={classNames(
-                "text-base font-normal transition whitespace-nowrap scroll-snap-center touch-target tap-highlight-transparent px-2",
+                "text-xl font-normal transition whitespace-nowrap scroll-snap-center touch-target tap-highlight-transparent px-2 md:text-2xl",
                 filter.value === activeCategory
                   ? "text-white"
                   : "text-white/30 hover:text-white/70",
@@ -116,12 +112,16 @@ export function WorksSection({ activeCategory, onCategoryChange }: WorksSectionP
          * Row gap is larger to accommodate the 90px card offset.
          * On mobile: single column, offset removed (see WorkCard above).
          */}
-        <div className="mx-auto mt-14 grid max-w-[1440px] grid-cols-1 gap-8 gap-y-[80px] md:grid-cols-2 md:gap-x-10">
-          {filteredWorks.map((work, index) => (
-            <WorkCard key={work.id} work={work} offset={index % 2 !== 0} />
-          ))}
+        <div className="relative mx-auto mt-14 max-w-[1440px]">
+          <h2 className="works-explore-label relative -mb-12 mx-24 hidden text-right text-5xl font-bold text-transparent [background-clip:text] lg:block">
+            Explore Projects
+          </h2>
+          <div className="grid grid-cols-1 gap-8 gap-y-[80px] md:grid-cols-2 md:gap-x-16">
+            {filteredWorks.map((work, index) => (
+              <WorkCard key={work.id} work={work} offset={index % 2 !== 0} />
+            ))}
+          </div>
         </div>
-
       </div>
     </section>
   );

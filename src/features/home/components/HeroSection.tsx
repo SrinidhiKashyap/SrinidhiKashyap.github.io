@@ -15,11 +15,12 @@ export function HeroSection() {
       className="relative grid min-h-[calc(100dvh-76px)] place-items-center overflow-hidden bg-bee-bg-hero px-section-x-sm text-center text-white sm:px-section-x-md lg:px-section-x-lg"
     >
       <div className="flex min-h-[calc(100dvh-76px)] w-full flex-col items-center justify-center py-10 sm:py-16">
-        <h1 className="text-display-xl font-extrabold leading-none text-bee-accent">
+        {/* Scale down for phones; full animated clamp size from md up */}
+        <h1 className="text-[clamp(2.5rem,11vw,3rem)] font-medium leading-none text-bee-accent md:text-display-xl">
           Bee Concept
         </h1>
 
-        <p className="mt-[clamp(1.25rem,4vh,2.5rem)] text-body-lg font-medium text-white/80 max-w-[90%] mx-auto">
+        <p className="mt-[clamp(1.25rem,4vh,2.5rem)] break-words text-body-lg font-medium text-white/80 max-w-[90%] mx-auto">
           Inspired Design. Intelligent Development. Impactful Marketing.
         </p>
 

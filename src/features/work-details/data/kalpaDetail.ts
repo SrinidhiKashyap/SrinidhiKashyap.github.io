@@ -1,3 +1,4 @@
+/** EDIT HERE: All media and copy for the Kalpa case study. */
 const BASE = "/assets/work-kalpa-detail";
 
 export const kalpaAssets = {
@@ -30,7 +31,13 @@ export const kalpaContent = {
   title: "Kalpa organic Oil Product",
   intro:
     "Bee concept crafted a sophisticated modern oil product brand identity, package and motion graphics for The Kalpa Group.",
-  scope: ["Brand Identity & Guideline", "3D Renders", "Brand Collaterals", "Motion Graphics", "Packaging"],
+  scope: [
+    "Brand Identity & Guideline",
+    "3D Renders",
+    "Brand Collaterals",
+    "Motion Graphics",
+    "Packaging",
+  ],
   quote:
     "Bee concept® elevated The Kalpa Group brand to a new level and made it more global and all over India.",
   guidelineQuote:

@@ -15,17 +15,15 @@ export function AboutSection() {
        * On mobile, image stacks below (grid-cols-1 is the default).
        */}
       <div className="grid min-h-[calc(100dvh-76px)] lg:grid-cols-2">
-
         {/* ── Left: copy ── */}
         <div className="flex items-center px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg">
           <div className="w-full max-w-[860px]">
-
             {/* Section label */}
-            <p className="text-label font-normal">
+            <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
               <span aria-hidden>•</span> Our Story
             </p>
 
-            <h2 className="mt-6 max-w-[620px] text-heading-lg font-semibold sm:mt-8">
+            <h2 className="mt-2 max-w-[620px] break-words text-heading-lg font-medium">
               Brief about <br /> work culture
             </h2>
 
@@ -63,7 +61,6 @@ export function AboutSection() {
             className="h-full min-h-[280px] lg:min-h-[420px] w-full object-cover"
           />
         </div>
-
       </div>
     </section>
   );

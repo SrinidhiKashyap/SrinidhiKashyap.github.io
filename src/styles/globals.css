@@ -7,25 +7,25 @@
     min-height: 44px;
     min-width: 44px;
   }
-  
+
   .tap-highlight-transparent {
     -webkit-tap-highlight-color: transparent;
     tap-highlight-color: transparent;
   }
-  
+
   .scroll-snap-x {
     scroll-snap-type: x mandatory;
   }
-  
+
   .scroll-snap-center {
     scroll-snap-align: center;
   }
-  
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -97,8 +97,16 @@ html {
 }
 
 body {
-  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  font-family:
+    "Poppins",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
   background: #f3efe3;
   color: #111111;
   overflow-x: hidden;

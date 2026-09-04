@@ -14,9 +14,9 @@ import { useLocation } from "react-router-dom";
  */
 export function useNavScroll() {
   const location = useLocation();
-  const [visible,   setVisible]   = useState(true);
-  const [menuOpen,  setMenuOpen]  = useState(false);
-  const [lastY,     setLastY]     = useState(0);
+  const [visible, setVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [lastY, setLastY] = useState(0);
 
   useEffect(() => {
     setVisible(true);

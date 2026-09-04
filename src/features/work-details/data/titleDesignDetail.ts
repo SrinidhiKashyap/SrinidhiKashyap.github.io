@@ -1,3 +1,4 @@
+/** EDIT HERE: All media for the title-design case study. */
 const BASE_PATH = "/assets/work-title-design-detail";
 
 /** Optimized artwork used by the title-design case study. */

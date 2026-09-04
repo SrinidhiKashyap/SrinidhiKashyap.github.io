@@ -4,17 +4,12 @@ export const ROUTES = {
   about: "/about",
   service: "/service",
   contact: "/contact",
+  notFound: "/not-found",
   workDetail: "/:slug",
 } as const;
 
 export type HomeSection =
-  | "home"
-  | "about"
-  | "services"
-  | "works"
-  | "clients"
-  | "testimonials"
-  | "contact";
+  "home" | "about" | "services" | "works" | "clients" | "testimonials" | "contact";
 
 export function homeSectionHref(section: HomeSection): string {
   return `${ROUTES.home}#${section}`;

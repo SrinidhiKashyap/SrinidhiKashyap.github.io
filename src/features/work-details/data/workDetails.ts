@@ -23,18 +23,29 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
       "/assets/work-title-design-detail/gani.webp",
       "/assets/work-title-design-detail/jatayu.webp",
     ],
-    deliverables: "A collection of distinctive title treatments designed for impact across posters, screens, and campaign artwork.",
+    deliverables:
+      "A collection of distinctive title treatments designed for impact across posters, screens, and campaign artwork.",
     challenge: "Each title needed its own voice while remaining immediately legible and memorable.",
-    outcome: "The resulting identities give every property a recognizable visual signature with strong promotional flexibility.",
+    outcome:
+      "The resulting identities give every property a recognizable visual signature with strong promotional flexibility.",
   },
   sterkros: {
     title: "Sterkros Fitness company",
     summary:
       "Bee concept crafted a sophisticated identity and packaging system for Sterkros, strengthening product visibility and fitness-first messaging.",
-    scope: ["Brand Identity & Guideline", "3D Renders", "Brand Collaterals", "Motion Graphics", "Packaging"],
-    hero: "/assets/card3i-BRguKRRe.png",
-    showcaseVideo: "/assets/1-OXpAWiZu.mp4",
-    gallery: ["/assets/l3-CY_AoROi.png", "/assets/l7-B7oZGe5M.png"],
+    scope: [
+      "Brand Identity & Guideline",
+      "3D Renders",
+      "Brand Collaterals",
+      "Motion Graphics",
+      "Packaging",
+    ],
+    hero: "/assets/work-sterkros-detail/logo-sign.png",
+    showcaseVideo: "/assets/work-sterkros-detail/glimpse.mp4",
+    gallery: [
+      "/assets/work-sterkros-detail/gym-bag.webp",
+      "/assets/work-sterkros-detail/apple-watch.webp",
+    ],
     deliverables:
       "The final rollout included packaging hierarchy, visual language guidelines, launch collaterals, and social-ready motion assets aligned to a single bold tone.",
     challenge:
@@ -47,9 +58,12 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
     summary:
       "A refreshed visual system and packaging direction that balances clean design with strong shelf presence for Kalpa.",
     scope: ["Branding", "Packaging", "Label System", "Product Visualization"],
-    hero: "/assets/card4i-BMbOdytb.png",
-    showcaseVideo: "/assets/01-W49LDOUJ.mp4",
-    gallery: ["/assets/l4-sumtvTH8.png", "/assets/l8-zbhQ1mGv.png"],
+    hero: "/assets/work-kalpa-detail/main-poster.webp",
+    showcaseVideo: "/assets/work-kalpa-detail/glimpse.mp4",
+    gallery: [
+      "/assets/work-kalpa-detail/flying-bottle.webp",
+      "/assets/work-kalpa-detail/three-bottles.webp",
+    ],
     deliverables:
       "We shaped a product-first packaging structure with stronger variant clarity, visual consistency across formats, and a refined organic premium look.",
     challenge:
@@ -59,11 +73,15 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
   },
   uiux: {
     title: "UI/UX Case Collection",
-    summary: "Interaction-focused product experiences with practical user journeys and clear visual hierarchy.",
+    summary:
+      "Interaction-focused product experiences with practical user journeys and clear visual hierarchy.",
     scope: ["UX Research", "Wireframing", "Interface Design", "Prototype Flows"],
-    hero: "/assets/l2-CtjK267I.png",
-    showcaseVideo: "/assets/case%2008-B0n0VsS3.mp4",
-    gallery: ["/assets/l6-L96vLuNx.png", "/assets/l1-DaBMn2_c.png"],
+    hero: "/assets/work-uiux-detail/forest-mockup.webp",
+    showcaseVideo: "/assets/work-uiux-detail/glimpse.mp4",
+    gallery: [
+      "/assets/work-uiux-detail/red-mockup.webp",
+      "/assets/work-uiux-detail/logo-mockup.webp",
+    ],
     deliverables:
       "Each case delivered user flows, interactive wireframes, visual systems, and responsive UI components designed to reduce friction at every key touchpoint.",
     challenge:
@@ -77,7 +95,10 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
     scope: ["Website Design", "UI/UX Design", "Development"],
     hero: "/assets/work-website-detail/website-mockup.webp",
     showcaseVideo: "/assets/work-website-detail/meat-shop-glimpse.mp4",
-    gallery: ["/assets/work-website-detail/meat-shop-page-top.webp", "/assets/work-website-detail/meat-shop-page-bottom.webp"],
+    gallery: [
+      "/assets/work-website-detail/meat-shop-page-top.webp",
+      "/assets/work-website-detail/meat-shop-page-bottom.webp",
+    ],
     deliverables:
       "The website package covered page architecture, conversion-led sections, motion references, and implementation-ready component layouts for development.",
     challenge:
@@ -87,11 +108,15 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
   },
   magazine: {
     title: "Magazine Cover Page Layout",
-    summary: "Editorial composition and cover systems that blend impact typography with brand consistency.",
+    summary:
+      "Editorial composition and cover systems that blend impact typography with brand consistency.",
     scope: ["Editorial Layout", "Art Direction", "Typography", "Print-ready Design"],
-    hero: "/assets/l5-XzL69Zm6.png",
-    showcaseVideo: "/assets/htitle-S7xOcvJ7.mp4",
-    gallery: ["/assets/l7-B7oZGe5M.png", "/assets/l3-CY_AoROi.png"],
+    hero: "/assets/work-magazine-detail/frame-01.webp",
+    showcaseVideo: "/assets/work-magazines-homepage.mp4",
+    gallery: [
+      "/assets/work-magazine-detail/frame-02.webp",
+      "/assets/work-magazine-detail/frame-03.webp",
+    ],
     deliverables:
       "The final editorial set included multiple cover explorations, print-safe color tuning, and layout templates to maintain consistency across issues.",
     challenge:
@@ -100,12 +125,15 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
       "We delivered a reusable cover system with strong typographic impact and consistent art direction.",
   },
   package: {
-    title: "Packaging Design Collection",
-    summary: "Packaging solutions built around differentiation, clarity, and premium shelf communication.",
-    scope: ["Packaging Strategy", "3D Mockups", "Visual Identity Adaptation", "Production Specs"],
-    hero: "/assets/l4-sumtvTH8.png",
-    showcaseVideo: "/assets/1-D3jkv_mG.mp4",
-    gallery: ["/assets/l8-zbhQ1mGv.png", "/assets/l6-L96vLuNx.png"],
+    title: "Package Design",
+    summary: "Ratna premium jeera rice package design.",
+    scope: ["Book Layouts", "Magazine Layouts", "Cover Design"],
+    hero: "/assets/work-rice-detail/hero.webp",
+    showcaseVideo: "/assets/work-rice-detail/Rice packaging glimpse vid 02.mp4",
+    gallery: [
+      "/assets/work-rice-detail/front-float.webp",
+      "/assets/work-rice-detail/back-float.webp",
+    ],
     deliverables:
       "This collection included dieline-aware design systems, 3D pack previews, and production notes to ensure the concept translated cleanly to manufacturing.",
     challenge:
@@ -117,9 +145,9 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
     title: "About The Studio",
     summary: "A closer look at Bee concept's culture, values, and collaborative process.",
     scope: ["Culture", "Values", "Capabilities", "Collaboration Process"],
-    hero: "/assets/logo-Bk4tGk3_.png",
-    showcaseVideo: "/assets/1-6VgHGL0U.mp4",
-    gallery: ["/assets/hand-C3sN6PB7.webp", "/assets/home1-DuxIdUgA.png"],
+    hero: "/assets/about/studio.jpg",
+    showcaseVideo: "/assets/work-websitedesign-homepage.mp4",
+    gallery: ["/assets/about/team.jpg", "/assets/home1-DuxIdUgA.png"],
     deliverables:
       "Our studio process blends design and development from day one, keeping strategy, content, and production aligned so brands scale with consistency.",
     challenge:
@@ -129,11 +157,12 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
   },
   team: {
     title: "Our Team",
-    summary: "A multidisciplinary team bridging design craft and technical execution for brand growth.",
+    summary:
+      "A multidisciplinary team bridging design craft and technical execution for brand growth.",
     scope: ["Design Team", "Development Team", "3D Team", "Motion Team"],
     hero: "/assets/home1-DuxIdUgA.png",
-    showcaseVideo: "/assets/1-BvQ5gUh-.mp4",
-    gallery: ["/assets/l1-DaBMn2_c.png", "/assets/l2-CtjK267I.png"],
+    showcaseVideo: "/assets/work-uiuxprojects-homepage.mp4",
+    gallery: ["/assets/about/team.jpg", "/assets/home1-DuxIdUgA.png"],
     deliverables:
       "Our team structure keeps research, design, and execution connected through rapid collaboration cycles, reducing rework and improving launch quality.",
     challenge:

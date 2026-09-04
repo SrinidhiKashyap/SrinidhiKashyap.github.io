@@ -35,4 +35,5 @@ export type TestimonialItem = {
   avatar: string;
 };
 
-export type HomeWorkFilter = "All Work" | "Branding" | "Package" | "3D Renders" | "Ui/Ux" | "Web Design";
+export type HomeWorkFilter =
+  "All Work" | "Branding" | "Package" | "3D Renders" | "Ui/Ux" | "Web Design";

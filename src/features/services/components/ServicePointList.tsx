@@ -15,12 +15,16 @@ type ServicePointListProps = {
  * Each point can be activated (highlighted) on hover/focus/tap.
  * Supports right-aligned layout for alternating service sections.
  */
-export const ServicePointList = memo(function ServicePointList({ service, activePoints, onActivatePoint }: ServicePointListProps) {
+export const ServicePointList = memo(function ServicePointList({
+  service,
+  activePoints,
+  onActivatePoint,
+}: ServicePointListProps) {
   const isRightAligned = service.layout === "left";
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
 
   return (
@@ -29,7 +33,7 @@ export const ServicePointList = memo(function ServicePointList({ service, active
         "mt-6 space-y-4 text-base text-white/60 md:mt-8 md:space-y-5 md:text-lg",
         isRightAligned && "md:text-right",
         // On mobile, always left-align for better readability
-        "text-left"
+        "text-left",
       )}
     >
       {service.points.map((point) => {

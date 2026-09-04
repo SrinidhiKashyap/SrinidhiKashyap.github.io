@@ -1,23 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ROUTES, homeSectionHref, type HomeSection } from "../../../app/routes";
+import { ROUTES, homeSectionHref } from "../../../app/routes";
 import { ASSETS } from "../../lib/assets";
 import { classNames } from "../../lib/classNames";
 import { scrollToId } from "../../lib/scrollToId";
 import { useNavScroll } from "../../hooks/useNavScroll";
+import { PRIMARY_NAVIGATION } from "../../../content/navigation";
 
 // ─── Nav link config ──────────────────────────────────────────────────────────
 // To add a nav item, edit this array only.
 // - Use `targetId` for home-page sections (smooth-scrolls when on "/", links
 //   to "/#id" when on any other page so the browser still lands in the right spot)
 // - Use `to` for standalone routes
-const NAV_LINKS = [
-  { label: "Home",     targetId: "home"    },
-  { label: "About us", to: ROUTES.about     },
-  { label: "Work",     targetId: "works"   },
-  { label: "Service",  to: ROUTES.service   },
-  { label: "Contact",  to: ROUTES.contact  },
-] as const;
+const NAV_LINKS = PRIMARY_NAVIGATION;
 
 type MobileMenuProps = {
   open: boolean;
@@ -44,7 +39,7 @@ function MobileMenu({ open, onClose, isHome }: MobileMenuProps) {
     <div
       className={classNames(
         "border-t border-white/10 bg-bee-bg-footer md:hidden overflow-hidden transition-all duration-300 ease-out",
-        isAnimating ? "max-h-0 opacity-0" : "max-h-96 opacity-100"
+        isAnimating ? "max-h-0 opacity-0" : "max-h-96 opacity-100",
       )}
       role="dialog"
       aria-modal="true"
@@ -52,7 +47,7 @@ function MobileMenu({ open, onClose, isHome }: MobileMenuProps) {
     >
       <div className="flex flex-col px-6 py-4">
         {NAV_LINKS.map((link) => {
-          if ("to" in link) {
+          if (link.to) {
             return (
               <Link
                 key={link.label}
@@ -70,7 +65,10 @@ function MobileMenu({ open, onClose, isHome }: MobileMenuProps) {
             <button
               key={link.label}
               type="button"
-              onClick={() => { onClose(); scrollToId(link.targetId); }}
+              onClick={() => {
+                onClose();
+                scrollToId(link.section!);
+              }}
               className="py-4 text-left text-base font-medium text-white/75 transition hover:text-white touch-target"
             >
               {link.label}
@@ -78,7 +76,7 @@ function MobileMenu({ open, onClose, isHome }: MobileMenuProps) {
           ) : (
             <Link
               key={link.label}
-              to={homeSectionHref(link.targetId as HomeSection)}
+              to={homeSectionHref(link.section!)}
               onClick={onClose}
               className="py-4 text-base font-medium text-white/75 transition hover:text-white touch-target"
             >
@@ -104,8 +102,8 @@ function MobileMenu({ open, onClose, isHome }: MobileMenuProps) {
 }
 
 export function SiteNavbar() {
-  const location  = useLocation();
-  const isHome    = location.pathname === ROUTES.home;
+  const location = useLocation();
+  const isHome = location.pathname === ROUTES.home;
   const { visible, menuOpen, setMenuOpen } = useNavScroll();
 
   function handleLogoClick() {
@@ -123,10 +121,14 @@ export function SiteNavbar() {
     >
       {/* ── Main bar ── */}
       <div className="flex h-[76px] items-center justify-between px-section-x-sm sm:px-12 xl:px-section-x-lg">
-
         {/* Logo — scrolls to top on home, navigates home from other pages */}
         {isHome ? (
-          <button type="button" aria-label="Bee Concept home" onClick={handleLogoClick} className="touch-target">
+          <button
+            type="button"
+            aria-label="Bee Concept home"
+            onClick={handleLogoClick}
+            className="touch-target"
+          >
             <img src={ASSETS.logoDark} alt="Bee Concept" className="h-12 w-auto sm:h-10" />
           </button>
         ) : (
@@ -138,7 +140,7 @@ export function SiteNavbar() {
         {/* Desktop nav */}
         <nav className="hidden items-center gap-16 md:flex">
           {NAV_LINKS.map((link) => {
-            if ("to" in link) {
+            if (link.to) {
               const isActive = location.pathname === link.to;
               return (
                 <Link
@@ -156,7 +158,7 @@ export function SiteNavbar() {
               <button
                 key={link.label}
                 type="button"
-                onClick={() => scrollToId(link.targetId)}
+                onClick={() => scrollToId(link.section!)}
                 className="text-nav-link font-normal text-white/90 transition hover:text-bee-accent"
               >
                 {link.label}
@@ -164,7 +166,7 @@ export function SiteNavbar() {
             ) : (
               <Link
                 key={link.label}
-                to={homeSectionHref(link.targetId as HomeSection)}
+                to={homeSectionHref(link.section!)}
                 className="text-nav-link font-normal text-white/90 transition hover:text-bee-accent"
               >
                 {link.label}
@@ -186,30 +188,26 @@ export function SiteNavbar() {
             <span
               className={classNames(
                 "absolute left-1 right-1 top-2 h-[2px] bg-white/80 transition-all duration-300",
-                menuOpen && "top-3 rotate-45"
+                menuOpen && "top-3 rotate-45",
               )}
             />
             <span
               className={classNames(
                 "absolute left-1 right-1 top-4 h-[2px] bg-white/80 transition-all duration-300",
-                menuOpen && "opacity-0"
+                menuOpen && "opacity-0",
               )}
             />
             <span
               className={classNames(
                 "absolute left-1 right-1 top-6 h-[2px] bg-white/80 transition-all duration-300",
-                menuOpen && "top-3 -rotate-45"
+                menuOpen && "top-3 -rotate-45",
               )}
             />
           </div>
         </button>
       </div>
 
-      <MobileMenu
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        isHome={isHome}
-      />
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} isHome={isHome} />
     </header>
   );
 }

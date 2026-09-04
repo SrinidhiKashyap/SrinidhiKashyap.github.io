@@ -22,21 +22,21 @@ function getThemeColors(theme: PageTheme) {
   switch (theme) {
     case "kalpa":
       return {
-        accent: "#70AB3B",        // leaf green — bee body & wing accents
-        stroke: "#3d6b1e",        // darker leaf for SVG stroke
-        trail:  ["#70AB3B", "#8bc45a", "#a4d67a", "#ccefb0", "#e3f5d4"], // green → pale
+        accent: "#70AB3B", // leaf green — bee body & wing accents
+        stroke: "#3d6b1e", // darker leaf for SVG stroke
+        trail: ["#70AB3B", "#8bc45a", "#a4d67a", "#ccefb0", "#e3f5d4"], // green → pale
       };
     case "sterkros":
       return {
-        accent: "#DC2626",        // fitness red — bee body & wing accents
-        stroke: "#991b1b",        // darker red for SVG stroke
-        trail:  ["#DC2626", "#e05050", "#e87a7a", "#f0a3a3", "#f8cccc"], // red → pale
+        accent: "#DC2626", // fitness red — bee body & wing accents
+        stroke: "#991b1b", // darker red for SVG stroke
+        trail: ["#DC2626", "#e05050", "#e87a7a", "#f0a3a3", "#f8cccc"], // red → pale
       };
     default:
       return {
-        accent: "#F2B01E",        // bee yellow — default brand accent
-        stroke: "#c48a0a",        // darker yellow for SVG stroke
-        trail:  ["#F2B01E", "#f5c04a", "#f7d070", "#fae09a", "#fdeec4"], // honey yellow
+        accent: "#F2B01E", // bee yellow — default brand accent
+        stroke: "#c48a0a", // darker yellow for SVG stroke
+        trail: ["#F2B01E", "#f5c04a", "#f7d070", "#fae09a", "#fdeec4"], // honey yellow
       };
   }
 }
@@ -68,11 +68,11 @@ export function BeeCursorTrail() {
     const { accent, stroke, trail: TRAIL_COLORS } = getThemeColors(theme);
 
     // ── Config ────────────────────────────────────────────────────────────────
-    const TRAIL_LENGTH = 14;   // number of trailing dots
-    const BEE_LERP     = 0.35; // how quickly the bee chases the cursor (0–1)
-    const BOB_SPEED    = 0.06; // how fast the bee bobs up and down
-    const BOB_AMP      = 3;    // bob amplitude in px
-    const TILT_MAX     = 22;   // max tilt angle in degrees when banking left/right
+    const TRAIL_LENGTH = 14; // number of trailing dots
+    const BEE_LERP = 0.35; // how quickly the bee chases the cursor (0–1)
+    const BOB_SPEED = 0.06; // how fast the bee bobs up and down
+    const BOB_AMP = 3; // bob amplitude in px
+    const TILT_MAX = 22; // max tilt angle in degrees when banking left/right
 
     // ── Build bee SVG ─────────────────────────────────────────────────────────
     const bee = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -101,10 +101,10 @@ export function BeeCursorTrail() {
     // ── Build trail dots ───────────────────────────────────────────────────────
     const dots: HTMLDivElement[] = [];
     for (let i = 0; i < TRAIL_LENGTH; i++) {
-      const t    = i / TRAIL_LENGTH;
+      const t = i / TRAIL_LENGTH;
       const size = Math.round(10 * (1 - t) + 2);
-      const ci   = Math.min(Math.floor(t * TRAIL_COLORS.length), TRAIL_COLORS.length - 1);
-      const dot  = document.createElement("div");
+      const ci = Math.min(Math.floor(t * TRAIL_COLORS.length), TRAIL_COLORS.length - 1);
+      const dot = document.createElement("div");
       dot.style.cssText = [
         "position:fixed",
         `width:${size}px`,
@@ -122,8 +122,10 @@ export function BeeCursorTrail() {
     }
 
     // ── State ─────────────────────────────────────────────────────────────────
-    let mouseX = -500, mouseY = -500;
-    let beeX   = -500, beeY   = -500;
+    let mouseX = -500,
+      mouseY = -500;
+    let beeX = -500,
+      beeY = -500;
     let lastBeeX = -500;
     let bobOffset = 0;
     let tiltAngle = 0;
@@ -157,8 +159,8 @@ export function BeeCursorTrail() {
       tiltAngle = lerp(tiltAngle, Math.max(-TILT_MAX, Math.min(TILT_MAX, dx * 2.5)), 0.12);
       lastBeeX = beeX;
 
-      bee.style.left      = `${beeX}px`;
-      bee.style.top       = `${beeY}px`;
+      bee.style.left = `${beeX}px`;
+      bee.style.top = `${beeY}px`;
       bee.style.transform = `translate(-50%,-50%) rotate(${tiltAngle}deg)`;
 
       // Push current bee position into history ring
@@ -169,7 +171,7 @@ export function BeeCursorTrail() {
       for (let i = 0; i < TRAIL_LENGTH; i++) {
         const p = history[i];
         dots[i]!.style.left = `${p!.x}px`;
-        dots[i]!.style.top  = `${p!.y}px`;
+        dots[i]!.style.top = `${p!.y}px`;
       }
 
       rafId = requestAnimationFrame(tick);

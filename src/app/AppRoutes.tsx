@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ROUTES } from "./routes";
 import { ErrorBoundary } from "../shared/components/ui/ErrorBoundary";
+import { CaseStudySkeleton, PageSkeleton } from "../shared/components/ui/PageSkeleton";
 
 /**
  * Route path constants — change here to update all references at once.
@@ -9,29 +10,33 @@ import { ErrorBoundary } from "../shared/components/ui/ErrorBoundary";
 // ── Lazy-loaded page bundles ──────────────────────────────────────────────────
 
 const HomePage = lazy(() =>
-  import("../features/home/HomePage").then((m) => ({ default: m.HomePage }))
+  import("../features/home/HomePage").then((m) => ({ default: m.HomePage })),
 );
 const AboutPage = lazy(() =>
-  import("../features/about/AboutPage").then((m) => ({ default: m.AboutPage }))
+  import("../features/about/AboutPage").then((m) => ({ default: m.AboutPage })),
 );
 const ServicePage = lazy(() =>
-  import("../features/services/ServicePage").then((m) => ({ default: m.ServicePage }))
+  import("../features/services/ServicePage").then((m) => ({ default: m.ServicePage })),
 );
 const ContactPage = lazy(() =>
-  import("../features/contact/ContactPage").then((m) => ({ default: m.ContactPage }))
+  import("../features/contact/ContactPage").then((m) => ({ default: m.ContactPage })),
 );
 const WorkDetailPage = lazy(() =>
-  import("../features/work-details/WorkDetailPage").then((m) => ({ default: m.WorkDetailPage }))
+  import("../features/work-details/WorkDetailPage").then((m) => ({ default: m.WorkDetailPage })),
 );
 const NotFoundPage = lazy(() =>
-  import("../features/not-found/NotFoundPage").then((m) => ({ default: m.NotFoundPage }))
+  import("../features/not-found/NotFoundPage").then((m) => ({ default: m.NotFoundPage })),
 );
 
 /**
  * Minimal loading fallback shown while a page chunk loads.
  */
 function RouteFallback() {
-  return <div className="min-h-screen bg-bee-bg-primary" />;
+  return <PageSkeleton />;
+}
+
+function WorkRouteFallback() {
+  return <CaseStudySkeleton />;
 }
 
 /**
@@ -69,6 +74,16 @@ export function AppRoutes() {
         }
       />
       <Route
+        path={ROUTES.notFound}
+        element={
+          <ErrorBoundary>
+            <Suspense fallback={<RouteFallback />}>
+              <NotFoundPage />
+            </Suspense>
+          </ErrorBoundary>
+        }
+      />
+      <Route
         path={ROUTES.service}
         element={
           <ErrorBoundary>
@@ -92,7 +107,7 @@ export function AppRoutes() {
         path={ROUTES.workDetail}
         element={
           <ErrorBoundary>
-            <Suspense fallback={<RouteFallback />}>
+            <Suspense fallback={<WorkRouteFallback />}>
               <WorkDetailPage />
             </Suspense>
           </ErrorBoundary>

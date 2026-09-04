@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useRef, useState } from "react";
-import type { KeyboardEvent, PointerEvent } from "react";
+import type { KeyboardEvent, PointerEvent, TouchEvent } from "react";
 import { DetailImage } from "./DetailImage";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -66,7 +66,8 @@ export const CompareSlider = memo(function CompareSlider({
   const posRef = useRef(50);
   const rafRef = useRef<number | null>(null);
   const [ariaPos, setAriaPos] = useState(50);
-  const objectClass = fit === "cover" ? "h-full w-full object-cover" : "h-full w-full object-contain";
+  const objectClass =
+    fit === "cover" ? "h-full w-full object-cover" : "h-full w-full object-contain";
 
   const applyPos = useCallback((pct: number) => {
     const clamped = Math.min(94, Math.max(6, pct));
@@ -90,15 +91,54 @@ export const CompareSlider = memo(function CompareSlider({
     [applyPos],
   );
 
-  function onPointerDown(e: PointerEvent<HTMLButtonElement>) {
+  // `touch-action: none` on the wrapper (see .work-detail-compare in
+  // work-detail.css) makes the browser hand every gesture on this widget to us,
+  // so dragging the images themselves works on touch devices — not just the dot.
+  const touchActiveRef = useRef(false);
+
+  // ── Pointer path (mouse / pen; modern browsers also deliver touch here) ──
+  const draggingPointerId = useRef<number | null>(null);
+
+  function onPointerDown(e: PointerEvent<HTMLDivElement>) {
+    if (touchActiveRef.current) return;
+    draggingPointerId.current = e.pointerId;
     e.preventDefault();
+    // Capture so drags continue even when the finger/mouse moves off the widget.
     e.currentTarget.setPointerCapture(e.pointerId);
     scheduleUpdate(e.clientX);
   }
 
-  function onPointerMove(e: PointerEvent<HTMLButtonElement>) {
-    if (e.buttons !== 1) return;
+  function onPointerMove(e: PointerEvent<HTMLDivElement>) {
+    if (touchActiveRef.current) return;
+    if (draggingPointerId.current !== e.pointerId) return;
     scheduleUpdate(e.clientX);
+  }
+
+  function onPointerEnd(e: PointerEvent<HTMLDivElement>) {
+    if (touchActiveRef.current) return;
+    if (draggingPointerId.current !== e.pointerId) return;
+    draggingPointerId.current = null;
+    setAriaPos(Math.round(posRef.current));
+  }
+
+  // ── Touch path (explicit, because some iOS versions drop pointer moves) ──
+  function onTouchStart(e: TouchEvent<HTMLDivElement>) {
+    if (e.touches.length !== 1) return;
+    touchActiveRef.current = true;
+    scheduleUpdate(e.touches[0]!.clientX);
+  }
+
+  function onTouchMove(e: TouchEvent<HTMLDivElement>) {
+    if (!touchActiveRef.current) return;
+    const clientX = e.touches[0]?.clientX;
+    if (clientX == null) return;
+    scheduleUpdate(clientX);
+  }
+
+  function onTouchEnd() {
+    touchActiveRef.current = false;
+    draggingPointerId.current = null;
+    setAriaPos(Math.round(posRef.current));
   }
 
   function onKeyDown(e: KeyboardEvent<HTMLButtonElement>) {
@@ -116,12 +156,26 @@ export const CompareSlider = memo(function CompareSlider({
     setAriaPos(Math.round(posRef.current));
   }
 
-  useEffect(() => () => {
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-  }, []);
+  useEffect(
+    () => () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    },
+    [],
+  );
 
   return (
-    <div ref={containerRef} className={`relative h-full overflow-hidden ${className}`}>
+    <div
+      ref={containerRef}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerEnd}
+      onPointerCancel={onPointerEnd}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      onTouchCancel={onTouchEnd}
+      className={`work-detail-compare relative h-full overflow-hidden ${className}`}
+    >
       <DetailImage src={before} alt={beforeAlt} className={objectClass} />
       <img
         ref={overlayRef}
@@ -133,17 +187,24 @@ export const CompareSlider = memo(function CompareSlider({
         decoding="async"
       />
 
-      <div className={`pointer-events-none absolute bottom-6 left-10 right-10 flex justify-between text-sm font-extrabold ${labelColor}`}>
+      <div
+        className={`pointer-events-none absolute bottom-6 left-10 right-10 flex justify-between text-sm font-extrabold ${labelColor}`}
+      >
         <span>{beforeLabel}</span>
         <span>{afterLabel}</span>
       </div>
 
       {/* Vertical divider line */}
-      <div ref={dividerRef} className="pointer-events-none absolute inset-y-0 z-10" style={{ left: "50%" }}>
+      <div
+        ref={dividerRef}
+        className="pointer-events-none absolute inset-y-0 z-10"
+        style={{ left: "50%" }}
+      >
         <div className="h-full w-px bg-white/80 shadow-[0_0_24px_rgba(255,255,255,0.45)]" />
       </div>
 
-      {/* Drag handle */}
+      {/* Drag handle — full-widget drag uses the handlers on the container;
+          this keeps ARIA slider semantics + keyboard arrows. */}
       <button
         ref={handleRef}
         type="button"
@@ -152,14 +213,14 @@ export const CompareSlider = memo(function CompareSlider({
         aria-valuemin={6}
         aria-valuemax={94}
         aria-valuenow={ariaPos}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={() => setAriaPos(Math.round(posRef.current))}
         onKeyDown={onKeyDown}
         className="work-detail-compare-handle absolute top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
         style={{ left: "50%" }}
       >
-        <span className="grid h-16 w-16 place-items-center rounded-pill text-white shadow-card-lg" style={{ backgroundColor: handleColor }}>
+        <span
+          className="grid h-16 w-16 place-items-center rounded-pill text-white shadow-card-lg"
+          style={{ backgroundColor: handleColor }}
+        >
           <span className="text-xl font-black">{`< >`}</span>
         </span>
       </button>

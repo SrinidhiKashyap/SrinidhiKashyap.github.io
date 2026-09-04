@@ -35,7 +35,7 @@ export function ServicePage() {
           <p className="text-section-label">
             <span aria-hidden>&bull;</span> Service
           </p>
-          <h1 className="mt-5 max-w-[650px] text-testimonial-heading font-semibold">
+          <h1 className="mt-5 max-w-[650px] break-words text-testimonial-heading font-semibold">
             An Advertising <br /> Agency Driven By <br /> Creative Expertise
           </h1>
         </div>

@@ -30,13 +30,13 @@ export default {
         "heading-md":  ["clamp(2.2rem, 4.3vw, 4rem)",     { lineHeight: "1.12" }],
         "heading-sm":  ["clamp(2.1rem, 4.3vw, 4.2rem)",   { lineHeight: "1.1"  }],
         "title-fluid": ["clamp(1.125rem, 2vw, 2.125rem)", { lineHeight: "1.1"  }],
-        "section-label": ["clamp(1rem, 1.4vw, 1.45rem)", { lineHeight: "1.2" }],
+        "section-label": ["clamp(1.1rem, 1.5vw, 1.55rem)", { lineHeight: "1.2" }],
         "testimonial-heading": ["clamp(1.8rem, 2.8vw, 2.8rem)", { lineHeight: "1.08" }],
         "testimonial-quote": ["clamp(0.98rem, 1.12vw, 1.2rem)", { lineHeight: "1.62" }],
         "nav-link": ["clamp(1.05rem, 1.15vw, 1.35rem)", { lineHeight: "1.1" }],
-        "copy-lg": ["clamp(1.05rem, 1.25vw, 1.45rem)", { lineHeight: "1.36" }],
+        "copy-lg": ["clamp(1.12rem, 1.4vw, 1.55rem)", { lineHeight: "1.36" }],
         "label":       ["1.55rem",                         { lineHeight: "1"    }],
-        "body-lg":     ["clamp(1.05rem, 2vw, 1.7rem)",    { lineHeight: "1.5"  }],
+        "body-lg":     ["clamp(1.15rem, 2.1vw, 1.8rem)",    { lineHeight: "1.45"  }],
         "watermark":   ["clamp(4rem, 10vw, 8.6rem)",      { lineHeight: "1"    }],
       },
 
@@ -44,8 +44,10 @@ export default {
       spacing: {
         "section-x-sm": "1.75rem",
         "section-x-md": "3.5rem",
-        "section-x-lg": "6rem",
-        "section-y":    "6rem",
+        // Keep desktop gutters aligned with the medium layout. Explicit `lg:`
+        // layout changes can still opt in where a wider composition is needed.
+        "section-x-lg": "3.5rem",
+        "section-y":    "4.5rem",
         "card-offset":  "5.625rem",
       },
 

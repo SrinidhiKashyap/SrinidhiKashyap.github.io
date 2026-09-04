@@ -21,7 +21,12 @@ export function WorkResults({ work }: WorkResultsProps) {
       <h2 className="mt-8 text-xl font-bold text-white md:mt-10 md:text-2xl">Project Gallery</h2>
       <div className="mt-4 grid gap-4 md:mt-6 md:gap-6 grid-cols-1 sm:grid-cols-2">
         {work.gallery.map((imagePath) => (
-          <img key={imagePath} src={imagePath} alt={`${work.title} visual`} className="work-detail-gallery-image" />
+          <img
+            key={imagePath}
+            src={imagePath}
+            alt={`${work.title} visual`}
+            className="work-detail-gallery-image"
+          />
         ))}
       </div>
     </section>

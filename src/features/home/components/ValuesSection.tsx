@@ -9,9 +9,9 @@ import { STATS, VALUES } from "../data/values";
  */
 const TONE_CLASSES: Record<string, string> = {
   violet: "text-[#7a72ff]",
-  red:    "text-[#ff3636]",
-  green:  "text-[#39d77f]",
-  cyan:   "text-[#18d7ff]",
+  red: "text-[#ff3636]",
+  green: "text-[#39d77f]",
+  cyan: "text-[#18d7ff]",
 };
 
 export function ValuesSection() {
@@ -21,7 +21,7 @@ export function ValuesSection() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export function ValuesSection() {
 
   const handleCardClick = (title: string) => {
     if (isTouchDevice) {
-      setActiveValue(prev => prev === title ? null : title);
+      setActiveValue((prev) => (prev === title ? null : title));
     }
   };
 
@@ -64,10 +64,10 @@ export function ValuesSection() {
         className="bg-bee-bg-primary px-section-x-sm py-20 text-white sm:px-section-x-md lg:px-section-x-lg"
       >
         {/* Section header */}
-        <p className="text-label font-normal">
+        <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
           <span aria-hidden>•</span> Our Values
         </p>
-        <h2 className="mt-8 max-w-[930px] text-heading-sm font-semibold">
+        <h2 className="mt-2 max-w-[930px] break-words text-heading-sm font-medium">
           We Bridge the Gap Between Tech & Design Industries for Seamless Collaboration.
         </h2>
 
@@ -90,7 +90,7 @@ export function ValuesSection() {
                   // Tone colour for heading and icon
                   TONE_CLASSES[value.tone],
                   // Remove stagger on mobile
-                  "lg:nth-child(even):mt-[66px]"
+                  "lg:nth-child(even):mt-[66px]",
                 )}
                 onMouseEnter={() => !isTouchDevice && setActiveValue(value.title)}
                 onMouseLeave={() => !isTouchDevice && setActiveValue(null)}
@@ -124,7 +124,10 @@ export function ValuesSection() {
       </section>
 
       {/* ── Stats bar ── */}
-      <section ref={statsRef} className="bg-bee-bg-deep px-section-x-sm py-12 text-white sm:px-section-x-md lg:px-section-x-lg">
+      <section
+        ref={statsRef}
+        className="bg-bee-bg-deep px-section-x-sm py-12 text-white sm:px-section-x-md lg:px-section-x-lg"
+      >
         <div className="grid w-full gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">
@@ -139,7 +142,7 @@ export function ValuesSection() {
 }
 
 function AnimatedStatValue({ value, active }: { value: string; active: boolean }) {
-  const target = Number.parseInt(value, 10);
+  const target = parseInt(value, 10);
   const suffix = value.replace(String(target), "");
   const [current, setCurrent] = useState(0);
 
@@ -170,7 +173,7 @@ function AnimatedStatValue({ value, active }: { value: string; active: boolean }
   }, [active, target]);
 
   return (
-    <p className="text-heading-lg font-extrabold leading-none">
+    <p className="text-heading-lg font-medium leading-none">
       {current}
       {suffix}
     </p>

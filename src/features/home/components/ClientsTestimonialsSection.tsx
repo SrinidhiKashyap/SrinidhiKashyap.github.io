@@ -20,20 +20,23 @@ export function ClientsTestimonialsSection() {
     if (touchStartX === null) return;
     const touchEndX = e.changedTouches[0]!.clientX;
     const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) { // Minimum swipe distance
+    if (Math.abs(diff) > 50) {
+      // Minimum swipe distance
       move(diff > 0 ? 1 : -1);
     }
     setTouchStartX(null);
   };
 
   return (
-    <section id="clients" className="bg-bee-bg-primary px-section-x-sm pb-24 pt-6 text-white sm:px-section-x-md lg:px-section-x-lg">
-
+    <section
+      className="flex flex-col bg-bee-bg-primary px-section-x-sm pb-24 pt-6 text-white sm:px-section-x-md lg:px-section-x-lg"
+    >
+      <div id="clients" className="order-2 mt-24 w-full">
       {/* ── Section header ── */}
-      <p className="text-label font-normal">
+      <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
         <span aria-hidden>•</span> Our client
       </p>
-      <h2 className="mt-7 max-w-[430px] text-heading-md font-semibold">
+      <h2 className="mt-2 max-w-[430px] break-words text-heading-md font-medium">
         Brands that <br /> trust Us
       </h2>
 
@@ -58,12 +61,14 @@ export function ClientsTestimonialsSection() {
         </div>
       </div>
 
+      </div>
+
       {/* ── Testimonials ── */}
-      <div id="testimonials" className="mt-24 w-full">
-        <p className="text-section-label font-normal">
+      <div id="testimonials" className="order-1 w-full">
+        <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
           <span aria-hidden>•</span> Client Testimonials & Reviews
         </p>
-        <h2 className="mt-3 max-w-[620px] text-testimonial-heading font-semibold">
+        <h2 className="mt-2 max-w-[620px] break-words text-testimonial-heading font-medium">
           What our happy clients <br /> say about us
         </h2>
 
@@ -71,22 +76,20 @@ export function ClientsTestimonialsSection() {
          * Panel grid: [ ‹ ] [ content ] [ › ]
          * On mobile the arrows are visible for accessibility and touch swipe works.
          */}
-        <div className="relative mt-8">
-
+        <div className="relative mx-3 mt-8">
           {/* Content panel */}
           <div
             ref={panelRef}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="relative min-h-[360px] w-full rounded-card bg-bee-bg-card px-6 py-8 shadow-soft sm:px-12 lg:px-20 touch-pan-x"
+            className="relative min-h-[600px] w-full rounded-3xl bg-bee-bg-card px-2 py-6 shadow-soft md:py-8 lg:py-12 touch-pan-x"
           >
-
             {/* Previous arrow */}
             <button
               type="button"
               aria-label="Previous testimonial"
               onClick={() => move(-1)}
-              className="absolute left-4 top-9 z-10 h-[44px] w-[44px] place-items-center rounded-pill bg-bee-bg-deep text-2xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep touch-target tap-highlight-transparent md:hidden"
+              className="absolute left-1 top-5 z-10 h-14 w-14 place-items-center rounded-pill bg-bee-bg-deep text-3xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep touch-target tap-highlight-transparent md:hidden"
             >
               &#8249;
             </button>
@@ -96,7 +99,7 @@ export function ClientsTestimonialsSection() {
               type="button"
               aria-label="Next testimonial"
               onClick={() => move(1)}
-              className="absolute right-4 top-9 z-10 h-[44px] w-[44px] place-items-center rounded-pill bg-bee-bg-deep text-2xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep touch-target tap-highlight-transparent md:hidden"
+              className="absolute right-1 top-5 z-10 h-14 w-14 place-items-center rounded-pill bg-bee-bg-deep text-3xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep touch-target tap-highlight-transparent md:hidden"
             >
               &#8250;
             </button>
@@ -106,7 +109,7 @@ export function ClientsTestimonialsSection() {
               type="button"
               aria-label="Previous testimonial"
               onClick={() => move(-1)}
-              className="absolute left-4 top-9 z-10 hidden h-[30px] w-[30px] place-items-center rounded-pill bg-bee-bg-deep text-2xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep md:grid"
+              className="absolute left-0 top-5 z-10 hidden h-10 w-10 place-items-center rounded-pill bg-bee-bg-deep text-3xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep md:top-9 md:grid lg:top-[52px] xl:left-12"
             >
               &#8249;
             </button>
@@ -115,13 +118,13 @@ export function ClientsTestimonialsSection() {
               type="button"
               aria-label="Next testimonial"
               onClick={() => move(1)}
-              className="absolute right-4 top-9 z-10 hidden h-[30px] w-[30px] place-items-center rounded-pill bg-bee-bg-deep text-2xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep md:grid"
+              className="absolute right-0 top-5 z-10 hidden h-10 w-10 place-items-center rounded-pill bg-bee-bg-deep text-3xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep md:top-9 md:grid lg:top-[52px] xl:right-12"
             >
               &#8250;
             </button>
 
             {/* ── Tabs (one per testimonial person) ── */}
-            <div className="flex items-center justify-center gap-8 overflow-x-auto px-9 pb-[18px] lg:gap-14 no-scrollbar scroll-snap-x">
+            <div className="mx-10 grid grid-cols-3 gap-6 pb-[18px] md:mx-16 xl:mx-24">
               {TESTIMONIALS.map((testimonial, index) => (
                 <button
                   key={testimonial.id}
@@ -129,7 +132,7 @@ export function ClientsTestimonialsSection() {
                   onClick={() => setActiveIndex(index)}
                   className={classNames(
                     // Base — Tailwind
-                    "testimonial-tab flex min-w-[190px] items-center gap-3 text-left text-white transition scroll-snap-center",
+                    "testimonial-tab min-w-0 flex items-center gap-3 text-left text-white transition",
                     // Active vs inactive opacity
                     index === activeIndex ? "testimonial-tab--active opacity-100" : "opacity-40",
                   )}
@@ -142,10 +145,10 @@ export function ClientsTestimonialsSection() {
                     className="h-12 w-12 flex-none rounded-pill object-cover"
                   />
                   <span className="min-w-0">
-                    <strong className="block text-[0.82rem] font-semibold leading-tight">
+                    <strong className="block text-[20px] font-medium leading-tight">
                       {testimonial.name}
                     </strong>
-                    <small className="mt-[3px] block text-[0.68rem] leading-snug opacity-80">
+                    <small className="mt-[3px] block text-[0.95rem] leading-snug opacity-80">
                       {testimonial.role}
                     </small>
                   </span>
@@ -157,23 +160,18 @@ export function ClientsTestimonialsSection() {
              * Body: [ portrait ] [ quote ]
              * Layout belongs to Tailwind; CSS only owns the active underline.
              */}
-            <div className="mx-auto mt-12 grid max-w-[1120px] items-center gap-9 md:grid-cols-[190px_minmax(0,1fr)] lg:gap-24">
+            <div className="mx-auto mt-16 grid max-w-[1120px] items-center gap-9 md:grid-cols-[280px_minmax(0,1fr)] md:gap-x-40">
               <img
                 src={active.avatar}
                 alt={active.name}
                 decoding="async"
-                className="aspect-square w-full max-w-[190px] justify-self-center object-cover"
+                className="aspect-square w-full max-w-[280px] justify-self-center object-cover"
               />
-              <blockquote className="max-w-[760px] text-testimonial-quote font-medium text-white">
-                {/* Opening quotation mark */}
-                <span className="mr-2 text-[2.2rem] leading-none text-bee-accent" aria-hidden>
-                  &ldquo;
-                </span>
+              <blockquote className="testimonial-quote max-w-[760px] text-[28px] font-normal leading-relaxed text-white">
                 {active.quote}
               </blockquote>
             </div>
           </div>
-
         </div>
       </div>
     </section>
