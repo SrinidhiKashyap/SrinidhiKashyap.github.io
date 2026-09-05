@@ -25,15 +25,19 @@ export const LetterReveal = memo(function LetterReveal({
   return (
     <span className={className}>
       {characters.map((character, index) => (
-        <span
-          key={`${character}-${index}`}
-          className={classNames(
-            "transition-colors duration-slow",
-            index < litCount ? "text-white" : "text-white/20",
-          )}
-        >
-          {character}
-        </span>
+        character === "\n" ? (
+          <br key={`break-${index}`} />
+        ) : (
+          <span
+            key={`${character}-${index}`}
+            className={classNames(
+              "transition-colors duration-slow",
+              index < litCount ? "text-white" : "text-white/20",
+            )}
+          >
+            {character}
+          </span>
+        )
       ))}
     </span>
   );

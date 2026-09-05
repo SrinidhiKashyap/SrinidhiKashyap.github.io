@@ -1,4 +1,3 @@
-import { useCallback, useState } from "react";
 import { PageLayout } from "../../shared/components/layout/PageLayout";
 import { useServiceRevealProgress } from "./hooks/useServiceRevealProgress";
 import { ServiceSection } from "./components/ServiceSection";
@@ -18,24 +17,15 @@ const MARQUEE_TEXT =
  */
 export function ServicePage() {
   const { progresses, sectionRefs } = useServiceRevealProgress();
-  const [activePoints, setActivePoints] = useState<Set<string>>(() => new Set());
-
-  const activatePoint = useCallback((pointKey: string) => {
-    setActivePoints((current) => {
-      const next = new Set(current);
-      next.add(pointKey);
-      return next;
-    });
-  }, []);
 
   return (
     <PageLayout>
       <main className="bg-bee-bg-primary text-white">
         <div className="w-full px-section-x-sm pb-8 pt-10 sm:px-section-x-md lg:px-section-x-lg">
-          <p className="text-section-label">
-            <span aria-hidden>&bull;</span> Service
+          <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
+            <span aria-hidden>•</span> Service
           </p>
-          <h1 className="mt-5 max-w-[650px] break-words text-testimonial-heading font-semibold">
+          <h1 className="mt-2 max-w-[820px] break-words text-heading-sm font-medium">
             An Advertising <br /> Agency Driven By <br /> Creative Expertise
           </h1>
         </div>
@@ -53,7 +43,7 @@ export function ServicePage() {
           </div>
         </div>
 
-        <div className="w-full px-section-x-sm sm:px-section-x-md lg:px-section-x-lg">
+        <div className="w-full px-6 sm:px-8 md:px-16 lg:px-24">
           {services.map((service, index) => (
             <ServiceSection
               key={service.name}
@@ -63,8 +53,6 @@ export function ServicePage() {
               setRef={(node) => {
                 sectionRefs.current[index] = node;
               }}
-              activePoints={activePoints}
-              onActivatePoint={activatePoint}
             />
           ))}
 

@@ -33,11 +33,11 @@ export const NextWorkStrip = memo(function NextWorkStrip({ workIds }: NextWorkSt
           <p className="text-section-label">
             <span aria-hidden>&bull;</span> More Good Stuff
           </p>
-          <h2 className="mt-4 text-testimonial-heading font-semibold">What Next?</h2>
+          <h2 className="mt-4 max-w-[720px] text-heading-sm font-semibold">What Next?</h2>
         </div>
         <Link
           to="/#works"
-          className="mt-9 rounded-pill bg-bee-accent px-5 py-2 text-sm font-medium text-black transition hover:bg-white"
+          className="mt-9 rounded-pill bg-bee-accent px-8 py-3 text-base font-medium text-black transition hover:bg-white"
         >
           Browse more work
         </Link>
@@ -52,12 +52,15 @@ export const NextWorkStrip = memo(function NextWorkStrip({ workIds }: NextWorkSt
                 className="aspect-video w-full transition duration-slower group-hover:scale-[1.03]"
                 fit="cover"
               />
-              <div className="absolute right-4 top-4 flex flex-wrap justify-end gap-2">
-                {work.categories.map((cat) => (
-                  <span key={cat} className="rounded-pill bg-white/20 px-3 py-1 text-xs text-white">
-                    {WORK_CATEGORY_LABELS[cat]}
-                  </span>
-                ))}
+              <div className="absolute bottom-3.5 left-3.5 right-3.5 flex min-h-[46px] items-center justify-between gap-4 rounded-[14px] bg-black/70 px-5 py-0 backdrop-blur-overlay transition-colors duration-500 group-hover:bg-[#373737]/[0.52]">
+                <div className="flex min-w-0 flex-wrap gap-x-6 gap-y-1 text-sm font-normal text-white/85 md:text-base">
+                  {work.categories.map((category) => (
+                    <span key={category}>{WORK_CATEGORY_LABELS[category]}</span>
+                  ))}
+                </div>
+                <span className="grid h-9 w-9 flex-none place-items-center rounded-pill bg-white/10 text-sm text-white transition-colors duration-300 group-hover:bg-bee-accent group-hover:text-black">
+                  &#8599;
+                </span>
               </div>
             </div>
             <p className="mt-3 text-title-fluid text-white/90">

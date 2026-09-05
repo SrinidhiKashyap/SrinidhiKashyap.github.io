@@ -1,73 +1,77 @@
-import { memo, useState, useEffect } from "react";
+import { memo, useState } from "react";
 import { classNames } from "../../../shared/lib/classNames";
 import type { ServiceItem } from "../data/serviceContent";
 
 type ServicePointListProps = {
-  service: ServiceItem;
-  activePoints: Set<string>;
-  onActivatePoint: (pointKey: string) => void;
+  points: ServiceItem["points"];
+  /** Right-justify the point rows (used when the list sits in the right column). */
+  justifyRight?: boolean;
+  className?: string;
 };
 
 /**
  * ServicePointList
  *
  * Renders the bullet-point list for a single service section.
- * Each point can be activated (highlighted) on hover/focus/tap.
- * Supports right-aligned layout for alternating service sections.
+ * The `~` tilde marker is always visible in bee-accent and flips to white
+ * on hover (slow 2s ease), while the label transitions to white quickly
+ * (500ms ease). Tiles are wrapped in buttons for keyboard accessibility.
  */
 export const ServicePointList = memo(function ServicePointList({
-  service,
-  activePoints,
-  onActivatePoint,
+  points,
+  justifyRight = false,
+  className,
 }: ServicePointListProps) {
-  const isRightAligned = service.layout === "left";
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [revealedPoints, setRevealedPoints] = useState<Set<string>>(() => new Set());
 
-  useEffect(() => {
-    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
-  }, []);
+  function revealPoint(point: string) {
+    setRevealedPoints((current) => {
+      if (current.has(point)) return current;
+      return new Set(current).add(point);
+    });
+  }
 
   return (
     <ul
       className={classNames(
-        "mt-6 space-y-4 text-base text-white/60 md:mt-8 md:space-y-5 md:text-lg",
-        isRightAligned && "md:text-right",
-        // On mobile, always left-align for better readability
-        "text-left",
+        "text-[13px] md:text-xl lg:text-2xl space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-5 xl:space-y-6",
+        className,
       )}
     >
-      {service.points.map((point) => {
-        const pointKey = `${service.name}-${point}`;
-        const isActive = activePoints.has(pointKey);
-
-        return (
-          <li key={point}>
-            <button
-              type="button"
-              onMouseEnter={() => !isTouchDevice && onActivatePoint(pointKey)}
-              onFocus={() => onActivatePoint(pointKey)}
-              onClick={() => isTouchDevice && onActivatePoint(pointKey)}
+      {points.map((point) => (
+        <li
+          key={point}
+          className={classNames(
+            "flex items-center gap-2",
+            justifyRight && "justify-end",
+          )}
+        >
+          <button
+            type="button"
+            onMouseEnter={() => revealPoint(point)}
+            onFocus={() => revealPoint(point)}
+            onClick={() => revealPoint(point)}
+            className="group inline-flex items-center gap-2 text-left transition duration-slow focus-visible:outline-none touch-target tap-highlight-transparent"
+          >
+            <span
               className={classNames(
-                "inline-flex items-center gap-3 text-left transition duration-slow hover:text-white focus-visible:text-white focus-visible:outline-none touch-target tap-highlight-transparent",
-                isRightAligned && "md:justify-end md:text-right",
-                isActive && "text-white",
+                "text-bee-accent transition-all duration-[2000ms] ease-in-out",
+                revealedPoints.has(point) ? "opacity-100 text-white" : "opacity-0",
               )}
             >
-              {isRightAligned ? (
-                <>
-                  <span>{point}</span>
-                  <span className="w-4 text-bee-accent">{isActive ? "~" : ""}</span>
-                </>
-              ) : (
-                <>
-                  <span className="w-4 text-bee-accent">{isActive ? "~" : ""}</span>
-                  <span>{point}</span>
-                </>
+              ~
+            </span>
+            <span
+              className={classNames(
+                "text-white/60 transition-all duration-500 ease-in-out",
+                revealedPoints.has(point) && "text-white",
               )}
-            </button>
-          </li>
-        );
-      })}
+            >
+              {point}
+            </span>
+          </button>
+        </li>
+      ))}
     </ul>
   );
 });

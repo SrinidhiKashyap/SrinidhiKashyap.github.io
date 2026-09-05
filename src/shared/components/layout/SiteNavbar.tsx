@@ -129,11 +129,11 @@ export function SiteNavbar() {
             onClick={handleLogoClick}
             className="touch-target"
           >
-            <img src={ASSETS.logoDark} alt="Bee Concept" className="h-12 w-auto sm:h-10" />
+            <img src={ASSETS.logoDark} alt="Bee Concept" className="h-14 w-auto sm:h-12" />
           </button>
         ) : (
           <Link to={ROUTES.home} aria-label="Bee Concept home" className="touch-target">
-            <img src={ASSETS.logoDark} alt="Bee Concept" className="h-12 w-auto sm:h-10" />
+            <img src={ASSETS.logoDark} alt="Bee Concept" className="h-14 w-auto sm:h-12" />
           </Link>
         )}
 
