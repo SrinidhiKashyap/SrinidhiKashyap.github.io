@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { classNames } from "../../../shared/lib/classNames";
+import { ASSETS } from "../../../shared/lib/assets";
 import { MARQUEE_LOGOS, TESTIMONIALS } from "../data/testimonials";
 
 export function ClientsTestimonialsSection() {
@@ -142,7 +143,10 @@ export function ClientsTestimonialsSection() {
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    className="h-12 w-12 flex-none rounded-pill object-cover"
+                    className={classNames(
+                      "testimonial-avatar h-12 w-12 flex-none rounded-pill object-cover",
+                      `testimonial-avatar--${testimonial.id}`,
+                    )}
                   />
                   <span className="min-w-0">
                     <strong className="block text-[20px] font-medium leading-tight">
@@ -160,15 +164,21 @@ export function ClientsTestimonialsSection() {
              * Body: [ portrait ] [ quote ]
              * Layout belongs to Tailwind; CSS only owns the active underline.
              */}
-            <div className="mx-auto mt-16 grid max-w-[1120px] items-center gap-9 md:grid-cols-[280px_minmax(0,1fr)] md:gap-x-40">
+            <div className="mx-12 mt-16 grid items-start gap-9 md:grid-cols-[280px_minmax(0,1fr)] md:gap-x-20">
               <img
                 src={active.avatar}
                 alt={active.name}
                 decoding="async"
-                className="aspect-square w-full max-w-[280px] justify-self-center object-cover"
+                className={classNames(
+                  "testimonial-avatar aspect-square w-full max-w-[280px] justify-self-center object-cover",
+                  `testimonial-avatar--${active.id}`,
+                )}
               />
-              <blockquote className="testimonial-quote max-w-[760px] text-[28px] font-normal leading-relaxed text-white">
-                {active.quote}
+              <blockquote className="testimonial-quote w-full max-w-none self-center text-left text-[24px] font-normal leading-relaxed text-white">
+                <span className="testimonial-quote__row">
+                  <img src={ASSETS.quoteYellow} alt="" aria-hidden className="testimonial-quote__mark" />
+                  <span>{active.quote}</span>
+                </span>
               </blockquote>
             </div>
           </div>

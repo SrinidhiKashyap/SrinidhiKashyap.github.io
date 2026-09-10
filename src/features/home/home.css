@@ -126,21 +126,43 @@
   transform: scaleX(1);
 }
 
+/* Keep the replacement portraits focused on the face in square crops. */
+.testimonial-avatar--prakesh {
+  object-position: center 18%;
+}
+
+.testimonial-avatar--sunil {
+  object-position: center 14%;
+}
+
 .testimonial-quote {
   position: relative;
   isolation: isolate;
 }
 
+.testimonial-quote__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.testimonial-quote__mark {
+  flex: none;
+  width: 1.5rem;
+  height: 1.45rem;
+  object-fit: contain;
+}
+
 .testimonial-quote::before {
-  content: "\201C";
+  content: "";
   position: absolute;
   z-index: -1;
-  top: -2.25rem;
-  left: -1.5rem;
-  color: rgba(255, 255, 255, 0.045);
-  font-size: 9rem;
-  font-weight: 700;
-  line-height: 1;
+  top: -4rem;
+  left: -2rem;
+  width: 9.5rem;
+  height: 8rem;
+  background: url("/assets/quote-watermark.png") center / contain no-repeat;
+  opacity: 0.16;
   pointer-events: none;
 }
 
@@ -153,6 +175,14 @@
 
 .value-grid {
   min-height: 320px;
+}
+
+/* Keep the card width while sharing any extra desktop space between cards. */
+@media (min-width: 1400px) {
+  .value-grid {
+    grid-template-columns: repeat(4, minmax(0, 300px));
+    justify-content: space-between;
+  }
 }
 
 .value-card {
@@ -242,9 +272,22 @@
     color 0.3s ease;
 }
 
+.work-card__arrow-icon {
+  filter: invert(1) drop-shadow(0.7px 0 0 #fff) drop-shadow(-0.7px 0 0 #fff);
+  transition: filter 0.3s ease;
+}
+
 .work-card:hover .work-card__arrow {
   background: #f2b01e; /* bee-accent */
   color: #000;
+}
+
+.work-card:hover .work-card__arrow-icon {
+  filter: drop-shadow(0.7px 0 0 #000) drop-shadow(-0.7px 0 0 #000);
+}
+
+.arrow-up-right-icon {
+  filter: drop-shadow(0.7px 0 0 #000) drop-shadow(-0.7px 0 0 #000);
 }
 
 /* â”€â”€â”€ 6. RESPONSIVE OVERRIDES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

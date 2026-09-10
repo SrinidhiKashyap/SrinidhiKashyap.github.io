@@ -54,21 +54,18 @@ export function SiteFooter() {
       <div className="w-full px-section-x-sm pb-12 pt-12 sm:px-section-x-md lg:px-section-x-lg">
         {/* Back-to-top */}
         <div className="flex justify-end">
-          <button
-            type="button"
-            onClick={handleScrollTop}
-            className="group flex items-center gap-4 text-base font-medium transition hover:text-bee-accent touch-target tap-highlight-transparent md:text-xl"
-          >
+          <div className="flex items-center gap-4 text-base font-medium md:text-xl">
             <span className="hidden sm:inline">I've gone too far, send me back up</span>
             <span className="sm:hidden">Back to top</span>
-            <span
-              className="relative grid h-12 w-12 place-items-center rounded-pill bg-bee-accent text-black transition-transform group-hover:-translate-y-1"
-              aria-hidden
+            <button
+              type="button"
+              onClick={handleScrollTop}
+              aria-label="Scroll to top"
+              className="group relative grid h-12 w-12 place-items-center rounded-pill bg-bee-accent text-black transition-transform hover:-translate-y-1 touch-target tap-highlight-transparent"
             >
-              <span className="h-4 w-4 border-r-2 border-t-2 border-current" />
-              <span className="absolute h-5 w-0.5 rotate-45 bg-current" />
-            </span>
-          </button>
+              <img src={ASSETS.arrowUpRight} alt="" className="arrow-up-right-icon h-10 w-10 object-contain" />
+            </button>
+          </div>
         </div>
 
         {/* Responsive grid: 1 col mobile → 2 col tablet → 4 col desktop */}

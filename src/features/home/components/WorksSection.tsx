@@ -1,6 +1,7 @@
 import { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { AutoPlayVideo } from "../../../shared/components/media/AutoPlayVideo";
+import { ASSETS } from "../../../shared/lib/assets";
 import { classNames } from "../../../shared/lib/classNames";
 import { WORK_CATEGORY_LABELS, WORK_FILTERS } from "../data/filters";
 import { WORKS } from "../data/works";
@@ -51,8 +52,8 @@ const WorkCard = memo(function WorkCard({ work, offset }: WorkCardProps) {
               ))}
             </div>
 
-            <span className="work-card__arrow grid h-9 w-9 flex-none place-items-center rounded-pill bg-white/10 text-sm text-white tap-highlight-transparent">
-              &#8599;
+            <span className="work-card__arrow grid h-9 w-9 flex-none place-items-center rounded-pill bg-white/10 text-[2rem] leading-none text-white tap-highlight-transparent">
+              <img src={ASSETS.arrowUpRight} alt="" aria-hidden className="work-card__arrow-icon h-8 w-8 object-contain" />
             </span>
           </div>
         </div>

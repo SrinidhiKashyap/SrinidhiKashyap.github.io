@@ -48,7 +48,7 @@ export const TESTIMONIALS: readonly TestimonialItem[] = [
     role: "CEO of STERKROS",
     quote:
       "Thanks for the impressive Sterkros logo design! It perfectly captures our brand essence with elegance and simplicity. The choice of colors is brilliant, and the scalability and versatility are outstanding. Thanks for your hard work and creating a logo that stands out and resonates with our brand. Looking forward to more collaborations in the future!",
-    avatar: "/assets/home1-DuxIdUgA.png",
+    avatar: ASSETS.testimonialSunil,
   },
   {
     id: "sunil",
@@ -56,6 +56,6 @@ export const TESTIMONIALS: readonly TestimonialItem[] = [
     role: "Founder of Om Enterprise",
     quote:
       "(Rain Water Harvesting System) Well-known trustworthy Advertising agency, More Reliable & Well Service Provider, I Suggest Bee concept For website creation and logo Designs.",
-    avatar: "/assets/t2-iUX6M5gu.jpg",
+    avatar: ASSETS.testimonialPrakash,
   },
 ];
