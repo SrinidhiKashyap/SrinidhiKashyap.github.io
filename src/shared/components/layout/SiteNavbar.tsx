@@ -120,7 +120,7 @@ export function SiteNavbar() {
       )}
     >
       {/* ── Main bar ── */}
-      <div className="flex h-[76px] items-center justify-between px-section-x-sm sm:px-12 xl:px-section-x-lg">
+      <div className="flex h-[72px] items-center justify-between px-section-x-sm sm:px-12 xl:px-[5.25rem]">
         {/* Logo — scrolls to top on home, navigates home from other pages */}
         {isHome ? (
           <button
@@ -138,7 +138,7 @@ export function SiteNavbar() {
         )}
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-16 md:flex">
+        <nav className="hidden items-center gap-20 md:flex">
           {NAV_LINKS.map((link) => {
             if (link.to) {
               const isActive = location.pathname === link.to;

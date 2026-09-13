@@ -13,7 +13,7 @@ export interface NavigationItem {
 export const PRIMARY_NAVIGATION: ReadonlyArray<NavigationItem> = [
   { label: "Home", section: "home" },
   { label: "About us", to: ROUTES.about },
-  { label: "Work", section: "works" },
+  { label: "Works", section: "works" },
   { label: "Service", to: ROUTES.service },
   { label: "Contact", to: ROUTES.contact },
 ] as const;

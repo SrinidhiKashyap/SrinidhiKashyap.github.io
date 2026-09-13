@@ -49,6 +49,7 @@ export function ServicePage() {
               key={service.name}
               service={service}
               index={index}
+              isLast={index === services.length - 1}
               progress={progresses[index] ?? 0}
               setRef={(node) => {
                 sectionRefs.current[index] = node;

@@ -34,7 +34,7 @@ export const ServicePointList = memo(function ServicePointList({
   return (
     <ul
       className={classNames(
-        "text-[13px] md:text-xl lg:text-2xl space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-5 xl:space-y-6",
+        "space-y-1 text-[12px] font-light sm:space-y-2 md:space-y-3 md:text-lg lg:space-y-4 lg:text-xl",
         className,
       )}
     >

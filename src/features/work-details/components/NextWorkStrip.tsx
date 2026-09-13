@@ -64,7 +64,7 @@ export const NextWorkStrip = memo(function NextWorkStrip({ workIds }: NextWorkSt
               </div>
             </div>
             <p className="mt-3 text-title-fluid text-white/90">
-              {work.year} <span className="text-white/45">&bull;</span> {work.title}
+              {work.title}
             </p>
           </Link>
         ))}

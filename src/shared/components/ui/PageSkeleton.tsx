@@ -39,7 +39,7 @@ export function PageSkeleton() {
       <span className="sr-only" role="status">
         Loading page
       </span>
-      <div className="mx-auto max-w-7xl space-y-8">
+      <div className="space-y-8">
         <SkeletonBlock className="h-14 w-2/3 max-w-xl" />
         <SkeletonBlock className="h-28 w-full max-w-3xl" />
         <div className="grid gap-6 md:grid-cols-2">

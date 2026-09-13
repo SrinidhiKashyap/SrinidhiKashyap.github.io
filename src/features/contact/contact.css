@@ -16,7 +16,11 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 .contact-input {
-  @apply w-full rounded-[6px] bg-[#45474d] px-4 py-3 text-sm text-white outline-none transition placeholder:text-white/70 focus:ring-2 focus:ring-bee-accent;
+  @apply w-full rounded-[6px] bg-[#414349] px-4 py-3 text-sm text-white outline-none transition placeholder:text-[#a5afc2] focus:ring-2 focus:ring-bee-accent;
+}
+
+.faq-arrow {
+  filter: brightness(0) invert(1) drop-shadow(0.6px 0 white) drop-shadow(-0.6px 0 white);
 }
 
 /* ─── 2. PANELS ──────────────────────────────────────────────────────────────

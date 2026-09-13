@@ -113,7 +113,7 @@ export function WorksSection({ activeCategory, onCategoryChange }: WorksSectionP
          * Row gap is larger to accommodate the 90px card offset.
          * On mobile: single column, offset removed (see WorkCard above).
          */}
-        <div className="relative mx-auto mt-14 max-w-[1440px]">
+        <div className="relative mt-14">
           <h2 className="works-explore-label relative -mb-12 mx-24 hidden text-right text-5xl font-bold text-transparent [background-clip:text] lg:block">
             Explore Projects
           </h2>

@@ -60,9 +60,17 @@ export function LogoDesignDetailPage() {
 
         <section className="grid gap-5 px-section-x-sm py-10 sm:grid-cols-2 sm:px-section-x-md lg:gap-7 lg:px-section-x-lg lg:py-16">
           {LOGOS.map((logo) => (
-            <article key={logo.src} className={`relative overflow-hidden ${logo.background}`}>
-              <DetailVideo src={logo.src} className="aspect-square w-full" fit="cover" />
-              <h2 className="absolute inset-x-1 bottom-1 bg-black/50 px-4 py-2 text-base font-semibold italic backdrop-blur-sm md:text-lg">
+            <article key={logo.src} className={`relative aspect-[4/3] overflow-hidden ${logo.background}`}>
+              <DetailVideo src={logo.src} className="absolute inset-0 h-full w-full" fit="cover" />
+              <h2
+                className={`absolute inset-x-3 bottom-3 z-10 rounded-[6px] px-4 py-2 text-sm font-semibold not-italic ${
+                  logo.background === "bg-white"
+                    ? "bg-[#c4c4c4] text-[#181818]"
+                    : logo.background === "bg-black"
+                      ? "bg-[#181818] text-white"
+                      : "bg-[#4c8f3d] text-white"
+                }`}
+              >
                 {logo.name}
               </h2>
             </article>

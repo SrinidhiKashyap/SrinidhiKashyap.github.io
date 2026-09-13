@@ -8,6 +8,7 @@ import type { ServiceItem } from "../data/serviceContent";
 type ServiceSectionProps = {
   service: ServiceItem;
   index: number;
+  isLast: boolean;
   progress: number;
   setRef: (node: HTMLElement | null) => void;
 };
@@ -28,6 +29,7 @@ type ServiceSectionProps = {
 export const ServiceSection = memo(function ServiceSection({
   service,
   index,
+  isLast,
   progress,
   setRef,
 }: ServiceSectionProps) {
@@ -53,17 +55,19 @@ export const ServiceSection = memo(function ServiceSection({
   );
 
   const summary = (
-    <p className="text-[13px] font-light leading-loose text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
+    <p className="text-[13px] font-light leading-[2.25] tracking-[0.02em] [word-spacing:0.08em] text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
       <LetterReveal progress={Math.max(0, progress - 0.18) / 0.82}>
         {(service.summaryLines ?? [service.summary]).join("\n")}
       </LetterReveal>
     </p>
   );
 
-  const points = <ServicePointList points={service.points} />;
-
   return (
-    <section ref={setRef} data-service-index={index} className="border-t border-white/10">
+    <section
+      ref={setRef}
+      data-service-index={index}
+      className={classNames(index === 0 || isLast ? "border-t-0" : "border-t border-white/10")}
+    >
       <div className="py-6 md:py-8 lg:py-10 xl:py-14">
         {/* ── Row 1 — service name + video ── */}
         <div className="flex items-center justify-between gap-6">
@@ -89,7 +93,12 @@ export const ServiceSection = memo(function ServiceSection({
         >
           {isRight ? (
             <>
-              <div className="flex-1">{points}</div>
+              <div className="flex-1">
+                <ServicePointList
+                  points={service.points}
+                  className="w-28 sm:w-36 md:w-48 lg:w-80"
+                />
+              </div>
               <div className="flex-1 text-right">{summary}</div>
             </>
           ) : (
@@ -98,7 +107,6 @@ export const ServiceSection = memo(function ServiceSection({
               <div className="flex-1">
                 <ServicePointList
                   points={service.points}
-                  justifyRight
                   className="ml-auto w-28 sm:w-36 md:w-48 lg:w-80"
                 />
               </div>

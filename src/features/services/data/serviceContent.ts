@@ -44,7 +44,7 @@ export const services: ServiceItem[] = [
     ],
     points: ["SEO", "SEM", "SMM", "Influencer Marketing", "Analytics & Data Tracking"],
     layout: "right",
-    contentClassName: "mt-5 md:mt-8 lg:mt-10 xl:mt-14 lg:gap-20",
+    contentClassName: "mt-0 md:mt-2 lg:mt-4 xl:mt-7 lg:gap-20",
   },
   {
     name: "Ui/Ux",
@@ -53,7 +53,7 @@ export const services: ServiceItem[] = [
     summaryLines: ["Creating Designs That", "Align With Your Brand", "And Captivate Your", "Audience."],
     points: ["Interface", "Wire Frame", "User Research"],
     layout: "left",
-    contentClassName: "mt-5 md:mt-8 lg:mt-10 xl:mt-14 lg:gap-20",
+    contentClassName: "mt-0 md:mt-2 lg:mt-4 xl:mt-7 lg:gap-20",
   },
   {
     name: "Website",
@@ -69,7 +69,7 @@ export const services: ServiceItem[] = [
     ],
     points: ["Web Design", "Responsive Web Design", "Wireframes"],
     layout: "right",
-    contentClassName: "mb-10 md:mb-16 lg:mb-36 xl:mb-40 lg:gap-20",
+    contentClassName: "mt-0 md:mt-2 lg:mt-4 xl:mt-7 lg:gap-20",
   },
   {
     name: "3D",

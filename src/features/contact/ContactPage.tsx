@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { PageLayout } from "../../shared/components/layout/PageLayout";
 import { useContactForm } from "./hooks/useContactForm";
-import { CONTACT_FAQS, CONTACT_FORM_NOTICE } from "../../content/contact";
+import { CONTACT_FAQS, CONTACT_FAQ_ANSWERS, CONTACT_FORM_NOTICE } from "../../content/contact";
+import { ASSETS } from "../../shared/lib/assets";
 import "./contact.css";
 
 export function ContactPage() {
@@ -12,21 +13,21 @@ export function ContactPage() {
     <PageLayout>
       <main className="bg-[#181818] text-white">
         <section className="px-section-x-sm py-10 sm:px-section-x-md sm:py-14 lg:px-section-x-lg lg:py-20">
-          <div className="mx-auto max-w-7xl">
+          <div>
             <div className="grid gap-8 md:grid-cols-[1fr_250px] md:items-start lg:grid-cols-[1fr_310px]">
               <div>
-                <p className="text-section-label">
-                  <span aria-hidden>&bull;</span> Contact
+                <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
+                  <span aria-hidden>•</span> Contact
                 </p>
-                <h1 className="mt-7 text-[clamp(3.4rem,9.2vw,8.4rem)] font-semibold leading-[0.86]">
+                <h1 className="mt-2 max-w-[820px] break-words text-heading-sm font-medium">
                   It&apos;s nice to
                   <br />
-                  meet you{" "}
+                  meet ya{" "}
                   <span
-                    className="inline-grid h-[0.72em] w-[0.72em] translate-y-[-0.04em] place-items-center rounded-pill bg-bee-accent text-[0.34em] font-normal text-black"
+                    className="inline-grid h-[0.95em] w-[0.95em] translate-y-[-0.04em] place-items-center rounded-pill bg-bee-accent text-[0.42em] font-normal text-black"
                     aria-hidden
                   >
-                    &darr;
+                    <img src={ASSETS.arrowUpRight} alt="" className="h-[0.82em] w-[0.82em] object-contain" />
                   </span>
                 </h1>
               </div>
@@ -40,18 +41,25 @@ export function ContactPage() {
               </div>
             </div>
 
-            <div className="mt-7 border-t border-white/15 pt-12 sm:mt-10 sm:pt-16">
+            <div className="mt-7 border-t border-[#3b414d] pt-12 sm:mt-10 sm:pt-16">
               <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
                 <div className="max-w-sm text-copy-lg text-white/90">
                   <p>For general enquirers, please fill out the form to get in touch.</p>
-                  <p className="mt-8">
+                  <p className="mt-8 text-[#a5afc2]">
                     Hate contact forms?
                     <br />
-                    www.beeconcept.in
+                    <a
+                      href="https://www.beeconcept.in"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-bee-accent underline decoration-bee-accent/50 underline-offset-4 transition hover:text-white"
+                    >
+                      www.beeconcept.in
+                    </a>
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="max-w-3xl">
+                <form onSubmit={handleSubmit} className="max-w-3xl lg:ml-auto lg:w-full lg:max-w-none">
                   <div className="grid gap-3 sm:grid-cols-2">
                     <div>
                       <input
@@ -97,7 +105,7 @@ export function ContactPage() {
                       name="howDidYouHear"
                       value={formData.howDidYouHear}
                       onChange={handleChange}
-                      placeholder="How did you hear about Bee concept?"
+                      placeholder="How did you hear about us ?"
                       className="contact-input"
                     />
                   </div>
@@ -123,7 +131,7 @@ export function ContactPage() {
                       onChange={handleChange}
                       className="h-3.5 w-3.5 accent-bee-accent"
                     />
-                    Subscribe to our newsletter for all the latest Shape post
+                    Subscribe to our newsletter for all the latest Shape gossip!
                   </label>
                   <p className="mt-1 text-[0.65rem] text-white/55">
                     By submitting this form I accept the Privacy Policy of this site.
@@ -146,12 +154,12 @@ export function ContactPage() {
         </section>
 
         <section className="px-section-x-sm pb-20 pt-12 sm:px-section-x-md sm:pb-28 lg:px-section-x-lg lg:pb-36 lg:pt-20">
-          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+          <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-12">
             <div>
-              <p className="text-section-label">
-                <span aria-hidden>&bull;</span> Anything else?
+              <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
+                <span aria-hidden>•</span> Anything else?
               </p>
-              <h2 className="mt-4 max-w-lg text-heading-md font-semibold">
+              <h2 className="mt-2 max-w-lg text-3xl font-light leading-tight sm:text-4xl lg:text-5xl">
                 The Answers To Your Questions.
               </h2>
               <a
@@ -161,7 +169,7 @@ export function ContactPage() {
                 view our work
               </a>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 lg:ml-auto lg:mt-24 lg:w-full lg:max-w-[620px]">
               {CONTACT_FAQS.map((question, index) => {
                 const open = openQuestion === index;
                 return (
@@ -177,13 +185,16 @@ export function ContactPage() {
                         className="grid h-8 w-8 shrink-0 place-items-center rounded-pill bg-[#181818] text-white"
                         aria-hidden
                       >
-                        {open ? "-" : "+"}
+                        <img
+                          src={ASSETS.arrowUpRight}
+                          alt=""
+                          className={`faq-arrow h-5 w-5 object-contain transition-transform duration-300 ${open ? "rotate-180" : "rotate-0"}`}
+                        />
                       </span>
                     </button>
                     {open && (
                       <p className="px-5 pb-5 text-sm leading-relaxed text-white/70">
-                        Tell us about your goals and timeline. We will reply with the right next
-                        step.
+                        {CONTACT_FAQ_ANSWERS[question]}
                       </p>
                     )}
                   </div>
