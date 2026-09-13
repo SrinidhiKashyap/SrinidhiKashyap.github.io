@@ -19,21 +19,19 @@ export function TitleDesignDetailPage() {
           </div>
 
           <div className="min-w-0 max-w-lg lg:pl-6">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-bee-accent">
-              Selected work
-            </p>
-            <h1 className="mt-4 text-[clamp(2.5rem,4vw,4rem)] font-semibold leading-[0.95]">
+            <h1 className="text-[clamp(2.5rem,4vw,4rem)] font-semibold leading-[0.95]">
               Title Design
             </h1>
-            <p className="mt-7 max-w-md text-base leading-relaxed text-white/65">
-              Bee Concept crafted expressive title identities that turn words into memorable visual
-              signatures.
+            <p className="mt-7 max-w-md text-xl leading-relaxed text-white/85">
+              Bee concept<sup className="text-[0.6em]">®</sup> crafted a sophisticated Title Design.
             </p>
-            <div className="mt-8 border-t border-white/10 pt-6">
-              <p className="text-sm font-semibold">Bee Concept&apos;s Scope of Work</p>
-              <p className="mt-2 text-sm text-white/55">
-                Title Design &bull; Typography &bull; Art Direction
+            <div className="mt-8">
+              <p className="text-lg font-semibold">
+                Bee concept<sup className="text-[0.6em]">®</sup> Scope of Work:
               </p>
+              <ul className="mt-2 space-y-1 text-lg text-white/85">
+                <li>&bull; Title Design</li>
+              </ul>
             </div>
           </div>
         </section>
