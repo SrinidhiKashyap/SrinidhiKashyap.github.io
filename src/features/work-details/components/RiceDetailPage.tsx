@@ -1,65 +1,77 @@
 import { riceAssets as RICE, riceContent } from "../data/riceDetail";
 import { DetailImage, DetailVideo, DetailVideoProvider, NextWorkStrip } from "./";
 
+/**
+ * Two rows of two, read left-to-right (the magazine grid reads top-to-bottom).
+ *
+ * Each row keeps ONE shared height, so the tiles touch with no empty gaps, and
+ * the widths split by the magazine ratios (height/width swapped to landscape):
+ *   638 : 749  →  row 1, and  650 : 545  →  row 2.
+ * `rowAspect` is that pair's sum, which is what forces both tiles to match.
+ */
+const GALLERY_ROWS = [
+  {
+    rowAspect: "aspect-[1387/563]",
+    columns: "grid-cols-[638fr_749fr]",
+    tiles: [
+      { src: RICE.frontFloat, alt: "Floating front rice package" },
+      { src: RICE.backFloat, alt: "Floating back rice package" },
+    ],
+  },
+  {
+    rowAspect: "aspect-[1195/563]",
+    columns: "grid-cols-[650fr_545fr]",
+    tiles: [
+      { src: RICE.pattern, alt: "Ratna rice package pattern" },
+      { src: RICE.frontAndBack, alt: "Ratna rice package front and back" },
+    ],
+  },
+] as const;
+
 export function RiceDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <section className="grid w-full gap-8 py-8 lg:grid-cols-[1.18fr_1fr] lg:gap-0 lg:py-0">
-          <DetailImage
-            src={RICE.hero}
-            alt="Ratna premium jeera rice package"
-            className="min-h-[300px] w-full object-cover lg:min-h-[580px]"
-            priority
-          />
-          <div className="flex items-center px-section-x-sm py-6 sm:px-section-x-md lg:px-16 lg:py-12">
-            <div className="max-w-[680px]">
-              <h1 className="text-heading-sm font-semibold">{riceContent.title}</h1>
-              <p className="mt-6 text-copy-lg text-white/90">{riceContent.intro}</p>
-              <h2 className="mt-7 text-title-fluid font-semibold">Bee concept® Scope of Work:</h2>
-              <ul className="mt-3 space-y-1 text-copy-lg text-white/90">
-                {riceContent.scope.map((item) => (
-                  <li key={item}>&bull; {item}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section className="grid gap-6 px-section-x-sm py-10 sm:px-section-x-md md:grid-cols-2 lg:px-section-x-lg lg:gap-8 lg:py-16">
-          <DetailImage
-            src={RICE.frontFloat}
-            alt="Floating front rice package"
-            className="aspect-square w-full object-cover"
-          />
-          <DetailImage
-            src={RICE.backFloat}
-            alt="Floating back rice package"
-            className="aspect-square w-full object-cover"
-          />
-        </section>
-
-        <section className="grid gap-6 px-section-x-sm pb-10 sm:px-section-x-md md:grid-cols-[0.78fr_1.22fr] lg:px-section-x-lg lg:gap-8 lg:pb-16">
-          <DetailImage
-            src={RICE.pattern}
-            alt="Ratna rice package pattern"
-            className="aspect-square w-full object-cover"
-          />
-          <DetailImage
-            src={RICE.frontAndBack}
-            alt="Ratna rice package front and back"
-            className="aspect-square w-full object-cover"
-          />
-        </section>
-
-        <section className="px-section-x-sm pb-10 sm:px-section-x-md lg:px-section-x-lg lg:pb-16">
+        <section className="grid w-full gap-12 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:gap-20 lg:px-section-x-lg lg:py-10">
           <DetailVideo
             src={RICE.glimpseVideo}
             poster={RICE.angledFront}
-            className="aspect-video w-full bg-[#dcc5ac]"
+            className="min-h-[280px] md:min-h-[360px]"
             fit="cover"
+            priority
             muteToggle
           />
+          <div className="self-center">
+            <h1 className="text-heading-sm font-semibold">{riceContent.title}</h1>
+            <p className="mt-4 text-copy-lg text-white/85">{riceContent.intro}</p>
+            <h2 className="mt-5 text-title-fluid font-semibold">Bee concept Scope of Work:</h2>
+            <ul className="mt-2 space-y-1 text-sm leading-relaxed text-white/85 md:mt-3 md:text-base">
+              {riceContent.scope.map((item) => (
+                <li key={item}>&bull; {item}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="px-section-x-sm py-8 sm:px-section-x-md lg:px-section-x-lg lg:py-14">
+          <div className="mx-auto w-[80%] space-y-4 lg:space-y-6">
+            {GALLERY_ROWS.map((row) => (
+              <div
+                key={row.rowAspect}
+                className={`grid ${row.rowAspect} ${row.columns} gap-4 lg:gap-6`}
+              >
+                {row.tiles.map((image) => (
+                  <div key={image.src} className="overflow-hidden rounded-card">
+                    <DetailImage
+                      src={image.src}
+                      alt={image.alt}
+                      className="h-full w-full scale-[1.35] object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </section>
 
         <NextWorkStrip workIds={["w1", "w2"]} />

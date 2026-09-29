@@ -10,7 +10,7 @@ export function TitleDesignDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <section className="grid min-h-[430px] items-center gap-10 px-section-x-sm py-12 sm:px-section-x-md lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.8fr)] lg:px-section-x-lg lg:py-16">
+        <section className="grid min-h-[430px] items-center gap-12 px-section-x-sm py-12 sm:px-section-x-md lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.8fr)] lg:gap-20 lg:px-section-x-lg lg:py-16">
           <div className="min-w-0 overflow-hidden rounded-card bg-white/5">
             <AutoPlayVideo
               src={ASSETS.workTitleDesign}

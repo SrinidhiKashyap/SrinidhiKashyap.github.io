@@ -5,7 +5,7 @@ export function SterkrosDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <section className="grid w-full gap-8 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:px-section-x-lg lg:gap-10 lg:py-10">
+        <section className="grid w-full gap-12 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:px-section-x-lg lg:gap-20 lg:py-10">
           <DetailVideo
             src={STERKROS.glimpseVideo}
             className="min-h-[280px] md:min-h-[360px]"

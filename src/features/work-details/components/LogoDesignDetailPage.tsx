@@ -35,7 +35,7 @@ export function LogoDesignDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <section className="grid w-full gap-8 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:gap-10 lg:px-section-x-lg lg:py-10">
+        <section className="grid w-full gap-12 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:gap-20 lg:px-section-x-lg lg:py-10">
           <DetailVideo
             src="/assets/work-logo-detail/logos-glimpse.mp4"
             className="min-h-[280px] md:min-h-[360px]"
@@ -60,8 +60,8 @@ export function LogoDesignDetailPage() {
 
         <section className="grid gap-5 px-section-x-sm py-10 sm:grid-cols-2 sm:px-section-x-md lg:gap-7 lg:px-section-x-lg lg:py-16">
           {LOGOS.map((logo) => (
-            <article key={logo.src} className={`relative aspect-[4/3] overflow-hidden ${logo.background}`}>
-              <DetailVideo src={logo.src} className="absolute inset-0 h-full w-full" fit="cover" />
+            <article key={logo.src} className={`relative aspect-square overflow-hidden ${logo.background}`}>
+              <DetailVideo src={logo.src} className="absolute inset-0 h-full w-full" fit="contain" />
               <h2
                 className={`absolute inset-x-3 bottom-3 z-10 rounded-[6px] px-4 py-2 text-sm font-semibold not-italic ${
                   logo.background === "bg-white"

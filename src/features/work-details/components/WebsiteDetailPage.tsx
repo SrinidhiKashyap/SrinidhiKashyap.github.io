@@ -16,7 +16,7 @@ export function WebsiteDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <section className="grid w-full gap-8 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:gap-10 lg:px-section-x-lg lg:py-10">
+        <section className="grid w-full gap-12 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:gap-20 lg:px-section-x-lg lg:py-10">
           <DetailVideo
             src={WEBSITE.titleVideo}
             className="min-h-[280px] md:min-h-[360px]"
@@ -38,35 +38,44 @@ export function WebsiteDetailPage() {
           </div>
         </section>
 
+        {/* Wide hero clip — lock the wrapper to the clip's own 1920x900 ratio so
+            the bottom of the artwork is never cropped away. */}
         <section className="px-section-x-sm pb-8 sm:px-section-x-md lg:px-section-x-lg lg:pb-14">
-          <DetailVideo src={WEBSITE.heroVideo} className="h-[80vh] w-full" fit="cover" priority />
+          <DetailVideo
+            src={WEBSITE.heroVideo}
+            className="aspect-[1920/900] w-full"
+            fit="cover"
+            priority
+          />
         </section>
 
         <section className="px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:py-16">
-          <div className="max-w-5xl">
-            <h2 className="text-heading-sm font-semibold">Project Preview</h2>
-            <p className="mt-5 text-copy-lg text-white/80">
-              A premium online meat shop sought a complete website overhaul to better represent
-              itself as a modern, customer-focused, quality-driven marketplace for fresh and
-              hygienic meat products. The revamp emphasizes fresh chicken, tender mutton, succulent
-              seafood, ready-to-cook delights, and gourmet cuts while reflecting MeatMart&apos;s
-              commitment to quality, convenience, and customer satisfaction.
-            </p>
-            <h2 className="mt-12 text-heading-sm font-semibold">Challenges and Solution</h2>
-            <p className="mt-5 text-copy-lg text-white/80">
-              The challenge was to create a visually appealing website that communicated
-              MeatMart&apos;s wide range of offerings. The solution is an informative, engaging, and
-              user-friendly experience that helps different customers find fresh, high-quality
-              products with ease.
-            </p>
-          </div>
+          <p className="text-section-label">
+            <span aria-hidden>&bull;</span> Website Design
+          </p>
+          <h2 className="mt-4 text-heading-sm font-semibold">Project Preview</h2>
+          <p className="mt-6 text-copy-lg text-white/80 md:mt-8">
+            A premium online meat shop sought a complete website overhaul to better represent itself
+            as a modern, customer-focused, quality-driven marketplace for fresh and hygienic meat
+            products. The revamp emphasizes fresh chicken, tender mutton, succulent seafood,
+            ready-to-cook delights, and gourmet cuts while reflecting MeatMart&apos;s commitment to
+            quality, convenience, and customer satisfaction.
+          </p>
+          <h2 className="mt-10 text-heading-sm font-semibold md:mt-14">Challenges and Solution</h2>
+          <p className="mt-6 text-copy-lg text-white/80 md:mt-8">
+            The challenge was to create a visually appealing website that communicated
+            MeatMart&apos;s wide range of offerings. The solution is an informative, engaging, and
+            user-friendly experience that helps different customers find fresh, high-quality
+            products with ease.
+          </p>
         </section>
 
+        {/* Full-bleed mockup at its native 2400x1740 ratio (was cropped by h-[80vh]). */}
         <section className="pb-10 lg:pb-16">
           <DetailImage
             src={WEBSITE.sectionsMockup}
             alt="MeatMart website section designs"
-            className="h-[80vh] w-full object-cover"
+            className="w-full"
           />
         </section>
 
@@ -74,12 +83,7 @@ export function WebsiteDetailPage() {
           className="px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:py-16"
           aria-label="Full MeatMart website design"
         >
-          <DetailVideo
-            src={WEBSITE.showcaseVideo}
-            className="aspect-video w-full rounded-card"
-            fit="cover"
-          />
-          <div className="mx-auto mt-10 grid max-w-5xl items-start gap-6 md:grid-cols-2 md:gap-0">
+          <div className="mx-auto grid max-w-6xl items-start gap-6 md:grid-cols-2 md:gap-0">
             <DetailImage
               src={WEBSITE.pageTop}
               alt="Top half of the MeatMart website"

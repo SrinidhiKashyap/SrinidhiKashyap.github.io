@@ -68,7 +68,7 @@ function HeroSection() {
           fit="cover"
           priority
         />
-        <div className="self-center px-7 py-5 sm:px-10 sm:py-8 lg:px-14">
+        <div className="self-center px-9 py-5 sm:px-12 sm:py-8 lg:px-20">
           <h1 className="max-w-xl text-[20px] font-semibold leading-[0.98] sm:text-[30px]">
             Kaju Factory Android app
           </h1>

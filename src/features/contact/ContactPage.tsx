@@ -60,7 +60,7 @@ export function ContactPage() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="max-w-3xl lg:ml-auto lg:w-full lg:max-w-none">
-                  <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <input
                         aria-invalid={Boolean(errors.firstName)}
@@ -116,14 +116,14 @@ export function ContactPage() {
                     value={formData.projectDetails}
                     onChange={handleChange}
                     placeholder="Tell us about your project"
-                    className="contact-input mt-3 h-32 resize-none"
+                    className="contact-input mt-4 h-32 resize-none"
                   />
                   {errors.projectDetails && (
                     <p id="projectDetails-error" className="mt-1 text-xs text-red-300">
                       {errors.projectDetails}
                     </p>
                   )}
-                  <label className="mt-4 flex cursor-pointer items-center gap-2 text-xs text-white/80">
+                  <label className="mt-5 flex cursor-pointer items-center gap-2 text-base text-white/80">
                     <input
                       type="checkbox"
                       name="newsletter"
@@ -133,7 +133,7 @@ export function ContactPage() {
                     />
                     Subscribe to our newsletter for all the latest Shape gossip!
                   </label>
-                  <p className="mt-1 text-[0.65rem] text-white/55">
+                  <p className="mt-2 text-sm text-white/55">
                     By submitting this form I accept the Privacy Policy of this site.
                   </p>
                   <button

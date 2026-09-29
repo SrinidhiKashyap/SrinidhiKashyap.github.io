@@ -8,6 +8,13 @@ import { DetailVideo } from "./DetailVideo";
 import { DetailVideoProvider } from "./DetailVideoProvider";
 import { NextWorkStrip } from "./NextWorkStrip";
 
+const GALLERY_ASPECTS = [
+  "aspect-[563/638]",
+  "aspect-[563/749]",
+  "aspect-[563/650]",
+  "aspect-[563/545]",
+] as const;
+
 /** Magazine case study with a scroll-driven, sticky mockup sequence. */
 export function MagazineDetailPage() {
   const sequenceRef = useRef<HTMLElement>(null);
@@ -16,14 +23,15 @@ export function MagazineDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <section className="grid w-full gap-8 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:px-section-x-lg lg:gap-10 lg:py-10">
+        <section className="grid w-full gap-12 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:px-section-x-lg lg:gap-20 lg:py-10">
           <DetailVideo
             src={ASSETS.workMagazines}
             className="min-h-[280px] md:min-h-[360px]"
             fit="cover"
             priority
           />
-          <div className="self-center">
+          {/* Explicit Poppins lock for the hero title, description, and scope list. */}
+          <div className="font-['Poppins',sans-serif] self-center">
             <h1 className="text-heading-sm font-semibold">
               Magazine and books <br />
               layout design
@@ -41,22 +49,35 @@ export function MagazineDetailPage() {
           </div>
         </section>
 
-        <section className="px-section-x-sm py-8 sm:px-section-x-md lg:px-section-x-lg lg:py-14">
+        {/* Full-bleed hero image shown above the gallery grid. */}
+        <section className="w-full" aria-label="Magazine layout hero">
           <DetailImage
             src={MAGAZINE.hero}
-            alt="Magazine collection presentation"
-            className="aspect-video w-full rounded-card object-cover"
+            alt="Magazine cover and layout hero"
+            className="aspect-[16/9] w-full object-cover"
             priority
           />
+        </section>
 
-          <div className="mt-4 grid grid-cols-2 gap-4 lg:mt-6 lg:gap-6">
-            {MAGAZINE.gallery.map((image) => (
-              <DetailImage
-                key={image.src}
-                src={image.src}
-                alt={image.alt}
-                className="aspect-square w-full rounded-card object-cover"
-              />
+        <section className="px-section-x-sm py-8 sm:px-section-x-md lg:px-section-x-lg lg:py-14">
+          <div className="mx-auto grid w-[80%] grid-cols-2 gap-4 lg:gap-6">
+            {[0, 1].map((column) => (
+              <div key={column} className="space-y-4 lg:space-y-6">
+                {[0, 1].map((row) => {
+                  const index = column + row * 2;
+                  const image = MAGAZINE.gallery[index]!;
+
+                  return (
+                    <div key={image.src} className={`${GALLERY_ASPECTS[index]} overflow-hidden rounded-card`}>
+                      <DetailImage
+                        src={image.src}
+                        alt={image.alt}
+                        className="h-full w-full scale-[1.35] object-cover"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             ))}
           </div>
         </section>

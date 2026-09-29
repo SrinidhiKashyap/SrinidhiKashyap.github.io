@@ -13,9 +13,8 @@ type ServicePointListProps = {
  * ServicePointList
  *
  * Renders the bullet-point list for a single service section.
- * The `~` tilde marker is always visible in bee-accent and flips to white
- * on hover (slow 2s ease), while the label transitions to white quickly
- * (500ms ease). Tiles are wrapped in buttons for keyboard accessibility.
+ * The `~` tilde marker appears white on hover with a fast transition.
+ * Tiles are wrapped in buttons for keyboard accessibility.
  */
 export const ServicePointList = memo(function ServicePointList({
   points,
@@ -55,16 +54,16 @@ export const ServicePointList = memo(function ServicePointList({
           >
             <span
               className={classNames(
-                "text-bee-accent transition-all duration-[2000ms] ease-in-out",
-                revealedPoints.has(point) ? "opacity-100 text-white" : "opacity-0",
+                "transition-all duration-200 ease-out",
+                revealedPoints.has(point) ? "text-white opacity-100" : "text-bee-accent opacity-0",
               )}
             >
               ~
             </span>
             <span
               className={classNames(
-                "text-white/60 transition-all duration-500 ease-in-out",
-                revealedPoints.has(point) && "text-white",
+                "transition-colors duration-200 ease-out",
+                revealedPoints.has(point) ? "text-white" : "text-white/60",
               )}
             >
               {point}
