@@ -9,7 +9,7 @@ export function ContactFormPanel() {
     <section className="contact-panel">
       <img
         src={ASSETS.contactPhoto}
-        alt="Bee concept team discussion"
+        alt="Bee concept® team discussion"
         decoding="async"
         className="h-40 w-full rounded-2xl object-cover md:h-56"
       />
@@ -63,7 +63,7 @@ export function ContactFormPanel() {
               onChange={handleChange}
               className="h-5 w-5 accent-bee-accent touch-target"
             />
-            Subscribe to our newsletter for all the latest Bee concept news!
+            Subscribe to our newsletter for all the latest Bee concept® news!
           </label>
           <p className="text-xs text-white/50">
             By submitting this form I accept the Privacy Policy of this site.

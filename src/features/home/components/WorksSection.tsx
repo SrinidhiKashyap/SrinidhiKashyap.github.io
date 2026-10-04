@@ -82,10 +82,10 @@ export function WorksSection({ activeCategory, onCategoryChange }: WorksSectionP
     <section id="works" className="bg-bee-bg-primary text-white">
       <div className="w-full px-section-x-sm py-section-y sm:px-section-x-md lg:px-section-x-lg">
         {/* Section header */}
-        <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
+        <p className="py-1 font-normal text-xl text-white md:py-2 md:text-2xl xl:text-3xl">
           <span aria-hidden>•</span> Our Works
         </p>
-        <h2 className="mt-2 break-words text-heading-sm font-medium">
+        <h2 className="mt-2 break-words text-[calc(clamp(2.1rem,4.3vw,4.2rem)-2px)] font-medium leading-[1.05]">
           Take a look at <br /> our projects
         </h2>
 

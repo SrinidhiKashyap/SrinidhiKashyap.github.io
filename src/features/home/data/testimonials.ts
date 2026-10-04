@@ -55,7 +55,7 @@ export const TESTIMONIALS: readonly TestimonialItem[] = [
     name: "Sunil D",
     role: "Founder of Om Enterprise",
     quote:
-      "(Rain Water Harvesting System) Well-known trustworthy Advertising agency, More Reliable & Well Service Provider, I Suggest Bee concept For website creation and logo Designs.",
+      "(Rain Water Harvesting System) Well-known trustworthy Advertising agency, More Reliable & Well Service Provider, I Suggest Bee concept® For website creation and logo Designs.",
     avatar: ASSETS.testimonialPrakash,
   },
 ];

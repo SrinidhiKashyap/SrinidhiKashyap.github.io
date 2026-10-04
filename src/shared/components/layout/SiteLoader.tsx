@@ -61,7 +61,7 @@ export function SiteLoader() {
     <div className="fixed inset-0 z-[999] grid place-items-center bg-black">
       <img
         src={ASSETS.gifLoader}
-        alt="Loading Bee Concept"
+        alt="Loading Bee Concept®"
         className="h-40 w-40 object-contain sm:h-52 sm:w-52"
       />
     </div>

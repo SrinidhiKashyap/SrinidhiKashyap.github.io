@@ -26,7 +26,7 @@ export const sterkrosAssets = {
 export const sterkrosContent = {
   title: "Sterkros Fitness company",
   intro:
-    "Bee concept built a complete brand identity and packaging system for Sterkros, amplifying their mission to empower fitness enthusiasts worldwide.",
+    "Bee concept® built a complete brand identity and packaging system for Sterkros, amplifying their mission to empower fitness enthusiasts worldwide.",
   introAlt:
     "Our efforts elevated Sterkros' presence by encouraging individuals to reach their fitness goals.",
   scope: [

@@ -34,10 +34,10 @@ export function ClientsTestimonialsSection() {
     >
       <div id="clients" className="order-2 mt-24 w-full">
       {/* ── Section header ── */}
-      <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
+      <p className="py-1 font-normal text-xl text-white md:py-2 md:text-2xl xl:text-3xl">
         <span aria-hidden>•</span> Our client
       </p>
-      <h2 className="mt-2 max-w-[430px] break-words text-heading-md font-medium">
+        <h2 className="mt-2 max-w-[430px] break-words text-[calc(clamp(2.1rem,4.3vw,4.2rem)-2px)] font-medium leading-[1.05]">
         Brands that <br /> trust Us
       </h2>
 
@@ -66,10 +66,10 @@ export function ClientsTestimonialsSection() {
 
       {/* ── Testimonials ── */}
       <div id="testimonials" className="order-1 w-full">
-        <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
+        <p className="py-1 font-normal text-xl text-white md:py-2 md:text-2xl xl:text-3xl">
           <span aria-hidden>•</span> Client Testimonials & Reviews
         </p>
-        <h2 className="mt-2 max-w-[620px] break-words text-testimonial-heading font-medium">
+        <h2 className="mt-2 max-w-[800px] break-words text-[calc(clamp(2.1rem,4.3vw,4.2rem)-2px)] font-medium leading-[1.05]">
           What our happy clients <br /> say about us
         </h2>
 
@@ -77,55 +77,26 @@ export function ClientsTestimonialsSection() {
          * Panel grid: [ ‹ ] [ content ] [ › ]
          * On mobile the arrows are visible for accessibility and touch swipe works.
          */}
-        <div className="relative mx-3 mt-8">
+        <div className="relative mx-6 mt-8 sm:mx-8 md:mx-16 lg:mx-24">
           {/* Content panel */}
           <div
             ref={panelRef}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="relative min-h-[600px] w-full rounded-3xl bg-bee-bg-card px-2 py-6 shadow-soft md:py-8 lg:py-12 touch-pan-x"
+            className="relative w-full rounded-3xl bg-bee-bg-card px-2 py-6 shadow-soft md:py-8 lg:py-12 touch-pan-x"
           >
-            {/* Previous arrow */}
-            <button
-              type="button"
-              aria-label="Previous testimonial"
-              onClick={() => move(-1)}
-              className="absolute left-1 top-5 z-10 h-14 w-14 place-items-center rounded-pill bg-bee-bg-deep text-3xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep touch-target tap-highlight-transparent md:hidden"
-            >
-              &#8249;
-            </button>
+            <div className="mb-8 mx-10 flex items-center justify-between md:mx-16 xl:mx-24">
+              <button
+                type="button"
+                aria-label="Previous testimonial"
+                onClick={() => move(-1)}
+                className="grid h-12 w-12 flex-none place-items-center bg-transparent text-5xl font-normal leading-none text-bee-accent transition hover:text-white"
+              >
+                &lt;
+              </button>
 
-            {/* Next arrow */}
-            <button
-              type="button"
-              aria-label="Next testimonial"
-              onClick={() => move(1)}
-              className="absolute right-1 top-5 z-10 h-14 w-14 place-items-center rounded-pill bg-bee-bg-deep text-3xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep touch-target tap-highlight-transparent md:hidden"
-            >
-              &#8250;
-            </button>
-
-            {/* Desktop arrows */}
-            <button
-              type="button"
-              aria-label="Previous testimonial"
-              onClick={() => move(-1)}
-              className="absolute left-0 top-5 z-10 hidden h-10 w-10 place-items-center rounded-pill bg-bee-bg-deep text-3xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep md:top-9 md:grid lg:top-[52px] xl:left-12"
-            >
-              &#8249;
-            </button>
-
-            <button
-              type="button"
-              aria-label="Next testimonial"
-              onClick={() => move(1)}
-              className="absolute right-0 top-5 z-10 hidden h-10 w-10 place-items-center rounded-pill bg-bee-bg-deep text-3xl leading-none text-bee-accent transition hover:bg-bee-accent hover:text-bee-bg-deep md:top-9 md:grid lg:top-[52px] xl:right-12"
-            >
-              &#8250;
-            </button>
-
-            {/* ── Tabs (one per testimonial person) ── */}
-            <div className="mx-10 grid grid-cols-3 gap-6 pb-[18px] md:mx-16 xl:mx-24">
+              {/* ── Tabs (one per testimonial person) ── */}
+              <div className="mx-4 grid min-w-0 w-[min(76%,900px)] flex-none grid-cols-3 justify-center gap-2 sm:gap-6">
               {TESTIMONIALS.map((testimonial, index) => (
                 <button
                   key={testimonial.id}
@@ -133,7 +104,7 @@ export function ClientsTestimonialsSection() {
                   onClick={() => setActiveIndex(index)}
                   className={classNames(
                     // Base — Tailwind
-                    "testimonial-tab min-w-0 flex items-center gap-3 text-left text-white transition",
+                    "testimonial-tab min-w-0 flex cursor-pointer items-center gap-2 px-2 py-2 text-left text-white transition sm:gap-4",
                     // Active vs inactive opacity
                     index === activeIndex ? "testimonial-tab--active opacity-100" : "opacity-40",
                   )}
@@ -144,40 +115,50 @@ export function ClientsTestimonialsSection() {
                     loading="lazy"
                     decoding="async"
                     className={classNames(
-                      "testimonial-avatar h-12 w-12 flex-none rounded-pill object-cover",
+                      "testimonial-avatar h-10 w-10 flex-none rounded-pill object-cover sm:h-12 sm:w-12 lg:h-16 lg:w-16",
                       `testimonial-avatar--${testimonial.id}`,
                     )}
                   />
                   <span className="min-w-0">
-                    <strong className="block text-[20px] font-medium leading-tight">
+                      <strong className="block text-xs font-normal leading-tight md:text-sm lg:text-base xl:text-lg">
                       {testimonial.name}
                     </strong>
-                    <small className="mt-[3px] block text-[0.95rem] leading-snug opacity-80">
+                      <small className="mt-[3px] block text-[10px] font-light leading-snug opacity-80 lg:text-xs">
                       {testimonial.role}
                     </small>
                   </span>
                 </button>
               ))}
+              </div>
+
+              <button
+                type="button"
+                aria-label="Next testimonial"
+                onClick={() => move(1)}
+                className="grid h-12 w-12 flex-none place-items-center bg-transparent text-5xl font-normal leading-none text-bee-accent transition hover:text-white"
+              >
+                &gt;
+              </button>
             </div>
 
             {/*
              * Body: [ portrait ] [ quote ]
              * Layout belongs to Tailwind; CSS only owns the active underline.
              */}
-            <div className="mx-12 mt-16 grid items-start gap-9 md:grid-cols-[280px_minmax(0,1fr)] md:gap-x-20">
+            <div className="mx-0 flex h-auto flex-row items-center md:mx-20 md:h-[270px]">
               <img
                 src={active.avatar}
                 alt={active.name}
                 decoding="async"
                 className={classNames(
-                  "testimonial-avatar aspect-square w-full max-w-[280px] justify-self-center object-cover",
+                  "testimonial-avatar mx-2 h-4 w-0 flex-none object-cover xl:mx-24 xl:h-56 xl:w-56",
                   `testimonial-avatar--${active.id}`,
                 )}
               />
-              <blockquote className="testimonial-quote w-full max-w-none self-center text-left text-[24px] font-normal leading-relaxed text-white">
+              <blockquote className="testimonial-quote flex min-w-0 flex-row text-left text-sm font-light leading-relaxed text-white sm:text-base lg:text-lg xl:text-xl">
                 <span className="testimonial-quote__row">
-                  <img src={ASSETS.quoteYellow} alt="" aria-hidden className="testimonial-quote__mark" />
-                  <span>{active.quote}</span>
+                  <img src={ASSETS.yellowQuotes} alt="quote icon" className="mx-2 h-4 w-4" />
+                  <span className="pr-6 xl:pr-20">{active.quote}</span>
                 </span>
               </blockquote>
             </div>

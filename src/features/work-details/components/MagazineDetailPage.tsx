@@ -8,13 +8,6 @@ import { DetailVideo } from "./DetailVideo";
 import { DetailVideoProvider } from "./DetailVideoProvider";
 import { NextWorkStrip } from "./NextWorkStrip";
 
-const GALLERY_ASPECTS = [
-  "aspect-[563/638]",
-  "aspect-[563/749]",
-  "aspect-[563/650]",
-  "aspect-[563/545]",
-] as const;
-
 /** Magazine case study with a scroll-driven, sticky mockup sequence. */
 export function MagazineDetailPage() {
   const sequenceRef = useRef<HTMLElement>(null);
@@ -23,29 +16,35 @@ export function MagazineDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <section className="grid w-full gap-12 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:px-section-x-lg lg:gap-20 lg:py-10">
-          <DetailVideo
-            src={ASSETS.workMagazines}
-            className="min-h-[280px] md:min-h-[360px]"
-            fit="cover"
-            priority
-          />
-          {/* Explicit Poppins lock for the hero title, description, and scope list. */}
-          <div className="font-['Poppins',sans-serif] self-center">
-            <h1 className="text-heading-sm font-semibold">
-              Magazine and books <br />
-              layout design
-            </h1>
-            <p className="mt-4 text-copy-lg text-white/85">
-              Bee Concept shaped editorial systems where expressive covers, clear hierarchy, and
-              tactile mockups work as one collection.
-            </p>
-            <h2 className="mt-5 text-title-fluid font-semibold">Bee concept Scope of Work:</h2>
-            <ul className="mt-2 space-y-1 text-sm leading-relaxed text-white/85 md:mt-3 md:text-base">
-              <li>&bull; Editorial Design</li>
-              <li>&bull; Cover Design</li>
-              <li>&bull; Layout</li>
-            </ul>
+        <section className="mx-auto max-w-full overflow-hidden">
+          <div className="my-4 flex flex-col items-stretch px-6 pb-1 md:my-16 md:flex-row md:px-0">
+            <div className="flex w-full md:w-[54%]">
+              <DetailVideo
+                src={ASSETS.workMagazines}
+                className="mb-6 aspect-video h-full w-full md:mb-0"
+                fit="cover"
+                priority
+              />
+            </div>
+            {/* Explicit Poppins lock to match the original magazine case study. */}
+            <div className="flex w-full flex-col justify-center font-['Poppins',sans-serif] text-white md:w-[46%] md:px-16 lg:px-20 xl:pl-28">
+              <h1 className="text-3xl font-semibold leading-tight md:text-4xl lg:text-5xl xl:text-[55px] xl:leading-[1.2]">
+                Magazine and <br />
+                books layout<br />
+                design
+              </h1>
+              <p className="pt-6 text-sm font-normal md:text-base lg:text-lg xl:text-xl">
+                Bee concept<sup>®</sup> crafted a sophisticated Cover <br />Page Design.
+              </p>
+              <h2 className="mb-2 mt-6 text-sm font-semibold md:text-base lg:text-lg xl:text-xl">
+                Bee concept<sup>®</sup> Scope of Work:
+              </h2>
+              <ul className="mt-2 space-y-1 text-sm font-normal md:text-base lg:text-lg">
+                <li>&bull; Book Layouts</li>
+                <li>&bull; Magazine Layouts</li>
+                <li>&bull; Cover Design</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -60,40 +59,37 @@ export function MagazineDetailPage() {
         </section>
 
         <section className="px-section-x-sm py-8 sm:px-section-x-md lg:px-section-x-lg lg:py-14">
-          <div className="mx-auto grid w-[80%] grid-cols-2 gap-4 lg:gap-6">
-            {[0, 1].map((column) => (
-              <div key={column} className="space-y-4 lg:space-y-6">
-                {[0, 1].map((row) => {
-                  const index = column + row * 2;
-                  const image = MAGAZINE.gallery[index]!;
-
-                  return (
-                    <div key={image.src} className={`${GALLERY_ASPECTS[index]} overflow-hidden rounded-card`}>
-                      <DetailImage
-                        src={image.src}
-                        alt={image.alt}
-                        className="h-full w-full scale-[1.35] object-cover"
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
+          <div className="mx-auto grid aspect-[4/3] w-full grid-cols-2 gap-4 lg:gap-6">
+            <div className="grid min-h-0 grid-rows-[638fr_650fr] gap-4 lg:gap-6">
+              {[MAGAZINE.gallery[0]!, MAGAZINE.gallery[2]!].map((image) => (
+                <div key={image.src} className="min-h-0 overflow-hidden rounded-card">
+                  <DetailImage src={image.src} alt={image.alt} className="h-full w-full scale-[1.5] object-cover" />
+                </div>
+              ))}
+            </div>
+            <div className="grid min-h-0 grid-rows-[749fr_545fr] gap-4 lg:gap-6">
+              {[MAGAZINE.gallery[1]!, MAGAZINE.gallery[3]!].map((image) => (
+                <div key={image.src} className="min-h-0 overflow-hidden rounded-card">
+                  <DetailImage src={image.src} alt={image.alt} className="h-full w-full scale-[1.5] object-cover" />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         <section
           ref={sequenceRef}
-          className="relative px-section-x-sm py-8 sm:px-section-x-md lg:px-section-x-lg"
-          style={{ minHeight: `calc(100svh + ${(MAGAZINE.scrollFrames.length - 1) * 42}svh)` }}
+          className="relative"
+          style={{ minHeight: `calc(100svh + ${(MAGAZINE.scrollFrames.length - 1) * 84}svh)` }}
           aria-label="Scroll through magazine mockups"
         >
-          <div className="sticky top-[76px] flex min-h-[calc(100svh-76px)] w-full items-center">
-            <div className="relative w-full overflow-hidden rounded-card bg-white/5">
+          <div className="sticky top-[76px] h-[calc(100svh-76px)] w-full overflow-hidden bg-black">
+            <div className="relative h-full w-full">
               <DetailImage
+                key={activeFrame}
                 src={MAGAZINE.scrollFrames[activeFrame]!}
                 alt={`Magazine presentation ${activeFrame + 1} of ${MAGAZINE.scrollFrames.length}`}
-                className="aspect-video w-full object-cover"
+                className="magazine-scroll-image h-full w-full scale-[1.06] object-cover"
                 priority
               />
 

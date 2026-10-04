@@ -100,10 +100,31 @@ export const DetailVideo = memo(function DetailVideo({
         <button
           type="button"
           aria-label={muted ? "Unmute video" : "Mute video"}
+          aria-pressed={!muted}
+          title={muted ? "Unmute video" : "Mute video"}
           onClick={() => setMuted((value) => !value)}
-          className="absolute bottom-4 right-4 z-10 rounded-pill bg-black/65 px-4 py-2 text-sm font-semibold text-white transition hover:bg-bee-accent hover:text-black"
+          className="absolute bottom-4 right-4 z-10 grid h-11 w-11 place-items-center rounded-full bg-black/65 text-white transition hover:bg-bee-accent hover:text-black"
         >
-          {muted ? "Muted" : "Sound"}
+          <svg
+            viewBox="0 0 24 24"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.8"
+            aria-hidden="true"
+          >
+            <path d="M11 5 6 9H3v6h3l5 4z" />
+            {muted ? (
+              <path d="m16 9 5 6m0-6-5 6" />
+            ) : (
+              <>
+                <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+                <path d="M19 5a10 10 0 0 1 0 14" />
+              </>
+            )}
+          </svg>
         </button>
       )}
     </div>

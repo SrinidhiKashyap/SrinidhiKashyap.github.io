@@ -3,6 +3,7 @@ import { DetailImage } from "./DetailImage";
 import { DetailVideo } from "./DetailVideo";
 import { DetailVideoProvider } from "./DetailVideoProvider";
 import { NextWorkStrip } from "./NextWorkStrip";
+import { WorkDetailHero } from "./WorkDetailHero";
 
 const ROOT = "/assets/work-uiux-detail";
 
@@ -61,31 +62,17 @@ export function UiUxDetailPage() {
 function HeroSection() {
   return (
     <>
-      <section className="grid w-full grid-cols-[1.16fr_0.84fr] gap-0">
-        <DetailVideo
-          src={UIUX.heroVideo}
-          className="h-[162px] w-full sm:h-[260px] lg:h-[390px]"
-          fit="cover"
-          priority
-        />
-        <div className="self-center px-9 py-5 sm:px-12 sm:py-8 lg:px-20">
-          <h1 className="max-w-xl text-[20px] font-semibold leading-[0.98] sm:text-[30px]">
-            Kaju Factory Android app
-          </h1>
-          <p className="mt-2 max-w-xl text-[11px] leading-[1.35] text-white/85 sm:mt-4 sm:text-base">
-            Bee Concept revamped an ecommerce product experience with clear shopping flows, warm
+      <WorkDetailHero
+        videoSrc={UIUX.heroVideo}
+        title="Kaju Factory Android app"
+        description={
+          <p>
+            Bee Concept® revamped an ecommerce product experience with clear shopping flows, warm
             visuals, and a flexible UI system.
           </p>
-          <h2 className="mt-2 text-[11px] font-semibold sm:mt-4 sm:text-base">
-            Bee concept Scope of Work:
-          </h2>
-          <ul className="mt-1 space-y-0.5 text-[10px] leading-relaxed text-white/85 sm:mt-2 sm:text-sm">
-            <li>&bull; UI/UX Design</li>
-            <li>&bull; Interface Design</li>
-            <li>&bull; Mobile App Prototype</li>
-          </ul>
-        </div>
-      </section>
+        }
+        scope={["UI/UX Design", "Interface Design", "Mobile App Prototype"]}
+      />
 
       <section>
         <DetailImage

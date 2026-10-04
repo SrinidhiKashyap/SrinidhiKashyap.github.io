@@ -14,7 +14,7 @@ export interface NextWorkStripProps {
 // ── Component ─────────────────────────────────────────────────────────────────
 
 /**
- * "What Next?" strip shown at the bottom of detail pages.
+ * "Latest From Our Studio" strip shown at the bottom of detail pages.
  * Displays up to two related or next project cards with video thumbnails
  * and category tags.
  *
@@ -33,7 +33,9 @@ export const NextWorkStrip = memo(function NextWorkStrip({ workIds }: NextWorkSt
           <p className="text-section-label">
             <span aria-hidden>&bull;</span> More Good Stuff
           </p>
-          <h2 className="mt-4 max-w-[720px] text-heading-sm font-semibold">What Next?</h2>
+          <h2 className="mt-4 max-w-[720px] text-heading-sm font-semibold">
+            Latest From <br /> Our Studio
+          </h2>
         </div>
         <Link
           to="/#works"

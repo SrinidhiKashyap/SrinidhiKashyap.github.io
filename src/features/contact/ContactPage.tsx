@@ -19,15 +19,15 @@ export function ContactPage() {
                 <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
                   <span aria-hidden>•</span> Contact
                 </p>
-                <h1 className="mt-2 max-w-[820px] break-words text-heading-sm font-medium">
-                  It&apos;s nice to
+                <h1 className="mt-6 max-w-[900px] break-words text-[clamp(3.75rem,7vw,6.5rem)] font-medium leading-[1.05]">
+                  <span className="ml-[clamp(1.75rem,6vw,5rem)] inline-block">It&apos;s nice to</span>
                   <br />
                   meet ya{" "}
                   <span
-                    className="inline-grid h-[0.95em] w-[0.95em] translate-y-[-0.04em] place-items-center rounded-pill bg-bee-accent text-[0.42em] font-normal text-black"
+                    className="inline-grid h-[0.9em] w-[0.9em] translate-y-[-0.04em] place-items-center rounded-pill bg-bee-accent text-[0.46em] font-normal text-black"
                     aria-hidden
                   >
-                    <img src={ASSETS.arrowUpRight} alt="" className="h-[0.82em] w-[0.82em] object-contain" />
+                    <img src={ASSETS.arrowUpRight} alt="" className="h-[0.82em] w-[0.82em] rotate-90 object-contain" />
                   </span>
                 </h1>
               </div>
@@ -159,14 +159,14 @@ export function ContactPage() {
               <p className="py-1 font-normal text-2xl text-white md:py-2 md:text-3xl xl:text-4xl">
                 <span aria-hidden>•</span> Anything else?
               </p>
-              <h2 className="mt-2 max-w-lg text-3xl font-light leading-tight sm:text-4xl lg:text-5xl">
+              <h2 className="mt-2 max-w-lg text-heading-md font-medium">
                 The Answers To Your Questions.
               </h2>
               <a
                 href="/#works"
-                className="mt-8 inline-flex rounded-pill bg-bee-accent px-6 py-3 text-sm font-medium text-black transition hover:bg-white"
+                className="mt-8 inline-flex rounded-pill bg-bee-accent px-7 py-3.5 text-base font-medium text-black transition hover:bg-white"
               >
-                view our work
+                View our work
               </a>
             </div>
             <div className="space-y-4 lg:ml-auto lg:mt-24 lg:w-full lg:max-w-[620px]">

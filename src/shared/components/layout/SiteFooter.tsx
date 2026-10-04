@@ -120,9 +120,9 @@ export function SiteFooter() {
       {/* ── Bottom bar ── */}
       <div className="border-t border-white/[0.03] bg-bee-bg-deep">
         <div className="relative flex w-full flex-col gap-4 px-section-x-sm py-6 text-sm text-white/25 sm:px-section-x-md md:flex-row md:items-center md:justify-between lg:px-section-x-lg">
-          <img src={ASSETS.logoDark} alt="Bee Concept" className="h-11 w-auto md:h-14" />
+          <img src={ASSETS.logoDark} alt="Bee Concept®" className="h-11 w-auto md:h-14" />
           <p className="text-center text-lg md:absolute md:left-1/2 md:-translate-x-1/2 md:whitespace-nowrap md:text-xl">
-            Copyright 2025 &copy; All Rights Reserved. Design By Bee Concept
+            Copyright 2025 &copy; All Rights Reserved. Design By Bee Concept®
           </p>
         </div>
       </div>

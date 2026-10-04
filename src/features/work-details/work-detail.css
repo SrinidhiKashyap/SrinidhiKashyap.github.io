@@ -37,6 +37,15 @@
   @apply h-72 w-full rounded-2xl border border-white/10 object-cover;
 }
 
+@keyframes magazine-scroll-fade {
+  from { opacity: 0.35; }
+  to { opacity: 1; }
+}
+
+.magazine-scroll-image {
+  animation: magazine-scroll-fade 500ms ease-out both;
+}
+
 /* ─── 4. INSIGHTS GRID ─────────────────────────────────────────────────────── */
 
 .work-detail-insights {

@@ -125,15 +125,15 @@ export function SiteNavbar() {
         {isHome ? (
           <button
             type="button"
-            aria-label="Bee Concept home"
+            aria-label="Bee Concept® home"
             onClick={handleLogoClick}
             className="touch-target"
           >
-            <img src={ASSETS.logoDark} alt="Bee Concept" className="h-14 w-auto sm:h-12" />
+            <img src={ASSETS.logoDark} alt="Bee Concept®" className="h-14 w-auto sm:h-12" />
           </button>
         ) : (
-          <Link to={ROUTES.home} aria-label="Bee Concept home" className="touch-target">
-            <img src={ASSETS.logoDark} alt="Bee Concept" className="h-14 w-auto sm:h-12" />
+          <Link to={ROUTES.home} aria-label="Bee Concept® home" className="touch-target">
+            <img src={ASSETS.logoDark} alt="Bee Concept®" className="h-14 w-auto sm:h-12" />
           </Link>
         )}
 

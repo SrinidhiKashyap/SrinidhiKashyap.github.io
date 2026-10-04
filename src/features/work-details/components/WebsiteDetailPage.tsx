@@ -2,6 +2,7 @@ import { DetailImage } from "./DetailImage";
 import { DetailVideo } from "./DetailVideo";
 import { DetailVideoProvider } from "./DetailVideoProvider";
 import { NextWorkStrip } from "./NextWorkStrip";
+import { WorkDetailHero } from "./WorkDetailHero";
 
 const WEBSITE = {
   titleVideo: "/assets/work-websitedesign-homepage.mp4",
@@ -16,67 +17,61 @@ export function WebsiteDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <section className="grid w-full gap-12 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:gap-20 lg:px-section-x-lg lg:py-10">
+        <WorkDetailHero
+          videoSrc={WEBSITE.titleVideo}
+          title="Website Design"
+          description={
+            <p>
+              Bee concept<sup>®</sup> crafted a sophisticated Cover Page Design.
+            </p>
+          }
+          scope={["Book Layouts", "Magazine Layouts", "Cover Design"]}
+        />
+
+        {/* Wide hero clip, cropped slightly at the top and bottom to fill the frame. */}
+        <section className="w-full pb-8 lg:pb-14">
           <DetailVideo
-            src={WEBSITE.titleVideo}
-            className="min-h-[280px] md:min-h-[360px]"
+            src={WEBSITE.heroVideo}
+            className="aspect-[2.2/1] w-full"
             fit="cover"
             priority
           />
-          <div className="self-center">
-            <h1 className="text-heading-sm font-semibold">Website Design</h1>
-            <p className="mt-4 text-copy-lg text-white/85">
-              Bee Concept created a modern online meat shop built around clear shopping journeys and
-              strong product presentation.
+        </section>
+
+        <section className="px-6 py-10 text-white sm:py-16 lg:px-24 lg:py-20">
+          <div>
+            <h2 className="text-2xl font-medium md:text-4xl lg:text-[55px]">Project Preview</h2>
+            <p className="pt-6 text-xs font-normal md:text-base lg:text-lg xl:text-xl">
+              A premium online meat shop sought a comprehensive overhaul of its website to better
+              represent itself as a modern, customer-focused, and quality-driven marketplace for
+              fresh and hygienic meat products. The revamp focused on emphasizing their full
+              spectrum of offerings: Fresh Chicken, Tender Mutton, Succulent Seafood,
+              Ready-to-Cook Delights, and Gourmet Cuts. Our task was to create a vibrant,
+              interactive website that reflects MeatMart’s commitment to quality, convenience,
+              and customer satisfaction.
             </p>
-            <h2 className="mt-5 text-title-fluid font-semibold">Bee concept Scope of Work:</h2>
-            <ul className="mt-2 space-y-1 text-sm leading-relaxed text-white/85 md:mt-3 md:text-base">
-              <li>&bull; Website Design</li>
-              <li>&bull; UI/UX Design</li>
-              <li>&bull; Development</li>
-            </ul>
+          </div>
+          <div className="pt-12 sm:pt-16 md:pt-20 lg:pt-24">
+            <h2 className="text-2xl font-medium md:text-4xl lg:text-[55px]">
+              Challenges and Solution
+            </h2>
+            <p className="pt-6 text-xs font-normal md:text-base lg:text-lg xl:text-xl">
+              The challenge was to create a visually appealing website that effectively communicated
+              MeatMart’s wide range of offerings. The company needed a platform that was not only
+              informational but also engaging and user-friendly to cater to diverse customer
+              preferences for fresh, high-quality meat products.
+            </p>
           </div>
         </section>
 
-        {/* Wide hero clip — lock the wrapper to the clip's own 1920x900 ratio so
-            the bottom of the artwork is never cropped away. */}
-        <section className="px-section-x-sm pb-8 sm:px-section-x-md lg:px-section-x-lg lg:pb-14">
-          <DetailVideo
-            src={WEBSITE.heroVideo}
-            className="aspect-[1920/900] w-full"
-            fit="cover"
-            priority
-          />
-        </section>
-
-        <section className="px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:py-16">
-          <p className="text-section-label">
-            <span aria-hidden>&bull;</span> Website Design
-          </p>
-          <h2 className="mt-4 text-heading-sm font-semibold">Project Preview</h2>
-          <p className="mt-6 text-copy-lg text-white/80 md:mt-8">
-            A premium online meat shop sought a complete website overhaul to better represent itself
-            as a modern, customer-focused, quality-driven marketplace for fresh and hygienic meat
-            products. The revamp emphasizes fresh chicken, tender mutton, succulent seafood,
-            ready-to-cook delights, and gourmet cuts while reflecting MeatMart&apos;s commitment to
-            quality, convenience, and customer satisfaction.
-          </p>
-          <h2 className="mt-10 text-heading-sm font-semibold md:mt-14">Challenges and Solution</h2>
-          <p className="mt-6 text-copy-lg text-white/80 md:mt-8">
-            The challenge was to create a visually appealing website that communicated
-            MeatMart&apos;s wide range of offerings. The solution is an informative, engaging, and
-            user-friendly experience that helps different customers find fresh, high-quality
-            products with ease.
-          </p>
-        </section>
-
-        {/* Full-bleed mockup at its native 2400x1740 ratio (was cropped by h-[80vh]). */}
         <section className="pb-10 lg:pb-16">
-          <DetailImage
-            src={WEBSITE.sectionsMockup}
-            alt="MeatMart website section designs"
-            className="w-full"
-          />
+          <div className="aspect-[2.2/1] w-full overflow-hidden">
+            <DetailImage
+              src={WEBSITE.sectionsMockup}
+              alt="MeatMart website section designs"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
         </section>
 
         <section

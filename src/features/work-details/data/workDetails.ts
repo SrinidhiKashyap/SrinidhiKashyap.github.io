@@ -32,7 +32,7 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
   sterkros: {
     title: "Sterkros Fitness company",
     summary:
-      "Bee concept crafted a sophisticated identity and packaging system for Sterkros, strengthening product visibility and fitness-first messaging.",
+      "Bee concept® crafted a sophisticated identity and packaging system for Sterkros, strengthening product visibility and fitness-first messaging.",
     scope: [
       "Brand Identity & Guideline",
       "3D Renders",
@@ -143,7 +143,7 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
   },
   about: {
     title: "About The Studio",
-    summary: "A closer look at Bee concept's culture, values, and collaborative process.",
+    summary: "A closer look at Bee concept®'s culture, values, and collaborative process.",
     scope: ["Culture", "Values", "Capabilities", "Collaboration Process"],
     hero: "/assets/about/studio.jpg",
     showcaseVideo: "/assets/work-websitedesign-homepage.mp4",

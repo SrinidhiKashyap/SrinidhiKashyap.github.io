@@ -30,7 +30,7 @@ export const kalpaAssets = {
 export const kalpaContent = {
   title: "Kalpa organic Oil Product",
   intro:
-    "Bee concept crafted a sophisticated modern oil product brand identity, package and motion graphics for The Kalpa Group.",
+    "Bee concept® crafted a sophisticated modern oil product brand identity, package and motion graphics for The Kalpa Group.",
   scope: [
     "Brand Identity & Guideline",
     "3D Renders",

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { kalpaAssets as KALPA, kalpaContent } from "../data/kalpaDetail";
 import { CompareSlider, DetailImage, DetailVideo, DetailVideoProvider, NextWorkStrip } from "./";
+import { WorkDetailHero } from "./WorkDetailHero";
 
 function ProcessTile({
   number,
@@ -48,27 +49,17 @@ export function KalpaDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <section className="grid w-full gap-12 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:px-section-x-lg lg:gap-20 lg:py-10">
-          <DetailVideo
-            src={KALPA.heroVideo}
-            className="min-h-[280px] md:min-h-[360px]"
-            fit="cover"
-            priority
-          />
-          <div className="self-center">
-            <h1 className="text-heading-sm font-semibold">
+        <WorkDetailHero
+          videoSrc={KALPA.heroVideo}
+          title={
+            <>
               Kalpa organic <br />
               Oil Product
-            </h1>
-            <p className="mt-4 text-copy-lg text-white/85">{kalpaContent.intro}</p>
-            <h2 className="mt-5 text-title-fluid font-semibold">Bee concept Scope of Work:</h2>
-            <ul className="mt-2 space-y-1 text-sm leading-relaxed text-white/85 md:mt-3 md:text-base">
-              {kalpaContent.scope.map((item) => (
-                <li key={item}>&bull; {item}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
+            </>
+          }
+          description={<p>{kalpaContent.intro}</p>}
+          scope={kalpaContent.scope}
+        />
 
         <QuoteBlock>{kalpaContent.quote}</QuoteBlock>
 

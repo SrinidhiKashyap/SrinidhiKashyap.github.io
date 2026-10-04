@@ -1,30 +1,23 @@
 import { sterkrosAssets as STERKROS, sterkrosContent } from "../data/sterkrosDetail";
 import { CompareSlider, DetailImage, DetailVideo, DetailVideoProvider, NextWorkStrip } from "./";
+import { WorkDetailHero } from "./WorkDetailHero";
 
 export function SterkrosDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <section className="grid w-full gap-12 px-section-x-sm py-8 sm:px-section-x-md lg:grid-cols-[1.25fr_0.9fr] lg:px-section-x-lg lg:gap-20 lg:py-10">
-          <DetailVideo
-            src={STERKROS.glimpseVideo}
-            className="min-h-[280px] md:min-h-[360px]"
-            fit="cover"
-            priority
-            muteToggle
-          />
-          <div>
-            <h1 className="text-heading-sm font-semibold">{sterkrosContent.title}</h1>
-            <p className="mt-4 text-copy-lg text-white/85">{sterkrosContent.intro}</p>
-            <p className="mt-4 text-copy-lg text-white/85">{sterkrosContent.introAlt}</p>
-            <h2 className="mt-5 text-title-fluid font-semibold">Bee concept Scope of Work:</h2>
-            <ul className="mt-2 space-y-1 text-sm leading-relaxed text-white/85 md:mt-3 md:text-base">
-              {sterkrosContent.scope.map((item) => (
-                <li key={item}>&bull; {item}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        <WorkDetailHero
+          videoSrc={STERKROS.glimpseVideo}
+          title={sterkrosContent.title}
+          description={
+            <>
+              <p>{sterkrosContent.intro}</p>
+              <p>{sterkrosContent.introAlt}</p>
+            </>
+          }
+          scope={sterkrosContent.scope}
+          muteToggle
+        />
 
         <section className="w-full px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg">
           <p className="text-section-label">
