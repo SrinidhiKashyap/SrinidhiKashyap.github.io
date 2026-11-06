@@ -1,47 +1,26 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { kalpaAssets as KALPA, kalpaContent } from "../data/kalpaDetail";
-import { CompareSlider, DetailImage, DetailVideo, DetailVideoProvider, NextWorkStrip } from "./";
+import { CompareSlider, DetailImage, DetailVideo, DetailVideoProvider } from "./";
 import { WorkDetailHero } from "./WorkDetailHero";
 
-function ProcessTile({
-  number,
-  title,
-  children,
-}: {
-  number: string;
-  title: string;
-  children: ReactNode;
-}) {
+function QuoteBlock({ children, topPadding = false }: { children: ReactNode; topPadding?: boolean }) {
   return (
-    <div className="bg-white px-section-x-sm py-8 text-black sm:px-section-x-md lg:px-16">
-      <span className="inline-grid h-8 w-8 place-items-center rounded-pill bg-black/10 text-xs font-semibold">
-        {number}
-      </span>
-      <h3 className="mt-4 text-[clamp(1.5rem,3vw,2.5rem)] font-semibold leading-tight">
-        Identity<span className="text-bee-accent">&rarr;</span>
-        {title}
-      </h3>
-      <p className="mt-5 max-w-[620px] text-sm leading-relaxed text-black/75 md:mt-7 md:text-base">
-        {children}
-      </p>
-    </div>
+    <section className={`relative px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:py-16 ${topPadding ? "" : "pt-6 lg:pt-10"}`}>
+      <blockquote className="mx-auto block max-w-5xl text-heading-sm font-medium leading-tight">
+        <span className="text-bee-accent">&ldquo;</span>{children}<span className="text-bee-accent">&rdquo;</span>
+      </blockquote>
+    </section>
   );
 }
 
-function QuoteBlock({ children }: { children: ReactNode }) {
+function IdentityBlock({ number, title, children, className }: { number: string; title: string; children: ReactNode; className: string }) {
   return (
-    <section className="px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg">
-      <blockquote className="max-w-[1080px] text-heading-sm font-semibold leading-tight break-words">
-        <span className="block text-[clamp(2rem,6vw,4rem)] leading-none text-bee-accent">
-          &ldquo;
-        </span>
-        {children}
-        <span className="ml-10 text-[clamp(2rem,6vw,4rem)] leading-none text-bee-accent">
-          &rdquo;
-        </span>
-      </blockquote>
-    </section>
+    <div className={`flex w-full flex-col justify-center px-section-x-sm py-10 text-black sm:px-section-x-md lg:px-section-x-lg lg:py-16 ${className}`}>
+      <div className="flex-none"><span className="rounded-pill bg-[#efefee] px-3 py-2.5 text-sm font-medium">{number}</span></div>
+      <h2 className="mt-4 text-heading-sm font-medium tracking-tight">Identity <span className="text-yellow-400">→</span> {title}</h2>
+      <div className="mt-6 space-y-6 text-copy-lg text-black/80">{children}</div>
+    </div>
   );
 }
 
@@ -51,242 +30,47 @@ export function KalpaDetailPage() {
       <main className="bg-bee-bg-primary text-white">
         <WorkDetailHero
           videoSrc={KALPA.heroVideo}
-          title={
-            <>
-              Kalpa organic <br />
-              Oil Product
-            </>
-          }
+          title={<>Kalpa organic<br />Oil Product</>}
           description={<p>{kalpaContent.intro}</p>}
           scope={kalpaContent.scope}
         />
 
         <QuoteBlock>{kalpaContent.quote}</QuoteBlock>
-
-        <section
-          className="bg-cover bg-center px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg"
-          style={{ backgroundImage: `url(${KALPA.brickWall})` }}
-        >
-          <div className="mx-auto max-w-[980px] border-[6px] border-[#222] bg-[#ccefb0] shadow-card-lg">
-            <DetailImage
-              src={KALPA.mainPoster}
-              alt="Kalpa nature billboard design"
-              className="w-full object-cover"
-              priority
-            />
-          </div>
+        <DetailImage src={KALPA.mainPoster} alt="Typography design with gold text" className="h-full w-full object-cover" priority />
+        <section className="flex flex-col gap-4 px-section-x-sm py-10 sm:flex-row sm:px-section-x-md lg:gap-8 lg:px-section-x-lg lg:py-16">
+          <DetailVideo src={KALPA.introVideo} className="h-full w-full sm:w-[60%] md:h-[50vh] lg:h-[60vh] xl:h-[80vh]" fit="cover" />
+          <DetailImage src={KALPA.flyingBottle} alt="Oil bottles" className="h-full w-full object-cover sm:w-[40%] md:h-[50vh] lg:h-[60vh] xl:h-[80vh]" />
         </section>
-
-        <section className="grid gap-8 px-section-x-sm py-10 sm:px-section-x-md md:grid-cols-[1.1fr_0.9fr] lg:px-section-x-lg lg:py-14">
-          <DetailVideo
-            src={KALPA.logoBackgroundVideo}
-            className="aspect-square bg-[#70ab3b]"
-            fit="cover"
-          />
-          <DetailImage
-            src={KALPA.flyingBottle}
-            alt="Kalpa bottle and box render"
-            className="aspect-square w-full object-cover"
-          />
-        </section>
-
-        <section className="px-section-x-sm sm:px-section-x-md lg:px-section-x-lg">
-          <p className="text-section-label">
-            <span aria-hidden>&bull;</span> Brand Identity
-          </p>
-          <h2 className="mt-3 text-testimonial-heading font-semibold">Explore the Process</h2>
-        </section>
-
-        <section className="mt-6 bg-[#0b2a4c]">
-          <DetailVideo
-            src={KALPA.logoFormVideo}
-            className="mx-auto aspect-video max-h-[calc(100svh-120px)] w-full"
-            fit="contain"
-          />
-        </section>
-
-        <section className="grid gap-8 md:grid-cols-2">
-          <DetailImage
-            src={KALPA.storeSign}
-            alt="Kalpa storefront sign"
-            className="h-full min-h-[280px] md:min-h-[420px] w-full object-cover"
-          />
-          <ProcessTile number="01" title="General View">
-            This design approach embraces simplicity, clean lines, and a focus on essential
-            elements. It seeks to eliminate excessive ornamentation and unnecessary details, with
-            green and blue color used to create a calm and gentle atmosphere.
-            <br />
-            <br />
-            The color palette is inspired by textures and colors of nature forms and helps to build
-            a visually appealing and well-balanced design.
-          </ProcessTile>
-          <ProcessTile number="02" title="Elements">
-            The Kalpa logo is a harmonious blend of symbols representing the essence of coconut oil.
-            A drop at the heart of the design signifies the pure oil extracted with care. The sun
-            radiates the promise of natural goodness in every drop. The coconut tree, a timeless
-            emblem of purity and abundance, stands tall, symbolizing their commitment to quality and
-            tradition.
-          </ProcessTile>
-          <DetailImage
-            src={KALPA.letterhead}
-            alt="Kalpa pattern application"
-            className="h-full min-h-[280px] md:min-h-[420px] w-full object-cover"
-          />
-        </section>
-
-        <QuoteBlock>{kalpaContent.guidelineQuote}</QuoteBlock>
-
-        <section className="px-section-x-sm pb-10 sm:px-section-x-md lg:px-section-x-lg">
-          <h2 className="text-testimonial-heading font-semibold">color</h2>
-          <div className="mt-6 grid min-h-[220px] md:min-h-[290px] overflow-hidden md:grid-cols-[1.4fr_0.55fr_0.55fr]">
-            <div
-              className="flex items-end bg-[#0b2145]"
-              style={{
-                backgroundImage: `url(${KALPA.clouds})`,
-                backgroundSize: "cover",
-                backgroundPosition: "top",
-              }}
-            >
-              <div className="h-1/2 w-full bg-[#0b2145] p-4 text-right text-xs md:p-6 md:text-sm">
-                Blue Zodiac
-                <br />
-                #0B2145
-              </div>
-            </div>
-            <div
-              className="flex items-end bg-[#e7e4e4]"
-              style={{
-                backgroundImage: `url(${KALPA.clouds})`,
-                backgroundSize: "cover",
-                backgroundPosition: "top",
-              }}
-            >
-              <div className="h-1/2 w-full bg-[#e7e4e4] p-4 text-right text-xs text-black md:p-6 md:text-sm">
-                Mercury
-                <br />
-                #E7E4E4
-              </div>
-            </div>
-            <div
-              className="flex items-end bg-[#70ab3b]"
-              style={{
-                backgroundImage: `url(${KALPA.leaf})`,
-                backgroundSize: "cover",
-                backgroundPosition: "top",
-              }}
-            >
-              <div className="h-1/2 w-full bg-[#70ab3b] p-4 text-right text-xs text-black md:p-6 md:text-sm">
-                Leaf
-                <br />
-                #70AB3B
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg">
-          <p className="text-section-label">
-            <span aria-hidden>&bull;</span> Typeface
-          </p>
-          <div className="mt-4 grid gap-8 md:mt-5 md:gap-12 md:grid-cols-[1.15fr_0.85fr]">
-            <div>
-              <h2 className="kalpa-display text-testimonial-heading font-black">Goku Stencil</h2>
-              <p className="mt-4 max-w-[760px] text-copy-lg text-white/80">
-                The Goku Stencil font is a bold display face with clean stencil cuts, making it
-                suitable for logos, posters, and designs requiring a strong, impactful look.
-              </p>
-            </div>
-            <div className="self-center text-right">
-              <Link
-                to="/contact"
-                className="rounded-pill bg-bee-accent px-5 py-2 text-sm font-semibold text-black transition hover:bg-white touch-target tap-highlight-transparent"
-              >
-                Contact Us
-              </Link>
-              <p className="kalpa-display mt-6 break-all text-base font-black leading-tight md:mt-8 md:text-lg">
-                ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="px-section-x-sm py-10 text-center sm:px-section-x-md lg:px-section-x-lg">
-          <DetailVideo src={KALPA.logoAnimationVideo} fit="cover" />
-          <h2 className="kalpa-display -mt-12 text-heading-sm font-black md:-mt-16">
-            LOGO Animation
-          </h2>
-        </section>
-
-        <section className="grid gap-8 px-section-x-sm py-10 sm:px-section-x-md md:grid-cols-[0.8fr_1.2fr] lg:px-section-x-lg lg:py-14">
-          <DetailImage
-            src={KALPA.bottleBox}
-            alt="Kalpa bottle and carton"
-            className="aspect-square w-full object-cover max-h-[400px] md:max-h-[500px]"
-          />
-          <DetailVideo
-            src={KALPA.patternVideo}
-            className="aspect-square w-full object-cover max-h-[400px] md:max-h-[500px]"
-          />
-        </section>
-
         <section>
-          <DetailImage
-            src={KALPA.threeBottles}
-            alt="Kalpa bottle series"
-            className="w-full object-cover"
-          />
+          <div className="px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:py-16"><p className="text-section-label">• Brand Identity</p><h2 className="mt-3 text-heading-sm font-semibold md:mt-4">Explore the Process</h2></div>
+          <DetailVideo src={KALPA.logoFormVideo} className="w-full" fit="cover" />
         </section>
 
-        <section className="grid gap-8 px-section-x-sm py-10 sm:px-section-x-md md:grid-cols-[0.85fr_1.15fr] lg:px-section-x-lg lg:py-14">
-          <DetailImage
-            src={KALPA.posterSingle}
-            alt="Kalpa pure coconut poster"
-            className="aspect-[4/3] w-full object-cover"
-          />
-          <DetailImage
-            src={KALPA.businessCards}
-            alt="Kalpa business cards"
-            className="aspect-[4/3] w-full object-cover"
-          />
+        <section className="min-h-screen bg-white">
+          <div className="flex flex-col md:flex-row">
+            <DetailImage src={KALPA.storeSign} alt="Kalpa store sign" className="h-auto w-full object-cover md:h-[600px] md:w-[45%]" />
+            <IdentityBlock number="01" title="General View" className="md:w-[55%]"><p>This design approach embraces simplicity, clean lines, and a focus on essential elements. It seeks to eliminate excessive ornamentation and unnecessary details, green and blue color used to create a calm and gentle atmosphere.</p><p>The color palette is inspired by textures and colors of nature forms and helps to build a visually appealing and well-balanced design.</p></IdentityBlock>
+          </div>
+          <div className="flex flex-col-reverse md:flex-row">
+            <IdentityBlock number="02" title="Elements" className="md:w-[45%]"><p>The Kalpa logo is a harmonious blend of symbols representing the essence of coconut oil. A drop at the heart of the design signifies the pure oil extracted with care. The sun radiates the promise of natural goodness in every drop. The coconut tree, a timeless emblem of purity and abundance, stands tall, symbolizing their commitment to quality and tradition. Together, these elements create a visual narrative that reflects the purity, freshness, and natural essence of Kalpa coconut oil.</p></IdentityBlock>
+            <DetailImage src={KALPA.letterhead} alt="Kalpa identity elements" className="h-full w-full object-cover md:h-[700px] md:w-[55%] lg:h-[680px]" />
+          </div>
         </section>
 
-        <section className="aspect-[16/9] min-h-[280px] md:min-h-[360px]">
-          <CompareSlider
-            before={KALPA.posterCoconut}
-            after={KALPA.posterNature}
-            beforeAlt="Kalpa props model"
-            afterAlt="Kalpa packaging model"
-            className="bg-[#e9dfd3]"
-            handleColor="#0b2a4c"
-          />
+        <QuoteBlock topPadding>{kalpaContent.guidelineQuote}</QuoteBlock>
+        <section className="px-section-x-sm sm:px-section-x-md lg:px-section-x-lg"><div className="relative"><p className="absolute pt-4 text-section-label lg:pt-6">color</p><DetailImage src={KALPA.colorPalette} alt="Kalpa color palette" className="w-full object-cover xl:h-screen" /></div></section>
+        <section className="px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:py-16">
+          <p className="text-section-label">• Typeface</p>
+          <div className="mt-3 flex items-start justify-between gap-6 md:mt-4"><h2 className="text-heading-sm font-semibold">Goku Stencil</h2><Link to="/contact" className="shrink-0 rounded-pill bg-yellow-500 px-4 py-2 text-sm font-medium text-black transition hover:scale-105 hover:bg-yellow-400 lg:px-6 lg:py-3">Contact Us</Link></div>
+          <div className="mt-6 md:mt-8 md:flex md:items-center md:justify-between md:gap-8"><p className="max-w-[760px] text-copy-lg text-white/85 md:w-[55%]">The Goku Stencil font is a typeface inspired by the aesthetics of stencil designs and, potentially, the popular anime character Goku from Dragon Ball. It often features bold, clean lines and cut-out sections that give it a stencil effect, making it suitable for use in logos, posters, and designs requiring a strong, impactful look.</p><DetailImage src={KALPA.typeSample} alt="Goku Stencil character set" className="mt-6 h-[12vh] object-contain md:mt-0 md:h-[15vh]" /></div>
         </section>
 
-        <section className="grid gap-8 px-section-x-sm py-10 sm:px-section-x-md md:grid-cols-[1.2fr_0.8fr] lg:px-section-x-lg lg:py-14">
-          <DetailVideo src={KALPA.bottleVideo} className="aspect-square bg-white" fit="cover" />
-          <DetailImage
-            src={KALPA.bag}
-            alt="Kalpa tote bag"
-            className="aspect-square w-full object-cover"
-          />
-        </section>
-
-        <section className="aspect-[16/9] min-h-[280px] md:min-h-[360px]">
-          <CompareSlider
-            before={KALPA.patternGreen}
-            after={KALPA.patternGrey}
-            beforeAlt="Kalpa props model"
-            afterAlt="Kalpa packaging model"
-            className="bg-[#e9dfd3]"
-            handleColor="#0b2a4c"
-          />
-        </section>
-
-        <section className="px-section-x-sm py-10 text-center sm:px-section-x-md lg:px-section-x-lg">
-          <h2 className="text-testimonial-heading font-extrabold">THANKS</h2>
-          <p className="mt-2 text-title-fluid">{kalpaContent.thanks}</p>
-        </section>
-
-        <NextWorkStrip workIds={["w1", "w7"]} />
+        <DetailVideo src={KALPA.logoAnimationVideo} className="w-full" fit="cover" />
+        <section className="flex flex-col gap-4 px-section-x-sm py-10 sm:flex-row sm:px-section-x-md lg:gap-8 lg:px-section-x-lg lg:py-16"><DetailImage src={KALPA.bottleBox} alt="Oil bottles" className="h-full w-full object-cover sm:w-[40%] md:h-[50vh] lg:h-[60vh] xl:h-[80vh]" /><DetailVideo src={KALPA.patternVideo} className="h-full w-full sm:w-[60%] md:h-[50vh] lg:h-[60vh] xl:h-[80vh]" fit="cover" /></section>
+        <DetailImage src={KALPA.threeBottles} alt="Kalpa bottle series" className="h-full w-full object-cover lg:h-screen" />
+        <section className="flex flex-col gap-4 px-section-x-sm py-10 sm:flex-row sm:px-section-x-md lg:gap-8 lg:px-section-x-lg lg:py-16"><DetailImage src={KALPA.businessCards} alt="Visiting cards" className="h-full w-full object-cover sm:w-[40%] md:h-[50vh] lg:h-[60vh] xl:h-[80vh]" /><DetailImage src={KALPA.bottles} alt="Oil bottles" className="h-full w-full object-cover sm:w-[60%] md:h-[50vh] lg:h-[60vh] xl:h-[80vh]" /></section>
+        <CompareSlider before={KALPA.props} after={KALPA.package} beforeAlt="Props" afterAlt="Package" afterLabel="Package" className="h-[56.25vw] max-h-screen" handleColor="#70ab3b" labelColor="text-black" />
+        <section className="flex flex-col gap-4 px-section-x-sm py-10 sm:flex-row sm:px-section-x-md lg:gap-8 lg:px-section-x-lg lg:py-16"><DetailVideo src={KALPA.bottleVideo} className="h-full w-full sm:w-[60%] md:h-[50vh] lg:h-[60vh] xl:h-[80vh]" fit="cover" /><DetailImage src={KALPA.bag} alt="Oil bottles" className="h-full w-full object-cover sm:w-[40%] md:h-[50vh] lg:h-[60vh] xl:h-[80vh]" /></section>
       </main>
     </DetailVideoProvider>
   );

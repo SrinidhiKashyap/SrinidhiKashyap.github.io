@@ -147,7 +147,7 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
     scope: ["Culture", "Values", "Capabilities", "Collaboration Process"],
     hero: "/assets/about/studio.jpg",
     showcaseVideo: "/assets/work-websitedesign-homepage.mp4",
-    gallery: ["/assets/about/team.jpg", "/assets/home1-DuxIdUgA.png"],
+    gallery: ["/assets/about/team.jpg", "/assets/home-project-graphic.png"],
     deliverables:
       "Our studio process blends design and development from day one, keeping strategy, content, and production aligned so brands scale with consistency.",
     challenge:
@@ -160,9 +160,9 @@ const RAW_WORK_DETAILS: Record<string, unknown> = {
     summary:
       "A multidisciplinary team bridging design craft and technical execution for brand growth.",
     scope: ["Design Team", "Development Team", "3D Team", "Motion Team"],
-    hero: "/assets/home1-DuxIdUgA.png",
+    hero: "/assets/home-project-graphic.png",
     showcaseVideo: "/assets/work-uiuxprojects-homepage.mp4",
-    gallery: ["/assets/about/team.jpg", "/assets/home1-DuxIdUgA.png"],
+    gallery: ["/assets/about/team.jpg", "/assets/home-project-graphic.png"],
     deliverables:
       "Our team structure keeps research, design, and execution connected through rapid collaboration cycles, reducing rework and improving launch quality.",
     challenge:

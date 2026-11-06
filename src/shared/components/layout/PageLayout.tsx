@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { useLocation } from "react-router-dom";
+import { ROUTES } from "../../../app/routes";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNavbar } from "./SiteNavbar";
 
@@ -26,11 +28,12 @@ type PageLayoutProps = {
  * If you change the navbar height, update that value here.
  */
 export function PageLayout({ children }: PageLayoutProps) {
+  const isHome = useLocation().pathname === ROUTES.home;
+
   return (
     <div className="min-h-screen bg-bee-bg-primary text-white antialiased">
       <SiteNavbar />
-      {/* Offset content below the fixed navbar (navbar height = 76px) */}
-      <div id="main-content" className="pt-[76px]">
+      <div id="main-content" className={isHome ? "" : "pt-[76px]"}>
         {children}
       </div>
       <SiteFooter />

@@ -19,57 +19,81 @@ export function SterkrosDetailPage() {
           muteToggle
         />
 
-        <section className="w-full px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg">
-          <p className="text-section-label">
-            <span aria-hidden>&bull;</span> Brand Identity
-          </p>
-          <h2 className="mt-4 text-heading-sm font-semibold">Explore the Process</h2>
-          <div className="mt-6 space-y-4 text-copy-lg text-white/80 md:mt-8 md:space-y-6">
-            <p>
-              The process began with a comprehensive analysis of the Sterkros group's values,
-              mission, and target audience. This initial research laid the foundation for developing
-              a branding strategy that aligned with the team's goals and resonated with their
-              market.
-            </p>
-            <p>
-              The language was carefully crafted around the title symbol, coupled with triangle ways
-              of the &ldquo;S&rdquo;, creating a recognizable visual symbol for the fitness team.
-            </p>
+        <section className="w-full px-section-x-sm text-white sm:px-section-x-md lg:px-section-x-lg">
+          <div className="py-10 lg:py-16">
+            <h2 className="text-section-label font-normal">
+              <span aria-hidden>&bull;</span> Brand Identity
+            </h2>
+            <h2 className="mt-3 text-heading-sm font-semibold md:mt-4">
+              Explore the Process
+            </h2>
+            <div className="mt-6 space-y-6 text-copy-lg text-white/80 md:mt-8 md:space-y-8">
+              <p>
+                The process began with a comprehensive analysis of the Sterkros Group&apos;s values,
+                mission, and target audience. This initial research laid the foundation for
+                developing a brand strategy that aligned with the team&apos;s goals and resonated with
+                their target market. Bee concept® worked closely with the Sterkros Group to
+                understand their vision, values, and unique selling propositions.
+              </p>
+              <p>
+                Based on the insights gained from the research phase, Bee concept® proceeded to
+                create a visual identity that embodied the Sterkros brand personality. This involved
+                designing a distinctive logo that served as the centerpiece of the brand&apos;s visual
+                representation. The logo was carefully crafted around the tilde symbol coupled with
+                a triangle way of the &ldquo;S&rdquo; creating a recognizable visual symbol for the fitness
+                team.
+              </p>
+              <p>
+                Bee concept® selected a modern and sophisticated design for STERKROS centered around
+                a rich emerald red, black, and white palette, which symbolizes energy, freshness,
+                and strength. The logo fuses the &ldquo;S&rdquo; and Fitness Triangle in a bold monogram. Clean
+                lines and a structured layout, enhanced by a sleek typographic system, give the
+                professional look.
+              </p>
+            </div>
           </div>
-          <div className="mt-8 grid border-y border-white/60 py-6 text-center md:mt-10 md:py-8 md:grid-cols-3">
-            <div>
-              <h3 className="text-title-fluid">Guide lines</h3>
-              <DetailImage
-                src={STERKROS.guideline}
-                alt="Sterkros guidelines"
-                className="mx-auto mt-8 h-20 md:mt-12 md:h-28 object-contain"
-              />
+          <hr />
+          <div className="flex flex-col justify-between gap-10 py-10 text-center sm:flex-row sm:gap-6 lg:py-16">
+            <div className="flex flex-col justify-between sm:h-56 md:h-64 lg:h-72 xl:h-80">
+              <h3 className="text-lg font-normal sm:text-xl md:text-2xl lg:text-3xl">Guide Lines</h3>
+              <div className="relative mx-auto mt-8 h-52 w-28 sm:mt-0 sm:h-56 sm:w-36 md:h-64 md:w-48 lg:h-72 lg:w-60 xl:h-80 xl:w-64">
+                <DetailImage
+                  src={STERKROS.guideline}
+                  alt="Sterkros wordmark"
+                  className="absolute bottom-0 left-1/2 h-auto w-[105%] -translate-x-1/2 object-contain"
+                />
+              </div>
             </div>
-            <div>
-              <h3 className="text-title-fluid">Logo type</h3>
-              <DetailImage
-                src={STERKROS.logo}
-                alt="Sterkros logo type"
-                className="mx-auto mt-8 h-20 md:mt-12 md:h-28 object-contain"
-              />
+            <div className="flex flex-col justify-between sm:h-56 md:h-64 lg:h-72 xl:h-80">
+              <h3 className="text-lg font-normal sm:text-xl md:text-2xl lg:text-3xl">Logo Type</h3>
+              <div className="relative mx-auto mt-8 h-52 w-28 sm:mt-0 sm:h-56 sm:w-36 md:h-64 md:w-48 lg:h-72 lg:w-60 xl:h-80 xl:w-64">
+                <DetailImage
+                  src={STERKROS.logo}
+                  alt="Sterkros logo type"
+                  className="absolute bottom-0 left-1/2 h-auto w-[180%] -translate-x-1/2 translate-y-[9.85%] object-contain"
+                />
+              </div>
             </div>
-            <div>
-              <h3 className="text-title-fluid">Sign</h3>
-              <DetailImage
-                src={STERKROS.sign}
-                alt="Sterkros sign"
-                className="mx-auto mt-8 h-28 md:mt-12 md:h-40 object-contain"
-              />
+            <div className="flex flex-col justify-between sm:h-56 md:h-64 lg:h-72 xl:h-80">
+              <h3 className="text-lg font-normal sm:text-xl md:text-2xl lg:text-3xl">Sign</h3>
+              <div className="relative mx-auto mt-8 h-52 w-28 sm:mt-0 sm:h-56 sm:w-36 md:h-64 md:w-48 lg:h-72 lg:w-60 xl:h-80 xl:w-64">
+                <DetailImage
+                  src={STERKROS.sign}
+                  alt="Sterkros sign"
+                  className="absolute bottom-0 left-0 h-auto w-full translate-y-[3%] object-contain"
+                />
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="bg-bee-bg-deep px-section-x-sm py-8 sm:px-section-x-md lg:px-section-x-lg">
+        <section className="w-full overflow-hidden bg-bee-bg-primary">
           <DetailVideo
             src={STERKROS.logoAnimation}
-            className="mx-auto aspect-video max-h-[calc(100svh-120px)] w-full"
-            fit="contain"
+            className="aspect-video w-full bg-bee-bg-primary py-4 md:py-8 lg:aspect-auto lg:h-[110vh] lg:py-16"
+            fit="cover"
             muteToggle
+            blendMode="screen"
           />
         </section>
 

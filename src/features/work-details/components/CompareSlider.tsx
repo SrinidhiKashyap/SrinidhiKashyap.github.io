@@ -5,9 +5,9 @@ import { DetailImage } from "./DetailImage";
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 export interface CompareSliderProps {
-  /** Image shown on the left (or top) side of the comparison */
+  /** Image shown on the left side of the comparison */
   before: string;
-  /** Image shown on the right (or bottom) side of the comparison */
+  /** Image shown on the right side of the comparison */
   after: string;
   /** Alt text for the "before" image */
   beforeAlt: string;
@@ -15,7 +15,7 @@ export interface CompareSliderProps {
   afterAlt: string;
   /** Label displayed on the before side. Defaults to "Props". */
   beforeLabel?: string;
-  /** Label displayed on the after side. Defaults to "Package". */
+  /** Label displayed on the product side. Defaults to "Product". */
   afterLabel?: string;
   /** Additional class names for the container */
   className?: string;
@@ -53,7 +53,7 @@ export const CompareSlider = memo(function CompareSlider({
   beforeAlt,
   afterAlt,
   beforeLabel = "Props",
-  afterLabel = "Package",
+  afterLabel = "Product",
   className = "",
   fit = "cover",
   handleColor = "#0b2a4c",
@@ -75,7 +75,7 @@ export const CompareSlider = memo(function CompareSlider({
     const pos = `${clamped}%`;
     if (dividerRef.current) dividerRef.current.style.left = pos;
     if (handleRef.current) handleRef.current.style.left = pos;
-    if (overlayRef.current) overlayRef.current.style.clipPath = `inset(0 ${100 - clamped}% 0 0)`;
+    if (overlayRef.current) overlayRef.current.style.clipPath = `inset(0 0 0 ${clamped}%)`;
   }, []);
 
   const scheduleUpdate = useCallback(
@@ -182,7 +182,7 @@ export const CompareSlider = memo(function CompareSlider({
         src={after}
         alt={afterAlt}
         className={`absolute inset-0 ${objectClass}`}
-        style={{ clipPath: "inset(0 50% 0 0)" }}
+        style={{ clipPath: "inset(0 0 0 50%)" }}
         loading="lazy"
         decoding="async"
       />

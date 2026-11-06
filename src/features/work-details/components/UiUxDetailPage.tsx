@@ -1,386 +1,205 @@
-import { useEffect, useRef, useState } from "react";
-import { DetailImage } from "./DetailImage";
 import { DetailVideo } from "./DetailVideo";
 import { DetailVideoProvider } from "./DetailVideoProvider";
 import { NextWorkStrip } from "./NextWorkStrip";
 import { WorkDetailHero } from "./WorkDetailHero";
 
-const ROOT = "/assets/work-uiux-detail";
-
-const UIUX = {
-  forestMockup: `${ROOT}/forest-mockup.webp`,
-  redMockup: `${ROOT}/red-mockup.webp`,
-  logoMockup: `${ROOT}/logo-mockup.webp`,
-  icons: `${ROOT}/icons.svg`,
-  appMockup: `${ROOT}/phone-hand.gif`,
-  heroVideo: `${ROOT}/hero-sequence.mp4`,
-  video: `${ROOT}/glimpse.mp4`,
-  logoVideo: `${ROOT}/logo-animation.mp4`,
-} as const;
-
-const DEFINE_SCREENS = [
-  `${ROOT}/screen-otp.jpg`,
-  `${ROOT}/screen-home.jpg`,
-  `${ROOT}/screen-product.jpg`,
-  `${ROOT}/screen-cart.jpg`,
-  `${ROOT}/screen-success.png`,
-];
-
-const DELIVER_LEFT_SCREENS = [
-  `${ROOT}/screen-splash.png`,
-  `${ROOT}/screen-otp.jpg`,
-  `${ROOT}/screen-menu.jpg`,
-  `${ROOT}/screen-product.jpg`,
-  `${ROOT}/screen-cart.jpg`,
-];
-
-const DELIVER_RIGHT_SCREENS = [
-  `${ROOT}/screen-login.jpg`,
-  `${ROOT}/screen-signup.jpg`,
-  `${ROOT}/screen-home.jpg`,
-  `${ROOT}/screen-coupon.png`,
-  `${ROOT}/screen-place-order.jpg`,
-];
+const ROOT = "/assets/work-uiux-live";
 
 export function UiUxDetailPage() {
   return (
     <DetailVideoProvider>
       <main className="bg-bee-bg-primary text-white">
-        <HeroSection />
-        <IntroSection />
-        <TaskSection />
-        <DefineSection />
-        <BrandSystemSection />
-        <IconSection />
-        <DeliverSection />
+        <div>
+          <WorkDetailHero
+            videoSrc={`${ROOT}/app-intro-video.mp4`}
+            title={<>Kaju Factory <br />Android App</>}
+            description={<p>Bee concept<sup>®</sup> Revamping the ecommerce industry with our innovative design solutions!</p>}
+            scope={["UI/UX Design"]}
+          />
+
+          <section className="px-section-x-sm py-8 sm:px-section-x-md lg:px-section-x-lg lg:py-14">
+            <img src={`${ROOT}/app-hero.webp`} alt="Kaju Factory app hero image" className="aspect-[16/9] w-full object-cover" fetchPriority="high" />
+          </section>
+          <img src={`${ROOT}/app-screens-overview.webp`} alt="Kaju Factory mobile app screens" className="h-auto w-full" loading="lazy" />
+          <section className="px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:py-16">
+            <p className="max-w-[1120px] text-copy-lg text-white/80">
+              We crafted a cutting-edge e-commerce mobile application exclusively for dry fruits,
+              delivering a seamless shopping experience with intuitive navigation, rich visuals and
+              user-friendly features designed to delight health-conscious customers and elevate their
+              journey.
+            </p>
+          </section>
+          <DetailVideo src={`${ROOT}/app-demo-video.mp4`} className="aspect-video w-full" />
+
+          <section className="space-y-12 px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:space-y-16 lg:py-16">
+            <StoryBlock title="Our Task">
+              <p>
+                Our mission was to completely revamp the digital identity of Kaju Factory while
+                celebrating its legacy of premium quality and trust. BeeConcept was entrusted with
+                crafting a user-centric mobile application that would not only modernize the brand&apos;s
+                online presence but also reflect its tradition of excellence.
+              </p>
+              <p>
+                It was imperative to design an intuitive, visually engaging interface that would
+                seamlessly integrate easy product browsing, customization options, and a hassle-free
+                checkout experience. The goal was a smooth transition for loyal customers while
+                attracting new ones, maintaining brand recognition, and driving business growth.
+              </p>
+            </StoryBlock>
+            <StoryBlock title="The Challenge">
+              <p>
+                Designing for the Kaju Factory application brought a unique set of challenges. The
+                rapidly evolving food and retail market, coupled with the need to bridge traditional
+                values with modern digital experiences, required a deep understanding of both the
+                brand’s heritage and user expectations. One major hurdle was simplifying online
+                ordering and customer engagement without compromising the essence of the brand.
+              </p>
+              <p>
+                A subpar user experience at any touchpoint could lead to reduced customer loyalty and
+                missed growth opportunities in a highly competitive market.
+              </p>
+            </StoryBlock>
+            <StoryBlock title="Define">
+              <p>
+                Our process began with an in-depth analysis of customer personas and detailed purchase
+                journeys tailored to Kaju Factory’s target audience. We designed intuitive workflows
+                for effortless browsing, quick ordering, and seamless tracking of premium dry fruits.
+                We also proposed initiatives to enhance customer acquisition, engagement, and loyalty.
+              </p>
+            </StoryBlock>
+          </section>
+
+          <img src={`${ROOT}/design-exploration.webp`} alt="Kaju Factory app design exploration" className="h-auto w-full" loading="lazy" />
+          <section className="flex min-h-[50vh] sm:min-h-[66vh] lg:min-h-screen">
+            <DetailVideo src={`${ROOT}/app-feature-video.mp4`} className="w-1/2" />
+            <img src={`${ROOT}/app-logo.webp`} alt="Kaju Factory app logo" className="w-1/2 object-cover" loading="lazy" />
+          </section>
+
+          <section className="bg-bee-bg-deep px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:py-16">
+            <h2 className="text-lg font-medium sm:text-3xl md:text-4xl lg:text-5xl xl:text-[55px]">
+              • Typeface
+            </h2>
+            <div>
+              <h1 className="py-8 text-5xl font-medium sm:py-10 sm:text-7xl md:py-12 lg:py-14 lg:text-8xl xl:py-16 xl:text-[115px]">
+              Poppins
+              </h1>
+              <h2 className="text-lg font-medium leading-tight sm:text-3xl md:text-4xl lg:text-5xl lg:leading-tight xl:text-[55px]">
+              Why Poppins Typeface for <br /> Kaiju Factory?
+              </h2>
+              <p className="py-3 text-xs text-white/80 sm:py-4 md:py-5 md:text-base lg:py-6 lg:text-lg xl:text-xl">
+                <strong>Modern and Clean Aesthetic</strong><br />Poppins is a modern sans-serif typeface that aligns with contemporary design trends. Its clean and minimalistic look enhances<br className="hidden lg:block" /> readability, making it perfect for an online shopping app that aims to offer a smooth user experience.
+              </p>
+              <p className="py-3 text-xs text-white/80 sm:py-4 md:py-5 md:text-base lg:py-6 lg:text-lg xl:text-xl">
+                <strong>Optimized for Digital Interfaces</strong><br />Poppins is specifically designed for digital use, ensuring it looks sharp and legible across all<br className="hidden lg:block" /> devices, whether on a high-resolution smartphone screen or a desktop browser.
+              </p>
+              <p className="py-3 text-xs text-white/80 sm:py-4 md:py-5 md:text-lg lg:py-6 xl:text-xl">
+                Poppins is a modern, clean sans-serif typeface ideal for digital interfaces. Its geometric design conveys precision and quality,<br className="hidden lg:block" /> while its rounded edges add warmth and approachability. Optimized for readability and versatility, Poppins reinforces Kaiju<br className="hidden lg:block" /> Factory&apos;s premium and user-friendly brand identity.
+              </p>
+              <h3 className="text-4xl md:text-5xl lg:text-[121px]">
+                <strong>Aa </strong><span className="font-medium">Aa </span><span className="font-normal">Aa</span>
+              </h3>
+            </div>
+            <div className="space-y-12 py-3 text-xs sm:py-4 md:py-6 lg:py-8 lg:text-lg">
+              <TypefaceSample firstWeight="font-bold" secondWeight="font-medium" firstLabel="Bold" secondLabel="Medium" />
+              <TypefaceSample firstWeight="font-normal" secondWeight="font-light" firstLabel="Regular" secondLabel="Light" />
+            </div>
+          </section>
+
+          <section className="bg-bee-bg-card px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:py-16">
+            <p className="pb-6 text-section-label lg:pb-10">• Color</p>
+            <img
+              src={`${ROOT}/app-color-palette.webp`}
+              alt="Kaju Factory color palette"
+              className="h-[360px] w-full object-contain sm:h-[520px]"
+              loading="lazy"
+            />
+          </section>
+          <img src={`${ROOT}/app-icons.webp`} alt="Kaju Factory icons" className="h-auto w-full" loading="lazy" />
+
+          <section className="px-section-x-sm py-10 sm:px-section-x-md lg:px-section-x-lg lg:py-16">
+            <p className="text-section-label">• Deliver</p>
+            <p className="mt-6 max-w-[760px] text-copy-lg text-white/80 md:mt-8">
+              We maintained the right balance of colors and elements, making them look impressive and
+              clickable. After a pleasing and playful splash screen, a simplified dashboard loads
+              with clear information laid out according to user priorities.
+            </p>
+          </section>
+
+          <section className="relative w-full bg-[#211b19]">
+            <img src={`${ROOT}/app-background.webp`} alt="" className="absolute inset-0 h-full w-full object-cover pt-12" />
+            <div className="relative z-10 mx-auto max-w-7xl px-4">
+              <div className="grid grid-cols-2 gap-6 sm:gap-12">
+                {[
+                  "app-screen-08.webp",
+                  "app-screen-09.webp",
+                  "app-screen-10.webp",
+                  "app-screen-11.webp",
+                  "app-screen-12.webp",
+                  "app-screen-13.webp",
+                  "app-screen-10.webp",
+                  "app-screen-15.webp",
+                  "app-screen-16.webp",
+                  "app-screen-17.webp",
+                ].map((src, index) => (
+                  <div key={`${src}-${index}`} className="relative flex aspect-square items-center justify-center">
+                    <img src={`${ROOT}/${src}`} alt={`Kaju Factory app screen ${index + 1}`} className="w-1/2 rounded-xl" loading="lazy" />
+                  </div>
+                ))}
+              </div>
+              <div className="sticky bottom-0 z-20 -mt-36 flex justify-center md:-mt-56 lg:-mt-80">
+                <img src={`${ROOT}/app-hand-animation.gif`} alt="Phone displaying the Kaju Factory app" className="h-[37vh] sm:h-[45vh] md:h-[60vh] lg:h-[70vh] xl:h-[80vh]" loading="lazy" />
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-bee-bg-primary px-section-x-sm py-10 text-center sm:px-section-x-md lg:px-section-x-lg">
+            <h2 className="text-heading-sm font-extrabold">THANKS</h2>
+            <p className="mt-2 text-xl md:text-2xl xl:text-4xl">To The Whole Kaiju Factory Team!</p>
+          </section>
+        </div>
         <NextWorkStrip workIds={["w5", "w9"]} />
       </main>
     </DetailVideoProvider>
   );
 }
 
-function HeroSection() {
+function StoryBlock({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <>
-      <WorkDetailHero
-        videoSrc={UIUX.heroVideo}
-        title="Kaju Factory Android app"
-        description={
-          <p>
-            Bee Concept® revamped an ecommerce product experience with clear shopping flows, warm
-            visuals, and a flexible UI system.
-          </p>
-        }
-        scope={["UI/UX Design", "Interface Design", "Mobile App Prototype"]}
-      />
-
-      <section>
-        <DetailImage
-          src={UIUX.forestMockup}
-          alt="Kaju Factory app launch screen with cashew brand visual"
-          className="h-[250px] w-full border-y-2 border-[#00aeef] object-cover sm:h-[420px] lg:h-[78vh]"
-          priority
-        />
-      </section>
-    </>
-  );
-}
-
-function IntroSection() {
-  return (
-    <>
-      <DetailImage
-        src={UIUX.redMockup}
-        alt="Kaju Factory app interface screens on red background"
-        className="h-[320px] w-full object-cover sm:h-[500px] lg:h-[72vh]"
-      />
-      <section className="px-9 py-5 sm:px-14 sm:py-8 lg:px-20">
-        <p className="mx-auto max-w-6xl text-[11px] leading-[1.35] text-white/80 sm:text-base">
-          We crafted a cutting-edge ecommerce mobile application exclusively for dry fruits,
-          delivering a seamless shopping experience with intuitive navigation, rich visuals, and
-          user-friendly features.
-        </p>
-      </section>
-      <DetailVideo
-        src={UIUX.video}
-        className="h-[193px] w-full bg-[#555] sm:h-[320px] lg:h-[56vh]"
-        fit="cover"
-      />
-    </>
-  );
-}
-
-function TaskSection() {
-  return (
-    <section className="px-9 py-5 sm:px-14 sm:py-8 lg:px-20 lg:py-14">
-      <div className="max-w-6xl">
-        <h2 className="text-[20px] font-semibold sm:text-[30px]">Our Task</h2>
-        <p className="mt-2 text-[11px] leading-[1.35] text-white/80 sm:text-base">
-          Our mission was to completely revamp the digital identity of Kaju Factory while
-          celebrating its legacy of premium quality and trust. The concept needed to create an
-          ecommerce app that would modernize the brand&apos;s online presence and reflect its
-          tradition of excellence.
-        </p>
-        <p className="mt-2 text-[11px] leading-[1.35] text-white/80 sm:text-base">
-          It was imperative to design an intuitive, visually engaging interface that could integrate
-          product browsing, customization, and a hassle-free checkout without losing brand
-          recognition.
-        </p>
+    <div>
+      <h2 className="text-heading-sm font-semibold">{title}</h2>
+      <div className="mt-6 space-y-4 text-copy-lg text-white/80 md:mt-8 md:space-y-6">
+      {children}
       </div>
-    </section>
-  );
-}
-
-function DefineSection() {
-  return (
-    <>
-      <section className="px-9 py-5 sm:px-14 sm:py-8 lg:px-20 lg:py-14">
-        <div className="max-w-6xl space-y-7 sm:space-y-10">
-          <div>
-            <h2 className="text-[20px] font-semibold sm:text-[30px]">
-              The Challenge
-            </h2>
-            <p className="mt-2 text-[11px] leading-[1.35] text-white/80 sm:text-base">
-              Designing for the Kaju Factory application brought a unique set of challenges. The
-              rapidly evolving food and retail market demanded a modern digital experience that
-              preserved the brand&apos;s heritage and user expectations.
-            </p>
-          </div>
-          <div>
-            <h2 className="text-[20px] font-semibold sm:text-[30px]">Define</h2>
-            <p className="mt-2 text-[11px] leading-[1.35] text-white/80 sm:text-base">
-              Our process began with customer personas and purchase journeys tailored to Kaju
-              Factory&apos;s audience. We designed workflows for browsing, ordering, and checkout
-              while building a premium dry fruits experience.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f4f4f4] px-9 py-6 text-[#191919] sm:px-14 sm:py-10 lg:px-20 lg:py-16">
-        <div className="grid grid-cols-3 gap-4 sm:gap-8">
-          {DEFINE_SCREENS.map((src, index) => (
-            <DetailImage
-              key={src}
-              src={src}
-              alt={`Kaju Factory wireframe screen ${index + 1}`}
-              className="mx-auto max-h-[720px] w-full max-w-[320px] object-contain"
-            />
-          ))}
-        </div>
-      </section>
-    </>
-  );
-}
-
-function BrandSystemSection() {
-  return (
-    <>
-      <section className="grid min-h-[222px] grid-cols-2 bg-[#d9d9d9] sm:min-h-[360px] lg:min-h-[520px]">
-        <div className="grid place-items-center bg-gradient-to-br from-[#c12027] to-[#cf6333] p-10">
-          <DetailVideo
-            src={UIUX.logoVideo}
-            className="aspect-square w-full max-w-[420px] bg-transparent"
-            fit="contain"
-          />
-        </div>
-        <DetailImage
-          src={UIUX.logoMockup}
-          alt="Kaju Factory app icon on phone"
-          className="h-full min-h-[222px] w-full object-cover object-right sm:min-h-[360px] lg:min-h-[420px]"
-        />
-      </section>
-
-      <section className="px-9 py-5 sm:px-14 sm:py-10 lg:px-20 lg:py-16">
-        <p className="text-[20px] font-semibold sm:text-section-label">
-          <span aria-hidden>&bull;</span> Typeface
-        </p>
-        <h2 className="mt-6 text-[40px] font-semibold leading-none sm:mt-8 sm:text-[clamp(4rem,12vw,9rem)]">
-          Poppins
-        </h2>
-        <div className="mt-4 max-w-6xl sm:mt-8">
-          <h3 className="text-[20px] font-semibold leading-[1.02] sm:text-heading-sm">
-            Why Poppins Typeface for Kaju Factory?
-          </h3>
-          <p className="mt-2 text-[11px] leading-[1.35] text-white/80 sm:mt-4 sm:text-copy-lg">
-            Poppins is a modern sans-serif typeface that aligns with contemporary digital design
-            trends. Its clean geometry supports readability and a friendly premium brand voice
-            across mobile interfaces.
-          </p>
-        </div>
-      </section>
-
-      <section className="px-9 pb-8 sm:px-14 sm:pb-14 lg:px-20">
-        <div className="text-[40px] font-semibold leading-none sm:text-[clamp(4rem,12vw,9rem)]">
-          Aa Aa Aa
-        </div>
-        <div className="mt-3 max-w-5xl space-y-2 text-[11px] sm:mt-6 sm:space-y-4 sm:text-copy-lg">
-          <TypeRow weight="Bold" text="We bring you the world's best cashews" />
-          <TypeRow weight="Medium" text="Experience the new kajufactory app" />
-          <TypeRow weight="Regular" text="We bring you the world's best cashews" />
-          <TypeRow weight="Light" text="Experience the new kajufactory app" />
-        </div>
-      </section>
-
-      <section className="bg-[#232323] px-9 py-5 sm:px-14 sm:py-10 lg:px-20 lg:py-16">
-        <p className="text-[20px] font-semibold sm:text-section-label">
-          <span aria-hidden>&bull;</span> Color
-        </p>
-        <div className="mt-5 grid max-w-6xl grid-cols-[1.1fr_1fr] gap-1.5 sm:mt-10 sm:gap-3">
-          <ColorCard
-            className="min-h-[123px] bg-[#c12027] sm:min-h-[230px]"
-            name="Fire Engine Red"
-            hex="#C12027"
-          />
-          <div className="grid gap-3">
-            <ColorCard
-              className="min-h-[58px] bg-[#f9f9f9] text-[#191919] sm:min-h-[110px]"
-              name="Snow Drift"
-              hex="#F9F9F9"
-            />
-            <div className="grid grid-cols-2 gap-1.5 sm:gap-3">
-              <ColorCard
-                className="min-h-[58px] bg-[#cf6333] sm:min-h-[110px]"
-                name="Flame Pea"
-                hex="#CF6333"
-              />
-              <ColorCard
-                className="min-h-[58px] bg-[#28ae60] sm:min-h-[110px]"
-                name="Jade Green"
-                hex="#28AE60"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
-function IconSection() {
-  return (
-    <section className="bg-[#f9f9f9] px-9 py-10 text-[#191919] sm:px-14 sm:py-14 lg:px-20 lg:py-20">
-      <h2 className="max-w-lg text-[20px] font-semibold leading-[1.05] sm:text-heading-sm">
-        Iconography &amp; Illustrations
-      </h2>
-      <DetailImage
-        src={UIUX.icons}
-        alt="Kaju Factory iconography and illustration set"
-        className="mx-auto mt-10 w-full max-w-6xl object-contain sm:mt-12"
-      />
-    </section>
-  );
-}
-
-function DeliverSection() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const [handPinned, setHandPinned] = useState(false);
-  const handPinnedRef = useRef(false);
-
-  useEffect(() => {
-    let animationFrame = 0;
-
-    const updateHandPosition = () => {
-      animationFrame = 0;
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const bounds = section.getBoundingClientRect();
-      const shouldPin = bounds.top <= 76 && bounds.bottom > window.innerHeight;
-      if (shouldPin === handPinnedRef.current) return;
-
-      handPinnedRef.current = shouldPin;
-      setHandPinned(shouldPin);
-    };
-
-    const requestUpdate = () => {
-      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateHandPosition);
-    };
-
-    requestUpdate();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    return () => {
-      window.cancelAnimationFrame(animationFrame);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-    };
-  }, []);
-
-  return (
-    <section
-      ref={sectionRef}
-      className="relative bg-[#171717] px-section-x-sm py-14 sm:px-section-x-md lg:px-section-x-lg lg:py-20"
-    >
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-        <div className="absolute inset-x-0 top-[22rem] bottom-0 bg-[#c12027]" />
-        <div className="absolute -bottom-[12%] left-1/2 h-[68%] w-[130%] -translate-x-1/2 rounded-t-[50%] bg-[#d7282c]" />
-      </div>
-
-      <div className="relative z-10 max-w-[350px]">
-        <p className="text-[20px] font-semibold sm:text-section-label">
-          <span aria-hidden>&bull;</span> Deliver
-        </p>
-        <p className="mt-2 text-[11px] leading-[1.35] text-white/80 sm:mt-4 sm:text-base">
-          We maintained the right balance of colors and elements, keeping the look impressive and
-          clickable after a playful splash screen, clean dashboard, and crisp information structure.
-        </p>
-      </div>
-
-      <img
-        src={UIUX.appMockup}
-        alt="Hand holding Kaju Factory phone"
-        className={`pointer-events-none z-20 w-[68%] max-w-[620px] -translate-x-1/2 ${handPinned ? "fixed bottom-0 left-1/2" : "absolute bottom-0 left-1/2"}`}
-        loading="lazy"
-        decoding="async"
-      />
-
-      <div className="relative z-10 mt-10 grid grid-cols-2 gap-x-12 sm:mt-14 sm:gap-x-20 lg:gap-x-28">
-        <div className="space-y-8 sm:space-y-12">
-          {DELIVER_LEFT_SCREENS.map((src, index) => (
-            <DetailImage
-              key={src}
-              src={src}
-              alt={`Kaju Factory delivered screen ${index + 1}`}
-              className="w-[78%] max-w-[440px] justify-self-start rounded-[14px] shadow-xl"
-              priority={index === 0}
-            />
-          ))}
-        </div>
-        <div className="space-y-8 pt-20 sm:space-y-12 sm:pt-28 lg:pt-36">
-          {DELIVER_RIGHT_SCREENS.map((src, index) => (
-            <DetailImage
-              key={src}
-              src={src}
-              alt={`Kaju Factory delivered screen ${index + 6}`}
-              className="ml-auto w-[78%] max-w-[440px] rounded-[14px] shadow-xl"
-              priority={index === 0}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TypeRow({ weight, text }: { weight: string; text: string }) {
-  return (
-    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-2 sm:gap-3">
-      <span className="font-semibold">Title</span>
-      <span className="border-l-2 border-[#c12027] pl-4">{text}</span>
-      <span>{weight}</span>
     </div>
   );
 }
 
-function ColorCard({ className, name, hex }: { className: string; name: string; hex: string }) {
+function TypefaceSample({
+  firstWeight,
+  secondWeight,
+  firstLabel,
+  secondLabel,
+}: {
+  firstWeight: string;
+  secondWeight: string;
+  firstLabel: string;
+  secondLabel: string;
+}) {
   return (
-    <div
-      className={`rounded-[8px] p-2 text-[13px] font-semibold sm:rounded-card sm:p-6 sm:text-2xl ${className}`}
-    >
-      <p>{name}</p>
-      <p>{hex}</p>
+    <div className="flex gap-0 sm:gap-4">
+      <div className="relative flex w-24 flex-col justify-between">
+        <p className={firstWeight}>Title</p>
+        <p className={secondWeight}>Subtext</p>
+        <span className="absolute bottom-0 right-4 top-0 w-0.5 bg-red-500 sm:right-0" aria-hidden />
+      </div>
+      <div className="flex flex-1 flex-col justify-between">
+        <p className={`${firstWeight} py-2`}>
+          We bring you the world&apos;s best cashews <span className="hidden sm:inline">. . . . . . . . . . . . . . . . . . . . . . . . . . . . .</span> {firstLabel}
+        </p>
+        <p className={secondWeight}>
+          Experience the new kajufactory app <span className="hidden sm:inline">. . . . . . . . . . . . . . . . . . . . . . . . . . . . .</span> {secondLabel}
+        </p>
+      </div>
     </div>
   );
 }

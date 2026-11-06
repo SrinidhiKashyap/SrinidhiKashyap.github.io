@@ -16,6 +16,8 @@ export interface DetailVideoProps {
   priority?: boolean;
   /** If true, shows a mute/unmute toggle button. Defaults to false. */
   muteToggle?: boolean;
+  /** Applies a blend mode to the video element. */
+  blendMode?: "screen";
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -40,6 +42,7 @@ export const DetailVideo = memo(function DetailVideo({
   poster,
   priority = false,
   muteToggle = false,
+  blendMode,
 }: DetailVideoProps) {
   const [ready, setReady] = useState(priority);
   const [muted, setMuted] = useState(true);
@@ -91,7 +94,7 @@ export const DetailVideo = memo(function DetailVideo({
           playsInline
           preload={priority ? "metadata" : "none"}
           className={
-            fit === "cover" ? "h-full w-full object-cover" : "h-full w-full object-contain"
+            `${fit === "cover" ? "h-full w-full object-cover" : "h-full w-full object-contain"}${blendMode === "screen" ? " mix-blend-screen" : ""}`
           }
         />
       )}

@@ -3,7 +3,7 @@ const BASE = "/assets/work-sterkros-detail";
 
 export const sterkrosAssets = {
   logo: `${BASE}/logo.svg`,
-  guideline: `${BASE}/logo-guideline.png`,
+  guideline: `${BASE}/sterkros-wordmark.png`,
   sign: `${BASE}/logo-sign.png`,
   logoAnimation: `${BASE}/logo-animation.mp4`,
   logoLineAnimation: `${BASE}/logo-line-animation.mp4`,
@@ -14,7 +14,7 @@ export const sterkrosAssets = {
   gymBag: `${BASE}/gym-bag.webp`,
   bottle: `${BASE}/transformation-bottle.webp`,
   protein: `${BASE}/transformation-protein.webp`,
-  colorCode: `${BASE}/color-code.jpg`,
+  colorCode: `${BASE}/color-code.webp`,
   watch: `${BASE}/apple-watch.webp`,
   shirt: `${BASE}/shirt.webp`,
   props: `${BASE}/props-three-sides.webp`,
